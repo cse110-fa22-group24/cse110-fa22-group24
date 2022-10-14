@@ -2,11 +2,14 @@
 
 ## Group Identification
 
-Instructor - Thomas Powell
+Instructors:
 
-Team Name – Hexadecimators
+ - Thomas Powell tpowell2@ucsd.edu
+ - Navya Shetty nshetty@ucsd.edu
 
-Team member info:
+Team Name: Hexadecimators
+
+Team Members:
 
  - Lemin Jin lejin@ucsd.edu
  - Pierre Beurtheret cbeurtheret@ucsd.edu
