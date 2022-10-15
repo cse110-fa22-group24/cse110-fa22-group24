@@ -3,23 +3,28 @@
 ## Our Brand
 Our primary team color is orange!  
 And here's our full color palate:  
+  
 ![Color 1](/admin/branding/color1.png)  
 `#BF4E30`  
+  
   
 ![Color 2](/admin/branding/color2.png)  
 `#ECA400`  
   
+   
 ![Color 3](/admin/branding/color3.png)  
 `#EAF8BF`  
   
+  
 ![Color 4](/admin/branding/color4.png)  
 `#69DDFF`  
-   
+  
+  
 ![Color 5](/admin/branding/color5.png)  
 `#2D2D34`  
   
 Here's our team logo:  
-![Team Logo](/admin/branding/Logo3.png)
+<img src="/admin/branding/Logo3.png" alt="Team Logo">
 
 ## Our Values
 1. **Communication** between all team members
