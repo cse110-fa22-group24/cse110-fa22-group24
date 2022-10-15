@@ -15,6 +15,11 @@ Team Members:
  - Pierre Beurtheret cbeurtheret@ucsd.edu
  - Qingxin Li qil027@ucsd.edu
  - Jessalyn Wang jew003@ucsd.edu
+ - Hayk Khulyan hkhulyan@ucsd.edu
+ - Isabelle Krochmal ikrochma@ucsd.edu
+ - Zhuoyang Meng zhmeng@ucsd.edu 
+ - Hung-Yu(Eric) Ko huko@ucsd.edu
+ - Sri Gangavarapu sgangava@ucsd.edu
 
 ## Primary Means of Communication and Expectations
 
