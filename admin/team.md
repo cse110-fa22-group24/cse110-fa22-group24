@@ -20,6 +20,7 @@ And here's our full color palate:
 ![Color 5](/admin/branding/color5.png)    
   
 Here's our team logo:  
+  
 <img src="/admin/branding/Logo3.png" alt="Team Logo" width=300>
 
 ## Our Values
