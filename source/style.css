@@ -1,0 +1,8 @@
+* {
+    font-family: 'Ubuntu', sans-serif; /* apply text font for all elements */
+}
+
+html {
+    background-color: #2d2d34; /* apply background color for html element */
+    color: white; /* text color for html element */
+}
