@@ -13,7 +13,7 @@
 3. Commit changes to the local branch
 4. Push the local branch to origin
 5. Create a pull request to merge changes into `main`
-6. Review changes
+6. Review changes (requires 2 approvals)
 7. Merge changes
 
 Merging changes into or pushing onto `main` will run the [Deploy static content to GitHub Pages](https://github.com/cse110-fa22-group24/cse110-fa22-group24/actions/workflows/deploy.yml) action.  
