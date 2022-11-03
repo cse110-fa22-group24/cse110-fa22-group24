@@ -6,6 +6,8 @@
 
 [Google Slides: Team 24 Pitch](https://docs.google.com/presentation/d/1J6zCZ23b61nf89hl8gfiFk0LUtrNjuQRapIYU0aGVOk/edit)
 
+[Figma](https://www.figma.com/file/MJNu9BIF2qha5lbEGSJRCw/CSE-110?node-id=4%3A39)
+
 ## Pipeline
 
 1. Pull the latest changes from `main`
