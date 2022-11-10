@@ -111,3 +111,6 @@ class JobDetails extends HTMLElement {
     });
   }
 }
+
+// Define the Class as a customElement so we can create 'job-details' elements
+customElements.define('job-details', JobDetails);
