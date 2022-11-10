@@ -1,5 +1,7 @@
 # Team 24: The Hexadecimators
 
+[Google Sheets: Team 24](https://docs.google.com/spreadsheets/d/1YDdLJqPIO-V7ctv1miaz47mQka0G8L5DxcCv4Mk2RLo/edit)
+
 [GitHub: Team Page](https://github.com/cse110-fa22-group24/cse110-fa22-group24/blob/71fb6d14a7409ceef8ec237c466490903a061c3a/admin/team.md)
 
 [Miro: Team 24 Starting Pitch](https://miro.com/app/board/uXjVPJ8rcC4=/)
