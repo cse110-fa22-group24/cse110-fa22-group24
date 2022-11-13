@@ -1,44 +1,227 @@
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@0,600;0,800;1,300&display=swap" rel="stylesheet">
 <details>
-  <summary class="summary">
-    <div id="company">Company</div>
-    <div id="position-title">Position Title</div>
-    <div id="location">Location</div>
-    <div id="status">Status</div>
-    <div id="deadline-date">Deadline Date</div>
-    <div id="deadline-time">Deadline Time</div>
+  <summary class="summary"> 
+    
+    <div class ="flex-container"> <!-- need a flex container to set everything inside, else I cannot adjust summary style by itself-->
+
+      <div id="arrow"><img src="assets/next.png" id="arrow_img"></div>
+
+      <div id="company">Amazon</div> 
+
+      <div id="position-title">Software Development Engineer I</div>
+
+      <div class="right_icon", id="location">
+        <img src="assets/icons8-map-pin-48.png" id="pin_img">
+        <i id="txt">Bellevue</i>
+      </div>
+
+      <div class="right_icon", id="status">
+        Status: Interview 1
+      </div>
+
+      <div id="bell"><img src="assets/bell.png"></div>
+
+      <div class="right_icon", id="deadline">
+        <span class="item">11/29/22</span>
+        <span class="item">10:00 AM</span>
+      </div>
+    </div> <!-- end of flex-container -->
   </summary>
-  <div>
-    <h1>Description</h1>
-    <p>Description of job</p>
-  </div>
-  <div>
-    <h1>Notes</h1>
-    <ul>
-      <li>Teams of interest</li>
-      <li>Item 2</li>
-      <li>Item 3</li>
+  
+  <hr>
+  <div class="information"> <!-- this should be a flex item-->
+    <div class="title">Description</div>
+    <p id="job_detail">Duis iaculis magna nunc, quis tincidunt metus facilisis in. 
+      Aliquam dictum pellentesque sodales. Nam ultrices, massa sit amet vestibulum maximus,
+       ante nibh bibendum urna, at consequat dolor neque sit amet risus. Sed a velit blandit, s
+       celerisque ante nec, aliquet mi. Aenean ligula augue, aliquam sed consequat eu, dictum in odio. 
+       Aliquam ut lectus tempus, auctor ipsum eu, molestie nunc. Praesent porttitor placerat elit, 
+       at euismod erat auctor eu. Vivamus odio eros, commodo sed congue elementum, iaculis vitae sapien. 
+       Sed vel ex gravida, auctor nulla a, interdum magna. Nunc vel pulvinar turpis, in suscipit dolor. 
+       Etiam facilisis dapibus mi, ut mattis erat ultricies ac. Integer sollicitudin, odio et elementum consectetur,
+        tellus odio mollis ipsum, at feugiat urna nisl vel turpis. Etiam et velit volutpat, feugiat lacus eget, 
+        varius velit. Integer placerat id lacus sed consequat. Proin posuere euismod lectus ut bibendum.</p>
+    <div class="title", id="note">Notes</div> 
+    <ul class="content">  
+      <li class="content">Teams of interest</li>
+      <li class="content">Item 2</li>
+      <li class="content">Item 3</li>
     </ul>
+    <div class="title">Contact:
+      <a class="content", href="https://www.google.com/">recruiter@google.com</a>
+      
+    </div> 
+    <nav class="title">Portal:
+      <a class="content", href="https://jobs.google.com/">jobs.google.com</a>|
+      UserName:
+      <a class="content", href="https://www.google.com/">recruiter@google.com</a>|
+      Password:
+      <a class="content", href="https://www.google.com/">recruiter@google.com</a>
+    </nav> 
+    <div class="title">Tags
+      <span class="tags"> some tag</span>
+    </div> 
   </div>
-  <h1>Contact</h1>
-  <a href="https://www.google.com/">recruiter@google.com</a>
-  <h1>Portal</h1>
-  <a href="https://jobs.google.com/">jobs.google.com</a>
-  <h1>Tags</h1>
+  
 </details>
 
 <style>
   * {
-    font-family: sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size:  20pt;
+    font-weight: 400;
   }
 
-  .summary {
-    display: flex;
-    gap: 20px;
-  }
+details{
+  border: 1px solid;
+  color: #2d2d34;
+  border-radius: 8px;
+  width: 80%;
+}
 
-  #company {
-    border: 1px solid blue;
-    background-color: blue;
-    color: white;
-  }
+details > summary{
+  margin:0;
+  list-style: none;
+}
+
+details > hr{
+  margin: 0em;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 60px;
+  background-color: none;
+}
+
+.flex-container > div {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left:10px;
+}
+
+#arrow_img{
+  padding-left: 10px;
+  margin-right: 0px;
+  height: 20px;
+  width: 25px;
+}
+
+#company {
+  margin-left: 0px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border: 1px #69ddff;
+  border-radius: 5px;
+  background-color: #69ddff;
+  color: black;
+}
+
+#pin_img{
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 3px;
+  height: 20px;
+  width: 20px;
+}
+
+#location{
+  margin-left: auto;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  border: 1px #dbf8ff;
+  border-radius: 5px;
+  background-color: #dbf8ff;
+  
+}
+
+div > i{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 8px;
+  color: black;
+  text-align: center;
+  font-size: 14pt;
+  font-weight: 200;
+}
+
+#status{
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 2px #eca400 solid;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-right: 6px;
+  padding-left: 6px;
+  border-radius: 5px;
+  text-align: center;
+  color: #eca400;
+  font-size: 14pt;
+  font-weight: 400;
+}
+
+#deadline{
+  display: flex;
+  flex-direction: column;
+}
+
+.item{
+  text-align: center;
+  color: #bf4e30;
+  font-size: 14pt;
+  font-weight: 400;
+}
+
+.information{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.title{
+  margin-left: 15px;
+  margin-bottom: 10px;
+  color: black;
+  font-size: 18pt;
+  font-weight: 100;
+  font-style: italic;
+}
+
+#job_detail{
+  margin-top: 0px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 5px;
+  color: black;
+  font-size: 14pt;
+  font-weight: 100;
+  line-height: 1.4;
+}
+#note{
+  margin-bottom: 5px;
+}
+
+ul.content{
+  padding-left: 30px;
+  margin: 0;
+  margin-bottom: 5px;
+}
+.content{
+  margin: 0;
+  color: black;
+  font-size: 14pt;
+  font-weight: 100;
+  line-height: 1.4;
+}
+
+a.content{
+  color: #106efb;
+}
+
 </style>
