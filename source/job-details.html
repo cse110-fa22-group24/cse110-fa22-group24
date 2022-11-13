@@ -1,227 +1,192 @@
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@0,600;0,800;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito">
 <details>
-  <summary class="summary"> 
-    
-    <div class ="flex-container"> <!-- need a flex container to set everything inside, else I cannot adjust summary style by itself-->
-
-      <div id="arrow"><img src="assets/next.png" id="arrow_img"></div>
-
-      <div id="company">Amazon</div> 
-
-      <div id="position-title">Software Development Engineer I</div>
-
-      <div class="right_icon", id="location">
-        <img src="assets/icons8-map-pin-48.png" id="pin_img">
-        <i id="txt">Bellevue</i>
-      </div>
-
-      <div class="right_icon", id="status">
-        Status: Interview 1
-      </div>
-
-      <div id="bell"><img src="assets/bell.png"></div>
-
-      <div class="right_icon", id="deadline">
-        <span class="item">11/29/22</span>
-        <span class="item">10:00 AM</span>
-      </div>
-    </div> <!-- end of flex-container -->
+  <summary>
+    <div id="arrow"><img src="assets/next.png"></div>
+    <div id="company">Amazon</div> 
+    <div id="title">Software Development Engineer I</div>
+    <div id="location-tag">
+      <span id="pin-symbol">📍</span>
+      <span id="location">Bellevue</span>
+    </div>
+    <div id="status">Status: Interview 1</div>
+    <div id="notification-symbol">🔔</div>
+    <div id="deadline">
+      <span id="deadline-date">11/29/22</span>
+      <span id="deadline-time">10:00 AM</span>
+    </div>
   </summary>
-  
-  <hr>
-  <div class="information"> <!-- this should be a flex item-->
-    <div class="title">Description</div>
-    <p id="job_detail">Duis iaculis magna nunc, quis tincidunt metus facilisis in. 
+  <div class="dropdown">
+    <hr id="horizontal-rule">
+    <div class="heading">Description</div>
+    <div id="description">Duis iaculis magna nunc, quis tincidunt metus facilisis in.
       Aliquam dictum pellentesque sodales. Nam ultrices, massa sit amet vestibulum maximus,
-       ante nibh bibendum urna, at consequat dolor neque sit amet risus. Sed a velit blandit, s
-       celerisque ante nec, aliquet mi. Aenean ligula augue, aliquam sed consequat eu, dictum in odio. 
-       Aliquam ut lectus tempus, auctor ipsum eu, molestie nunc. Praesent porttitor placerat elit, 
-       at euismod erat auctor eu. Vivamus odio eros, commodo sed congue elementum, iaculis vitae sapien. 
-       Sed vel ex gravida, auctor nulla a, interdum magna. Nunc vel pulvinar turpis, in suscipit dolor. 
-       Etiam facilisis dapibus mi, ut mattis erat ultricies ac. Integer sollicitudin, odio et elementum consectetur,
-        tellus odio mollis ipsum, at feugiat urna nisl vel turpis. Etiam et velit volutpat, feugiat lacus eget, 
-        varius velit. Integer placerat id lacus sed consequat. Proin posuere euismod lectus ut bibendum.</p>
-    <div class="title", id="note">Notes</div> 
-    <ul class="content">  
-      <li class="content">Teams of interest</li>
-      <li class="content">Item 2</li>
-      <li class="content">Item 3</li>
-    </ul>
-    <div class="title">Contact:
-      <a class="content", href="https://www.google.com/">recruiter@google.com</a>
-      
-    </div> 
-    <nav class="title">Portal:
-      <a class="content", href="https://jobs.google.com/">jobs.google.com</a>|
-      UserName:
-      <a class="content", href="https://www.google.com/">recruiter@google.com</a>|
-      Password:
-      <a class="content", href="https://www.google.com/">recruiter@google.com</a>
-    </nav> 
-    <div class="title">Tags
-      <span class="tags"> some tag</span>
+      ante nibh bibendum urna, at consequat dolor neque sit amet risus. Sed a velit blandit,
+      scelerisque ante nec, aliquet mi. Aenean ligula augue, aliquam sed consequat eu, dictum in odio.
+      Aliquam ut lectus tempus, auctor ipsum eu, molestie nunc. Praesent porttitor placerat elit,
+      at euismod erat auctor eu. Vivamus odio eros, commodo sed congue elementum, iaculis vitae sapien.
+      Sed vel ex gravida, auctor nulla a, interdum magna. Nunc vel pulvinar turpis, in suscipit dolor.
+      Etiam facilisis dapibus mi, ut mattis erat ultricies ac. Integer sollicitudin, odio et elementum consectetur,
+      tellus odio mollis ipsum, at feugiat urna nisl vel turpis. Etiam et velit volutpat, feugiat lacus eget,
+      varius velit. Integer placerat id lacus sed consequat. Proin posuere euismod lectus ut bibendum.
+    </div>
+    <div>
+      <div class="heading">Notes</div> 
+      <ul id="notes">
+        <li>Teams of interest</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </ul>
+    </div>
+    <div>
+      <span class="heading">Contact:</span>
+      <a href="https://www.google.com/">recruiter@google.com</a>
+    </div>
+    <div>
+      <span class="heading">Portal:</span>
+      <a href="https://jobs.google.com/">jobs.google.com</a>
+      <span class="vertical-bar">|</span>
+      <span class="heading">Username:</span>
+      <a>looking4job</a>
+      <span class="vertical-bar">|</span>
+      <span class="heading">Password:</span>
+      <a>mysecurepassword</a>
+    </div>
+    <div class="heading">Tags
     </div> 
   </div>
-  
 </details>
 
+
 <style>
-  * {
-    font-family: 'Nunito Sans', sans-serif;
-    font-size:  20pt;
-    font-weight: 400;
-  }
 
-details{
-  border: 1px solid;
+* {
+  font-family: 'Nunito', sans-serif;
+  font-size:  14pt;
   color: #2d2d34;
+}
+
+details {
+  border: 1px solid;
   border-radius: 8px;
-  width: 80%;
 }
 
-details > summary{
-  margin:0;
+
+/* summary */
+
+details > summary {
   list-style: none;
-}
-
-details > hr{
-  margin: 0em;
-  margin-left: 15px;
-  margin-right: 15px;
-  margin-bottom: 15px;
-}
-.flex-container {
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 60px;
-  background-color: none;
+  padding: 10px;
+  gap: 10px;
 }
 
-.flex-container > div {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 10px;
-  margin-left:10px;
+
+/* dropdown arrow */
+
+#arrow {
+  height: 24px;
+  width: 24px;
 }
 
-#arrow_img{
-  padding-left: 10px;
-  margin-right: 0px;
-  height: 20px;
-  width: 25px;
+details[open] #arrow {
+  transform: rotate(90deg);
 }
+
+
+/* company tag */
 
 #company {
-  margin-left: 0px;
-  padding-left: 12px;
-  padding-right: 12px;
-  border: 1px #69ddff;
+  padding: 0px 12px;
   border-radius: 5px;
   background-color: #69ddff;
-  color: black;
+  font-size: 1.5rem;
 }
 
-#pin_img{
-  margin-top: 3px;
-  margin-bottom: 3px;
-  margin-left: 3px;
-  height: 20px;
-  width: 20px;
+
+/* position title */
+
+#title {
+  font-size: 1.5rem;
 }
 
-#location{
+/* location */
+
+#location-tag {
   margin-left: auto;
-  margin-right: 5px;
   display: flex;
   align-items: center;
-  border: 1px #dbf8ff;
   border-radius: 5px;
   background-color: #dbf8ff;
-  
+  padding: 5px 8px;
+  gap: 5px;
 }
 
-div > i{
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-right: 8px;
-  color: black;
-  text-align: center;
-  font-size: 14pt;
-  font-weight: 200;
-}
-
-#status{
-  margin-left: 5px;
-  margin-right: 5px;
-  border: 2px #eca400 solid;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  padding-right: 6px;
-  padding-left: 6px;
-  border-radius: 5px;
-  text-align: center;
-  color: #eca400;
-  font-size: 14pt;
-  font-weight: 400;
-}
-
-#deadline{
-  display: flex;
-  flex-direction: column;
-}
-
-.item{
-  text-align: center;
-  color: #bf4e30;
-  font-size: 14pt;
-  font-weight: 400;
-}
-
-.information{
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.title{
-  margin-left: 15px;
-  margin-bottom: 10px;
-  color: black;
-  font-size: 18pt;
-  font-weight: 100;
+#location {
   font-style: italic;
 }
 
-#job_detail{
-  margin-top: 0px;
-  margin-left: 15px;
-  margin-right: 15px;
-  margin-bottom: 5px;
-  color: black;
-  font-size: 14pt;
-  font-weight: 100;
-  line-height: 1.4;
-}
-#note{
-  margin-bottom: 5px;
+
+/* status */
+
+#status {
+  padding: 3px 6px;
+  border: 2px #eca400 solid;
+  border-radius: 5px;
+  color: #eca400;
 }
 
-ul.content{
+/* notification symbol */
+
+#notification-symbol {
+  font-size: 1.5rem;
+}
+
+/* deadline date and time */
+
+#deadline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#deadline * {
+  color: #bf4e30;
+}
+
+/* horizontal rule */
+
+#horizontal-rule {
+  margin: 0;
+}
+
+/* dropdown */
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 15px;
+  gap: 10px;
+}
+
+.heading {
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+#notes {
+  margin: 0;
   padding-left: 30px;
-  margin: 0;
-  margin-bottom: 5px;
-}
-.content{
-  margin: 0;
-  color: black;
-  font-size: 14pt;
-  font-weight: 100;
-  line-height: 1.4;
 }
 
-a.content{
+a {
   color: #106efb;
+  font-style: italic;
+}
+
+.vertical-bar {
+  font-size: 1.3rem;
 }
 
 </style>
