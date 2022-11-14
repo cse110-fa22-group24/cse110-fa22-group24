@@ -1,28 +1,40 @@
+import User from '../scripts/User';
 
-const { hasUncaughtExceptionCaptureCallback } = require("process");
-const User=require("../scripts/User");
-const user=new User("1", "Alex", "zhmeng@ucsd.edu", "linkedIn.com", "AlexM.com", ["Java","Python"]);
+const user = new User('abcdef123456789');
+user.name = 'Alex';
+user.email = 'zhmeng@ucsd.edu';
+user.linkedIn = 'linkedin.com';
+user.website = 'alexm.com';
+user.addSkill('Java');
+user.addSkill('Python');
 
-//test getter
-test("get website returns AlexM.com",()=>{
-    expect(user.website).toBe("AlexM.com");
+/**
+ * Test website is set
+ */
+test("Website is 'alexm.com'", () => {
+  expect(user.website).toBe('alexm.com');
 })
 
-//test setter
-test("website sucessfully reset", ()=>{
-    user.website="AlexMeng.com";
-    expect(user.website).toBe("AlexMeng.com");
+/**
+ * Test website can be set
+ */
+test("Website changed to 'alexmeng.com'", () => { 
+  user.website = 'alexmeng.com';
+  expect(user.website).toBe('alexmeng.com');
 })
 
-//test addToSkills
-test("add C++ to skills",()=>{
-    user.addToSkills("C++");
-    expect(user.skills).toStrictEqual(["Java","Python","C++"]);
+/**
+ * Test addSkill() method.
+ */
+test("Add 'C++' to skills", () => {
+  user.addSkill('C++');
+  expect(user.skills.has('C++')).toBe(true);
 })
 
-//test deleteSkills
-test("delete Java from skills",()=>{
-    user.deleteSkills("Java");
-    expect(user.skills).toStrictEqual(["Python","C++"]);
+/**
+ * Test deleteSkill() method.
+ */
+ test("Delete 'Java' from skills", () => {
+  user.deleteSkill('Java');
+  expect(user.skills.has('Java')).toBe(false);
 })
-
