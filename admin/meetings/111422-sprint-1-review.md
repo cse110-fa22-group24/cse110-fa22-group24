@@ -45,3 +45,15 @@
    - Worked on adding Jest as a GitHub workflow.
 
 ## Screen Captures
+
+![image](https://user-images.githubusercontent.com/97627312/201835606-5611f4f4-c683-4567-9696-c6ce114b0083.png)
+
+![image](https://user-images.githubusercontent.com/97627312/201835658-0f33e18b-caef-4065-aacd-6f18065073b5.png)
+
+![image](https://user-images.githubusercontent.com/97627312/201835907-003a3f88-9516-46e0-afb9-79f2dd2abe43.png)
+
+![image](https://user-images.githubusercontent.com/97627312/201835955-bb018865-00e2-4f6d-aafc-38f2b546b3d6.png)
+
+![image](https://user-images.githubusercontent.com/97627312/201836046-a5e455cd-144a-444a-9085-9e1ee224d482.png)
+
+![image](https://user-images.githubusercontent.com/97627312/201836097-480dd11c-1354-4053-a49d-9398226310db.png)
