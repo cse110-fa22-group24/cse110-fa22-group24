@@ -1,0 +1,12 @@
+name: CI Workflow Execution
+
+on: [push, pull_request]
+
+jobs:
+  name: Lint Action
+    uses: wearerequired/lint-action@v2.1.0
+  codeQuality:
+  test:
+    uses: ./tests.yml
+  documentation:
+  deployment:

@@ -1,6 +1,6 @@
 name: Unit Test Execution
 
-on: [push, pull_request]
+on: workflow_call
 
 jobs:
   test:
