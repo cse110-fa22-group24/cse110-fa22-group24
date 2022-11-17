@@ -1,7 +1,7 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito"/>
 <details>
   <summary>
-    <div id="arrow"><img src="assets/next.png" /></div>
+    <div id="arrow"><img src="../assets/next.png"/></div>
     <div id="company">Amazon</div>
     <div id="title">Software Development Engineer I</div>
     <div id="location-tag">
@@ -16,7 +16,7 @@
     </div>
   </summary>
   <div class="dropdown">
-    <hr id="horizontal-rule" />
+    <hr id="horizontal-rule"/>
     <div class="heading">Description</div>
     <div id="description">
       Duis iaculis magna nunc, quis tincidunt metus facilisis in. Aliquam dictum
@@ -64,12 +64,15 @@
 </details>
 
 <style>
+
+  /* font */
   * {
     font-family: "Nunito", sans-serif;
     font-size: 14pt;
     color: #2d2d34;
   }
 
+  /* outer border */
   details {
     border: 1px solid;
     border-radius: 8px;
@@ -80,7 +83,7 @@
     display: none;
   }
 
-  /* summary */
+  /** summary **/
 
   details > summary {
     list-style: none;
@@ -166,12 +169,12 @@
     margin: 0;
   }
 
-  /* dropdown */
+  /** dropdown **/
 
   .dropdown {
     display: flex;
     flex-direction: column;
-    padding: 0px 15px;
+    padding: 0px 15px 10px;
     gap: 10px;
   }
 
@@ -194,16 +197,20 @@
     font-size: 1.3rem;
   }
 
-  .button {
-    padding: 0;
-    border: none;
-    background: none;
-    font-size: 30px;
-  }
+  /* buttons */
 
   #buttons {
-    justify-content: flex-end;
     display: flex;
+    justify-content: flex-end;
+    height: 50px;
+  }
+
+  .button {
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: 30px;
+    width: 50px;
   }
 
   .button:hover {
@@ -211,6 +218,7 @@
   }
 
   .button:active {
-    font-size: 30;
+    font-size: 30px;
   }
+
 </style>
