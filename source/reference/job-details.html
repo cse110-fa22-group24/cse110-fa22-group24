@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito" />
 <details>
   <summary>
-    <div id="arrow"><img src="assets/next.png"></div>
-    <div id="company">Amazon</div> 
+    <div id="arrow"><img src="assets/next.png" /></div>
+    <div id="company">Amazon</div>
     <div id="title">Software Development Engineer I</div>
     <div id="location-tag">
       <span id="pin-symbol">📍</span>
@@ -16,21 +16,25 @@
     </div>
   </summary>
   <div class="dropdown">
-    <hr id="horizontal-rule">
+    <hr id="horizontal-rule" />
     <div class="heading">Description</div>
-    <div id="description">Duis iaculis magna nunc, quis tincidunt metus facilisis in.
-      Aliquam dictum pellentesque sodales. Nam ultrices, massa sit amet vestibulum maximus,
-      ante nibh bibendum urna, at consequat dolor neque sit amet risus. Sed a velit blandit,
-      scelerisque ante nec, aliquet mi. Aenean ligula augue, aliquam sed consequat eu, dictum in odio.
-      Aliquam ut lectus tempus, auctor ipsum eu, molestie nunc. Praesent porttitor placerat elit,
-      at euismod erat auctor eu. Vivamus odio eros, commodo sed congue elementum, iaculis vitae sapien.
-      Sed vel ex gravida, auctor nulla a, interdum magna. Nunc vel pulvinar turpis, in suscipit dolor.
-      Etiam facilisis dapibus mi, ut mattis erat ultricies ac. Integer sollicitudin, odio et elementum consectetur,
-      tellus odio mollis ipsum, at feugiat urna nisl vel turpis. Etiam et velit volutpat, feugiat lacus eget,
-      varius velit. Integer placerat id lacus sed consequat. Proin posuere euismod lectus ut bibendum.
+    <div id="description">
+      Duis iaculis magna nunc, quis tincidunt metus facilisis in. Aliquam dictum
+      pellentesque sodales. Nam ultrices, massa sit amet vestibulum maximus,
+      ante nibh bibendum urna, at consequat dolor neque sit amet risus. Sed a
+      velit blandit, scelerisque ante nec, aliquet mi. Aenean ligula augue,
+      aliquam sed consequat eu, dictum in odio. Aliquam ut lectus tempus, auctor
+      ipsum eu, molestie nunc. Praesent porttitor placerat elit, at euismod erat
+      auctor eu. Vivamus odio eros, commodo sed congue elementum, iaculis vitae
+      sapien. Sed vel ex gravida, auctor nulla a, interdum magna. Nunc vel
+      pulvinar turpis, in suscipit dolor. Etiam facilisis dapibus mi, ut mattis
+      erat ultricies ac. Integer sollicitudin, odio et elementum consectetur,
+      tellus odio mollis ipsum, at feugiat urna nisl vel turpis. Etiam et velit
+      volutpat, feugiat lacus eget, varius velit. Integer placerat id lacus sed
+      consequat. Proin posuere euismod lectus ut bibendum.
     </div>
     <div>
-      <div class="heading">Notes</div> 
+      <div class="heading">Notes</div>
       <ul id="notes">
         <li>Teams of interest</li>
         <li>Item 2</li>
@@ -51,146 +55,162 @@
       <span class="heading">Password:</span>
       <a>mysecurepassword</a>
     </div>
-    <div class="heading">Tags
-    </div> 
+    <div class="heading">Tags</div>
+    <div id="buttons">
+      <button class="button" type="button">🗑️</button>
+      <button class="button" type="button">✏️</button>
+    </div>
   </div>
 </details>
 
-
 <style>
+  * {
+    font-family: "Nunito", sans-serif;
+    font-size: 14pt;
+    color: #2d2d34;
+  }
 
-* {
-  font-family: 'Nunito', sans-serif;
-  font-size:  14pt;
-  color: #2d2d34;
-}
+  details {
+    border: 1px solid;
+    border-radius: 8px;
+  }
 
-details {
-  border: 1px solid;
-  border-radius: 8px;
-}
+  /* hide details arrow */
+  details summary::-webkit-details-marker {
+    display: none;
+  }
 
-/* hide details arrow */
-details summary::-webkit-details-marker {
-  display:none;
-}
+  /* summary */
 
-/* summary */
+  details > summary {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+  }
 
-details > summary {
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 10px;
-  gap: 10px;
-}
+  /* dropdown arrow */
 
+  #arrow {
+    height: 24px;
+    width: 24px;
+  }
 
-/* dropdown arrow */
+  details[open] #arrow {
+    transform: rotate(90deg);
+  }
 
-#arrow {
-  height: 24px;
-  width: 24px;
-}
+  /* company tag */
 
-details[open] #arrow {
-  transform: rotate(90deg);
-}
+  #company {
+    padding: 0px 12px;
+    border-radius: 5px;
+    background-color: #69ddff;
+    font-size: 1.5rem;
+  }
 
+  /* position title */
 
-/* company tag */
+  #title {
+    font-size: 1.5rem;
+  }
 
-#company {
-  padding: 0px 12px;
-  border-radius: 5px;
-  background-color: #69ddff;
-  font-size: 1.5rem;
-}
+  /* location */
 
+  #location-tag {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #dbf8ff;
+    padding: 5px 8px;
+    gap: 5px;
+  }
 
-/* position title */
+  #location {
+    font-style: italic;
+  }
 
-#title {
-  font-size: 1.5rem;
-}
+  /* status */
 
-/* location */
+  #status {
+    padding: 3px 6px;
+    border: 2px #eca400 solid;
+    border-radius: 5px;
+    color: #eca400;
+  }
 
-#location-tag {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  border-radius: 5px;
-  background-color: #dbf8ff;
-  padding: 5px 8px;
-  gap: 5px;
-}
+  /* notification symbol */
 
-#location {
-  font-style: italic;
-}
+  #notification-symbol {
+    font-size: 1.5rem;
+  }
 
+  /* deadline date and time */
 
-/* status */
+  #deadline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-#status {
-  padding: 3px 6px;
-  border: 2px #eca400 solid;
-  border-radius: 5px;
-  color: #eca400;
-}
+  #deadline * {
+    color: #bf4e30;
+  }
 
-/* notification symbol */
+  /* horizontal rule */
 
-#notification-symbol {
-  font-size: 1.5rem;
-}
+  #horizontal-rule {
+    margin: 0;
+  }
 
-/* deadline date and time */
+  /* dropdown */
 
-#deadline {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .dropdown {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 15px;
+    gap: 10px;
+  }
 
-#deadline * {
-  color: #bf4e30;
-}
+  .heading {
+    font-size: 1.3rem;
+    font-style: italic;
+  }
 
-/* horizontal rule */
+  #notes {
+    margin: 0;
+    padding-left: 30px;
+  }
 
-#horizontal-rule {
-  margin: 0;
-}
+  a {
+    color: #106efb;
+    font-style: italic;
+  }
 
-/* dropdown */
+  .vertical-bar {
+    font-size: 1.3rem;
+  }
 
-.dropdown {
-  display: flex;
-  flex-direction: column;
-  padding: 0px 15px;
-  gap: 10px;
-}
+  .button {
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 30px;
+  }
 
-.heading {
-  font-size: 1.3rem;
-  font-style: italic;
-}
+  #buttons {
+    justify-content: flex-end;
+    display: flex;
+  }
 
-#notes {
-  margin: 0;
-  padding-left: 30px;
-}
+  .button:hover {
+    font-size: 35px;
+  }
 
-a {
-  color: #106efb;
-  font-style: italic;
-}
-
-.vertical-bar {
-  font-size: 1.3rem;
-}
-
+  .button:active {
+    font-size: 30;
+  }
 </style>
