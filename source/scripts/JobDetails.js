@@ -16,24 +16,26 @@ class JobDetails extends HTMLElement {
     const style = document.createElement('style');
     // Insert all of the styles from job-details.html into the <style> element
     style.textContent = `
+      /* font */
       * {
-        font-family: 'Nunito', sans-serif;
-        font-size:  14pt;
+        font-family: "Nunito", sans-serif;
+        font-size: 14pt;
         color: #2d2d34;
       }
-      
+    
+      /* outer border */
       details {
         border: 1px solid;
         border-radius: 8px;
       }
-      
+    
       /* hide details arrow */
       details summary::-webkit-details-marker {
-        display:none;
+        display: none;
       }
-      
-      /* summary */
-      
+    
+      /** summary **/
+    
       details > summary {
         list-style: none;
         display: flex;
@@ -42,38 +44,35 @@ class JobDetails extends HTMLElement {
         padding: 10px;
         gap: 10px;
       }
-      
-      
+    
       /* dropdown arrow */
-      
+    
       #arrow {
         height: 24px;
         width: 24px;
       }
-      
+    
       details[open] #arrow {
         transform: rotate(90deg);
       }
-      
-      
+    
       /* company tag */
-      
+    
       #company {
         padding: 0px 12px;
         border-radius: 5px;
         background-color: #69ddff;
         font-size: 1.5rem;
       }
-      
-      
+    
       /* position title */
-      
+    
       #title {
         font-size: 1.5rem;
       }
-      
+    
       /* location */
-      
+    
       #location-tag {
         margin-left: auto;
         display: flex;
@@ -83,71 +82,94 @@ class JobDetails extends HTMLElement {
         padding: 5px 8px;
         gap: 5px;
       }
-      
+    
       #location {
         font-style: italic;
       }
-      
-      
+    
       /* status */
-      
+    
       #status {
         padding: 3px 6px;
         border: 2px #eca400 solid;
         border-radius: 5px;
         color: #eca400;
       }
-      
+    
       /* notification symbol */
-      
+    
       #notification-symbol {
         font-size: 1.5rem;
       }
-      
+    
       /* deadline date and time */
-      
+    
       #deadline {
         display: flex;
         flex-direction: column;
         align-items: center;
       }
-      
+    
       #deadline * {
         color: #bf4e30;
       }
-      
+    
       /* horizontal rule */
-      
+    
       #horizontal-rule {
         margin: 0;
       }
-      
-      /* dropdown */
-      
+    
+      /** dropdown **/
+    
       .dropdown {
         display: flex;
         flex-direction: column;
-        padding: 0px 15px;
+        padding: 0px 15px 10px;
         gap: 10px;
       }
-      
+    
       .heading {
         font-size: 1.3rem;
         font-style: italic;
       }
-      
+    
       #notes {
         margin: 0;
         padding-left: 30px;
       }
-      
+    
       a {
         color: #106efb;
         font-style: italic;
       }
-      
+    
       .vertical-bar {
         font-size: 1.3rem;
+      }
+    
+      /* buttons */
+    
+      #buttons {
+        display: flex;
+        justify-content: flex-end;
+        height: 50px;
+      }
+    
+      .button {
+        border: none;
+        background: none;
+        padding: 0;
+        font-size: 30px;
+        width: 50px;
+      }
+    
+      .button:hover {
+        font-size: 35px;
+      }
+    
+      .button:active {
+        font-size: 30px;
       }
     `;
 
