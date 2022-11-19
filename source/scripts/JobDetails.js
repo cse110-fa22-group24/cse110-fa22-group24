@@ -260,22 +260,33 @@ class JobDetails extends HTMLElement {
         </div>
       </div>
     `;
-    
+
+    // Convert deadline to Date object.
+    const date = new Date(data.deadline);
+    // Add formatted date
+    const deadlineDateSpanElement = details.querySelector('deadline-date');
+    deadlineDateSpanElement.innerText = `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()-2000}`;
+    // Add formatted time
+    const deadlineTimeSpanElement = details.querySelector('deadline-time');
+    deadlineTimeSpanElement.innerText = date.toLocaleTimeString('en-US', {timeStyle: "short"});
+
     // Add list item elements to notes unordered list element from data notes array
     const notesUnorderedListElement = details.querySelector('#notes');
+    /* TODO: Notes as bullet points?
     data.notes.forEach((itemString) => {
       const listItemElement = document.createElement('li');
       listItemElement.innerText = itemString;
       notesUnorderedListElement.appendChild(listItemElement);
-    });
+    });*/
 
     // Add tag custom elements to tags div element from data tags array
     const tagsDivElement = details.querySelector('#tags');
+    /* TODO: Add tag functionality
     data.tags.forEach((tagObject) => {
       const tagElement = document.createElement('tag');
       tagElement.title = tagObject.title;
       tagsDivElement.appendChild(tagElement);
-    });
+    });*/
   }
 }
 
