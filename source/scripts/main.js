@@ -39,9 +39,7 @@ function addJobsToDocument(jobs) {
   // each <job-details> with that job data using element.data = ...
   // Append each element to <main>
   for (const job of jobs) {
-    const jobDetails = document.createElement('job-details');
-    jobDetails.data = job;
-    main.appendChild(jobDetails);
+    addJobToDocument(job);
   }
 }
 
@@ -75,12 +73,14 @@ function initFormHandler() {
     for (const [key, value] of formData) {
       jobObject[key] = value;
     }
+    addJobToDocument(jobObject);
     // Create a new <job-details> element
-    const jobDetails = document.createElement('job-details');
+    //const jobDetails = document.createElement('job-details');
     // Add the jobObject data to <job-details> using element.data
-    jobDetails.data = jobObject;
+    //jobDetails.data = jobObject;
     // Append this new <job-details> to <main>
-    document.querySelector('main').appendChild(jobDetails);
+    //document.querySelector('main').appendChild(jobDetails);
+
     // Get the jobs array from localStorage
     const jobs = getJobsFromStorage();
     // Add this new job to it
@@ -89,4 +89,27 @@ function initFormHandler() {
     saveJobsToStorage(jobs);
   });
 
+}
+
+function addJobToDocument(job) {
+  // Get a reference to the <main> element
+  const main = document.querySelector('main');
+  // Create a new <job-details> element
+  const jobDetails = document.createElement('job-details');
+  // Add the jobObject data to <job-details> using element.data
+  jobDetails.data = job;
+  // Add the onClickDelete function to <job-details>
+  jobDetails.onClickDelete = () => {
+    main.removeChild(jobDetails);
+  }
+  // Get a reference to the <form> element
+  const form = document.querySelector('form');
+  // Add the onClickEdit function to <job-details>
+  jobDetails.onClickEdit = () => {
+    for (const [key, value] of Object.entries(job)) {
+      form.querySelector(`#${key}`).value = value;
+    }
+  }
+  // Append this new <job-details> to <main>
+  main.appendChild(jobDetails);
 }

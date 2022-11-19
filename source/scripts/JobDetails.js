@@ -255,8 +255,8 @@ class JobDetails extends HTMLElement {
         </div>
         <div class="heading">Tags</div>
         <div id="buttons">
-          <button class="button" type="button">🗑️</button>
-          <button class="button" type="button">✏️</button>
+          <button class="button" type="button" id="delete">🗑️</button>
+          <button class="button" type="button" id="edit">✏️</button>
         </div>
       </div>
     `;
@@ -264,10 +264,10 @@ class JobDetails extends HTMLElement {
     // Convert deadline to Date object.
     const date = new Date(data.deadline);
     // Add formatted date
-    const deadlineDateSpanElement = details.querySelector('deadline-date');
+    const deadlineDateSpanElement = details.querySelector('#deadline-date');
     deadlineDateSpanElement.innerText = `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()-2000}`;
     // Add formatted time
-    const deadlineTimeSpanElement = details.querySelector('deadline-time');
+    const deadlineTimeSpanElement = details.querySelector('#deadline-time');
     deadlineTimeSpanElement.innerText = date.toLocaleTimeString('en-US', {timeStyle: "short"});
 
     // Add list item elements to notes unordered list element from data notes array
@@ -288,6 +288,32 @@ class JobDetails extends HTMLElement {
       tagsDivElement.appendChild(tagElement);
     });*/
   }
+
+  /**
+   * Called when the .onClickDelete property is set on this element
+   * 
+   * @param {function} onClickDelete - The function to be called
+   *                                   when the delete button is pressed
+   */
+  set onClickDelete(onClickDelete) {
+    // Select the <details> added to the Shadow DOM in the constructor
+    const details = this.shadowRoot.querySelector('details');
+    const deleteButton = details.querySelector('#delete');
+    deleteButton.addEventListener('click', onClickDelete);
+  }
+
+  /**
+   * Called when the .onClickEdit property is set on this element
+   * 
+   * @param {function} onClickEdit - The function to be called
+   *                                 when the edit button is pressed
+   */
+     set onClickEdit(onClickEdit) {
+      // Select the <details> added to the Shadow DOM in the constructor
+      const details = this.shadowRoot.querySelector('details');
+      const editButton = details.querySelector('#edit');
+      editButton.addEventListener('click', onClickEdit);
+    }
 }
 
 // Define the Class as a customElement so we can create 'job-details' elements
