@@ -209,29 +209,55 @@ class JobDetails extends HTMLElement {
     // Set the contents of the <details> with the <details> template
     // given in job-details.html and the data passed in
     details.innerHTML = `
-      <summary class="summary">
-        <div id="company">${data.company}</div>
-        <div id="position-title">${data.title}</div>
-        <div id="location">${data.location}</div>
-        <div id="status">${data.status}</div>
-        <div id="deadline-date">${data.deadlineDate}</div>
-        <div id="deadline-time">${data.deadlineTime}</div>
+      <summary>
+        <div id="arrow"><img src="./assets/next.png"></div>
+        <div id="company">${data.company}</div> 
+        <div id="title">${data.position}</div>
+        <div id="location-tag">
+          <span id="pin-symbol">📍</span>
+          <span id="location">${data.location}</span>
+        </div>
+        <div id="status">Status: ${data.status}</div>
+        <div id="notification-symbol">🔔</div>
+        <div id="deadline">
+          <span id="deadline-date">MM/DD/YY</span>
+          <span id="deadline-time">HH:MM XM</span>
+        </div>
       </summary>
-      <div>
-        <h1>Description</h1>
-        <p>${data.description}</p>
-      </div>
-      <div>
-        <h1>Notes</h1>
-        <ul id="notes">
-        </ul>
-      </div>
-      <h1>Contact</h1>
-      <a href="${data.contact}">${data.contact}</a>
-      <h1>Portal</h1>
-      <a href="${data.portal}">${data.portal}</a>
-      <h1>Tags</h1>
-      <div id="tags">
+      <div class="dropdown">
+        <hr id="horizontal-rule">
+        <div class="heading">Description</div>
+        <div id="description">${data.description}</div>
+        <div>
+          <div class="heading">Notes</div> 
+          <ul id="notes">
+            <li>Teams of interest</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+          </ul>
+        </div>
+        <div>
+          <span class="heading">Contact:</span>
+          <a>${data.contactName}</a>
+          <span class="vertical-bar">|</span>
+          <span class="heading">Email:</span>
+          <a href="mailto:${data.contactEmail}">${data.contactEmail}</a>
+        </div>
+        <div>
+          <span class="heading">Portal:</span>
+          <a href="${data.portalUrl}">${data.portalUrl}</a>
+          <span class="vertical-bar">|</span>
+          <span class="heading">Username:</span>
+          <a>${data.portalUser}</a>
+          <span class="vertical-bar">|</span>
+          <span class="heading">Password:</span>
+          <a>${data.portalPass}</a>
+        </div>
+        <div class="heading">Tags</div>
+        <div id="buttons">
+          <button class="button" type="button">🗑️</button>
+          <button class="button" type="button">✏️</button>
+        </div>
       </div>
     `;
     
