@@ -1,0 +1,80 @@
+/* styles for the #job-details-form element */
+
+#job-details-form {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  /* size */
+  width: 70%;
+  min-width: 25em;
+  /* border */
+  border: 1px solid #2d2d34;
+  border-radius: 5px;
+  padding: 1em 2em;
+  box-shadow: 0 0 20px black;
+  /* layout */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.25em;
+}
+
+.row {
+  display: flex;
+  gap: 1em;
+}
+
+label {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+label[for=deadline] {
+  flex-grow: 0;
+}
+
+/* fields */
+
+label * {
+  width: 100%;
+  height: 2em;
+  border: 1px solid #106efb;
+  border-radius: 3px;
+  outline: none;
+  padding: 0.25em 0.5em;
+}
+
+textarea {
+  height: auto;
+  resize: none;
+}
+
+/* buttons */
+
+#buttons {
+  margin-top: 0.75em;
+}
+
+#buttons button {
+  flex-grow: 1;
+  padding: 0.5em;
+  /* border */
+  border: 1px solid #eaf8bf;
+  border-radius: 3px;
+  outline: none;
+  /* colors */
+  background-color: #eaf8bf;
+}
+
+#buttons button:hover {
+  border: 1px solid #106efb;
+}
+
+#buttons #cancel:hover {
+  border: 1px solid #bf4e30;
+}
+
+#buttons button:active {
+  background-color: #eca400;
+  color: white;
+}
