@@ -1,8 +1,8 @@
 /* styles for the #job-details-form element */
 
 #job-details-form {
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  /*position: fixed; /* Stay in place */
+  /*z-index: 1; /* Sit on top */
   /* size */
   width: 70%;
   min-width: 25em;
