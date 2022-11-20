@@ -119,7 +119,7 @@ function addJobToDocument(job) {
   const main = document.querySelector('main');
   // Get the <job-details> element to edit, otherwise create a new <job-details> element
   const jobDetails = jobDetailsToEdit || document.createElement('job-details');
-  // Add the jobObject data to <job-details> using element.data
+  // Add the job data to <job-details>
   jobDetails.data = job;
   // Add the onClickDelete function to <job-details>
   jobDetails.onClickDelete = () => {
@@ -130,8 +130,9 @@ function addJobToDocument(job) {
   const form = document.querySelector('form');
   // Add the onClickEdit function to <job-details>
   jobDetails.onClickEdit = () => {
-    for (const [key, value] of Object.entries(job)) {
-      form.querySelector(`#${key}`).value = value;
+    // Populate the fields in the <form> with the job data
+    for (const property in job) {
+      form.querySelector(`#${property}`).value = job[property];
     }
     // Set the <job-details> element to edit
     jobDetailsToEdit = jobDetails;
