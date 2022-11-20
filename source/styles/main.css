@@ -3,4 +3,54 @@
 * {
   font-family: 'Nunito', sans-serif;
   font-size:  14pt;
+  box-sizing: border-box;
+}
+html {
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+}
+body {
+  margin: 0px;
+  min-height: 95%;
+
+}
+
+#full-page{
+  position: fixed;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 15px;
+  height: 95%;
+  margin:10px;
+}
+header{
+  grid-column: 1/7;
+  grid-row:1/2;
+  border: 1px solid #2d2d34;
+  border-radius: 5px;
+  padding: 1em 2em;
+}
+#navigation-bar{
+  grid-column: 1/2;
+  grid-row: 2/8;
+  border: 1px solid #2d2d34;
+  border-radius: 5px;
+  padding: 1em 2em;
+  display:flex;
+  flex-direction: column;
+}
+main{
+  grid-column: 2/7;
+  grid-row: 2/8;
+  border: 1px solid #2d2d34;
+  border-radius: 5px;
+  padding: 1em 2em;
+}
+#hidden{
+  position: absolute;
+  height: 100%;
+  width: 100%
 }

@@ -11,6 +11,10 @@ function init() {
   addJobsToDocument(jobs);
   // Add the event listeners to the form elements
   initFormHandler();
+
+  document.getElementById("New_Application").addEventListener('click', ()=>{
+    show_form();
+  })
 }
 
 /**
@@ -83,12 +87,14 @@ function initFormHandler() {
     jobs.push(jobObject);
     // Save the jobs array back to localStorage
     saveJobsToStorage(jobs);
+    hide_form();
   });
   // Add an event listener for when the cancel button is clicked
   const cancelButton = form.querySelector(`#cancel`);
   cancelButton.addEventListener('click', () => {
     // Reset the <job-details> element to edit
     jobDetailsToEdit = null;
+    hide_form();
     // Clear the <form> fields
     clearForm();
   });
@@ -136,6 +142,7 @@ function addJobToDocument(job) {
     }
     // Set the <job-details> element to edit
     jobDetailsToEdit = jobDetails;
+    show_form();
   }
   // If there is no <job-details> element to edit
   if (!jobDetailsToEdit) {
@@ -151,3 +158,17 @@ function addJobToDocument(job) {
  * @type {JobDetails}
  */
 let jobDetailsToEdit = null;
+
+
+
+function hide_form(){
+  const hidden = document.getElementById("hidden");
+  hidden.style.display = "none";
+  hidden.style.zIndex = "-1";
+}
+
+function show_form(){
+  const hidden = document.getElementById("hidden");
+  hidden.style.display = "";
+  hidden.style.zIndex = "";
+}

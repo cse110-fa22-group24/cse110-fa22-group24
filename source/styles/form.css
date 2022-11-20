@@ -4,14 +4,17 @@
   /*position: fixed; /* Stay in place */
   /*z-index: 1; /* Sit on top */
   /* size */
-  width: 70%;
   min-width: 25em;
   /* border */
   border: 1px solid #2d2d34;
   border-radius: 5px;
   padding: 1em 2em;
   box-shadow: 0 0 20px black;
+  background-color: white;
   /* layout */
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 5%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
