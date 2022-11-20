@@ -308,12 +308,12 @@ class JobDetails extends HTMLElement {
    * @param {function} onClickEdit - The function to be called
    *                                 when the edit button is pressed
    */
-     set onClickEdit(onClickEdit) {
-      // Select the <details> added to the Shadow DOM in the constructor
-      const details = this.shadowRoot.querySelector('details');
-      const editButton = details.querySelector('#edit');
-      editButton.addEventListener('click', onClickEdit);
-    }
+  set onClickEdit(onClickEdit) {
+    // Select the <details> added to the Shadow DOM in the constructor
+    const details = this.shadowRoot.querySelector('details');
+    const editButton = details.querySelector('#edit');
+    editButton.addEventListener('click', onClickEdit);
+  }
 }
 
 // Define the Class as a customElement so we can create 'job-details' elements

@@ -14,9 +14,9 @@ function init() {
 }
 
 /**
- * Reads 'jobs' from localStorage and returns an array of
+ * Reads `jobs` from localStorage and returns an array of
  * all of the jobs found (parsed, not in string form). If
- * nothing is found in localStorage for 'jobs', an empty array
+ * nothing is found in localStorage for `jobs`, an empty array
  * is returned.
  * @returns {Array<Object>} An array of jobs found in localStorage
  */
@@ -26,9 +26,9 @@ function getJobsFromStorage() {
 
 /**
  * Takes in an array of jobs and for each job creates a
- * new <job-details> element, adds the job data to that card
- * using element.data = {...}, and then appends that new job
- * to <main>
+ * new `<job-details>` element, adds the job data to that card
+ * using `element.data = {...}`, and then appends that new job
+ * to `<main>`.
  * @param {Array<Object>} jobs An array of jobs
  */
 function addJobsToDocument(jobs) {
@@ -45,7 +45,7 @@ function addJobsToDocument(jobs) {
 
 /**
  * Takes in an array of jobs, converts it to a string, and then
- * saves that string to 'jobs' in localStorage
+ * saves that string to `jobs` in localStorage
  * @param {Array<Object>} jobs An array of jobs
  */
 function saveJobsToStorage(jobs) {
@@ -53,8 +53,7 @@ function saveJobsToStorage(jobs) {
 }
 
 /**
- * Adds the necesarry event handlers to <form> and the clear storage
- * <button>.
+ * Adds the necesarry event handlers to `<form>`.
  */
 function initFormHandler() {
 
@@ -73,16 +72,10 @@ function initFormHandler() {
     for (const [key, value] of formData) {
       jobObject[key] = value;
     }
+    // Create or edit a <job-details> element with the data in jobObject
     addJobToDocument(jobObject);
     // Reset the <job-details> element to edit
     jobDetailsToEdit = null;
-    // Create a new <job-details> element
-    //const jobDetails = document.createElement('job-details');
-    // Add the jobObject data to <job-details> using element.data
-    //jobDetails.data = jobObject;
-    // Append this new <job-details> to <main>
-    //document.querySelector('main').appendChild(jobDetails);
-
     // Get the jobs array from localStorage
     const jobs = getJobsFromStorage();
     // Add this new job to it
@@ -93,6 +86,11 @@ function initFormHandler() {
 
 }
 
+/**
+ * Create or edit a `<job-details>` element.
+ * 
+ * @param {Object} job The job data to pass to the `<job-details>` element
+ */
 function addJobToDocument(job) {
   // Get a reference to the <main> element
   const main = document.querySelector('main');
@@ -102,6 +100,7 @@ function addJobToDocument(job) {
   jobDetails.data = job;
   // Add the onClickDelete function to <job-details>
   jobDetails.onClickDelete = () => {
+    // Remove the <job-details> element from <main>
     main.removeChild(jobDetails);
   }
   // Get a reference to the <form> element
@@ -122,7 +121,7 @@ function addJobToDocument(job) {
 }
 
 /**
- * The <job-details> element to edit on form submission
+ * The `<job-details>` element to edit on form submission
  * 
  * @global
  * @type {JobDetails}
