@@ -74,6 +74,8 @@ function initFormHandler() {
       jobObject[key] = value;
     }
     addJobToDocument(jobObject);
+    // Reset the <job-details> element to edit
+    jobDetailsToEdit = null;
     // Create a new <job-details> element
     //const jobDetails = document.createElement('job-details');
     // Add the jobObject data to <job-details> using element.data
@@ -94,8 +96,8 @@ function initFormHandler() {
 function addJobToDocument(job) {
   // Get a reference to the <main> element
   const main = document.querySelector('main');
-  // Create a new <job-details> element
-  const jobDetails = document.createElement('job-details');
+  // Get the <job-details> element to edit, otherwise create a new <job-details> element
+  const jobDetails = jobDetailsToEdit || document.createElement('job-details');
   // Add the jobObject data to <job-details> using element.data
   jobDetails.data = job;
   // Add the onClickDelete function to <job-details>
@@ -109,7 +111,20 @@ function addJobToDocument(job) {
     for (const [key, value] of Object.entries(job)) {
       form.querySelector(`#${key}`).value = value;
     }
+    // Set the <job-details> element to edit
+    jobDetailsToEdit = jobDetails;
   }
-  // Append this new <job-details> to <main>
-  main.appendChild(jobDetails);
+  // If there is no <job-details> element to edit
+  if (!jobDetailsToEdit) {
+    // Append this new <job-details> to <main>
+    main.appendChild(jobDetails);
+  }
 }
+
+/**
+ * The <job-details> element to edit on form submission
+ * 
+ * @global
+ * @type {JobDetails}
+ */
+let jobDetailsToEdit = null;
