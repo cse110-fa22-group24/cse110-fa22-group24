@@ -56,7 +56,6 @@ function saveJobsToStorage(jobs) {
  * Adds the necesarry event handlers to `<form>`.
  */
 function initFormHandler() {
-
   // Get a reference to the <form> element
   const form = document.querySelector('form');
   // Add an event listener for the 'submit' event,
@@ -76,6 +75,8 @@ function initFormHandler() {
     addJobToDocument(jobObject);
     // Reset the <job-details> element to edit
     jobDetailsToEdit = null;
+    // Clear the <form> fields
+    clearForm();
     // Get the jobs array from localStorage
     const jobs = getJobsFromStorage();
     // Add this new job to it
@@ -83,7 +84,29 @@ function initFormHandler() {
     // Save the jobs array back to localStorage
     saveJobsToStorage(jobs);
   });
+  // Add an event listener for when the cancel button is clicked
+  const cancelButton = form.querySelector(`#cancel`);
+  cancelButton.addEventListener('click', () => {
+    // Reset the <job-details> element to edit
+    jobDetailsToEdit = null;
+    // Clear the <form> fields
+    clearForm();
+  });
+}
 
+/**
+ * Clear the `<form>` fields
+ */
+function clearForm() {
+  // Get a reference to the <form> element
+  const form = document.querySelector('form');
+  // Create a new FormData object from the <form> element reference above
+  const formData = new FormData(form);
+  // For each key in the FormData object
+  for (const key of formData.keys()) {
+    // Clear the corresponding field in the form
+    form.querySelector(`#${key}`).value = null;
+  }
 }
 
 /**
