@@ -22,22 +22,38 @@ body {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   column-gap: 10px;
-  row-gap: 15px;
+  row-gap: 0px;
   height: 95%;
   margin:10px;
 }
 header{
   grid-column: 1/7;
   grid-row:1/2;
-  border: 1px solid #2d2d34;
   border-radius: 5px;
-  padding: 1em 2em;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+#header_area{
+  display: flex;
+  flex-direction: row;
+  height:70%;
+}
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 100%;               
+  background-color:black;
+  height: 1px;
 }
 #navigation-bar{
   grid-column: 1/2;
   grid-row: 2/8;
   background-color: #EAF8BF;
   border-radius: 5px;
+  margin-left: 10px;
   padding: 1em 2em;
   display:flex;
   flex-direction: column;
@@ -55,4 +71,48 @@ main{
   position: absolute;
   height: 100%;
   width: 100%
+}
+
+#outer-circle {
+  margin-top: 15px;
+  margin-left: auto;
+  background: white;
+  border: 2px solid #BF4E30;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+}
+#inner-circle {
+  background: #BF4E30;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  margin-top: 3px;
+  margin-left: 3px;
+}
+
+#initial{
+  color: white;
+  display: table-cell;
+  vertical-align: middle; 
+  text-align: center;
+  padding-top: 8px;
+  padding-left: 8px;
+  font-size: 24px;
+}
+#app_title{
+  display: flex;
+  gap: 10px;
+}
+.center{
+  text-align: center;
+  font-size: 1.5rem;
+  color: #BF4E30;
+}
+#agenda{
+  margin-top:10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 60px;
+  height:70px;
 }
