@@ -8,7 +8,7 @@ export default class dbUtil{
      * Constructor that get a reference to a database
      */
     constructor(){
-        const request = indexedDB.open('test-db', 2,);
+        const request = indexedDB.open('jobAppDB', 1);
 
         request.onerror=function(event){
             console.error("An error occurs when initiating the database!");
@@ -19,6 +19,16 @@ export default class dbUtil{
             this.db=request.result;
             const store=db.createObjectStore("JobApplication",{keyPath:"id"});
             store.createIndex("company",["company"],{unique: false});
+            store.createIndex("title",["title"],{unique: false});
+            store.createIndex("description",["description"],{unique: false});
+            store.createIndex("portalURL",["portalURL"],{unique: false});
+            store.createIndex("location",["location"],{unique: false});
+            store.createIndex("status",["status"],{unique: false});
+            store.createIndex("notes",["notes"],{unique: false});
+            store.createIndex("contact",["contact"],{unique: false});
+            store.createIndex("deadline",["deadline"],{unique: false});
+            store.createIndex("portalUser",["portalUser"],{unique: false});
+            store.createIndex("portalPass",["portalPass"],{unique: false});
         }
 
         request.onsuccess=function(){
@@ -28,37 +38,64 @@ export default class dbUtil{
     
     /**
      * Add a job application to the database
-     * @param {object} item - a job application object to be added
+     * @param {object} job - a job application object to be added
      */
-    addItem(item){
+    addJob(job){
         const transaction=this.db.transaction("JobApplication","readwrite");
         const store=transaction.objectStore("JobApplication");
-        store.put(item);
+        store.put(job.toJSON());
     }
     
     /**
      * Read a job application by id
      * @param {number} id - id of the job application we want
      */
-    readItem(id){
-        const transaction=this.db.transaction("JobApplication","readwrite");
+    getJob(id){
+        const transaction=this.db.transaction("JobApplication","readonly");
         const store=transaction.objectStore("JobApplication");
         const query=store.get(id);
         query.onsuccess=function(){
-            console.log("Item Found: " + query.result);
+            console.log("Job Found: " + query.result);
             return query.result;
         }
         query.onerror=function(){
-            console.log("Item Not Found: " + query.result);
-            return;
+            console.log("Job Not Found: " + query.result);
+            return undefined;
         }
+    }
+
+    /**
+     * Get all jobs in DB
+     */
+     getAllJobs(){
+        const transaction=this.db.transaction("JobApplication","readonly");
+        const store=transaction.objectStore("JobApplication");
+        const query=store.getAll();
+        query.onsuccess=function(){
+            console.log("Jobs Found: " + query.result);
+            return query.result;
+        }
+        query.onerror=function(){
+            console.log("Error occurred: " + query.result);
+            return undefined;
+        }
+    }
+
+    /**
+     * Update a job application with new content
+     * @param {object} job
+     */
+    updateJob(job) {
+        const transaction=this.db.transaction("JobApplication","writeonly");
+        const store=transaction.objectStore("JobApplication");
+        store.put(job.toJSON());
     }
 
     /**
      * Delete a job application by id
      * @param {number} id - id of the job application we want to delete
      */
-    deleteItem(id){
+    deleteJob(id){
         const transaction=this.db.transaction("JobApplication","readwrite");
         const store=transaction.objectStore("JobApplication");
         store.delete(id);
