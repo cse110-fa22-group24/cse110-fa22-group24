@@ -1,40 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" 
-        type="image/png" 
-        href="https://www.w3.org/html/logo/downloads/HTML5_Badge_32.png">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Ubuntu">
-    <link rel="stylesheet"
-        href="style.css">
-    <title>Test Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Page</title>
+  <link rel="icon" 
+    type="image/png" 
+    href="https://www.w3.org/html/logo/downloads/HTML5_Badge_32.png">
+  <!-- stAles -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Nunito">
+  <link rel="stylesheet"
+    href="./styles/main.css">
+  <link rel="stylesheet"
+    href="./styles/form.css">
+  <!-- scripts -->
+  <script src="./scripts/JobDetails.js" type="module"></script>
+  <script src="./scripts/SortBar.js" type="module"></script>
+  <script src="./scripts/main.js" type="module"></script>
+  
 </head>
 <body>
-    <header>
-        <h1>Test Page</h1>
-    </header>
-    <main>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Praesent nec ullamcorper metus.
-            Quisque in tortor rhoncus, lobortis turpis id, ullamcorper dolor.
-            Interdum et malesuada fames ac ante ipsum primis in faucibus.
-            Pellentesque molestie sem est, non porttitor dolor facilisis eget.
-            Sed feugiat justo id quam mattis tincidunt.
-            Donec turpis massa, interdum sed nisl vel, ornare ullamcorper justo.
-            Suspendisse non nisi lectus. Duis imperdiet augue tortor, a volutpat libero pellentesque ut.
-            Cras ac fringilla purus.
-            Quisque dapibus dignissim tellus eget pretium.
-            In efficitur consequat suscipit.
-        </p>
-    </main>
-    <footer>
-        <p>The source for this site is available on GitHub in 
-            <a href="https://github.com/cse110-fa22-group24/cse110-fa22-group24">this repository</a>.
-        </p>
-    </footer>
+
+<!-- layout for the entire page-->
+
+  <header>
+    <div id="header_area">
+      <div id="app_title">
+        <div id="s">
+          <img src="assets/agenda.png" id="agenda"> 
+        </div>
+        
+        <p class="center">Job Buddy</p> 
+  
+      </div>
+  
+      <div id="outer-circle">
+        <button id="inner-circle-btn">JW</button>
+      </div>
+    </div>
+    <hr>
+  </header>
+
+  <!--naviagtion bar on the left-->
+  <div id="navigation-bar">
+    <input type="text" placeholder="  🔍 Search.." id="search_bar">
+    <div id="sort_header">
+      <span id="text">Sort</span>
+      <hr id="sort_hr">
+    </div>
+    <div id="bar_list">
+    <!--all the sorting bar will be placed here-->
+    </div> 
+    <button id="New_Application">New application</button>
+  </div>
+
+  <!-- job-details-form -->
+  <main>
+    <!-- Add job-details here -->
+  </main>
+
+
+<div id="hidden">
+  <form id="job-details-form">
+
+    <!-- Summary -->
+  
+    <div class="row">
+      <label for="company">
+        Company
+        <input type="text" id="company" name="company" required/>
+      </label>
+  
+      <label for="position">
+        Position
+        <input type="text" id="position" name="position" required/>
+      </label>
+    </div>
+  
+    <div class="row">
+      <label for="location">
+        Location
+        <input type="text" id="location" name="location" required/>
+      </label>
+  
+      <label for="status">
+        Status
+        <input type="text" id="status" name="status" required/>
+      </label>
+  
+      <label for="deadline">
+        Deadline
+        <input type="datetime-local" id="deadline" name="deadline" required/>
+      </label>
+    </div>
+  
+    <!-- Details -->
+  
+    <label for="description">
+      Description
+      <textarea id="description" name="description" rows="5"></textarea>
+    </label>
+  
+    <label for="notes">
+      Notes
+      <textarea id="notes" name="notes" rows="5"></textarea>
+    </label>
+  
+    <div class="row">
+      <label for="contactName">
+        Contact Name
+        <input type="text" id="contactName" name="contactName"/>
+      </label>
+      
+      <label for="contactEmail">
+        Contact Email
+        <input type="email" id="contactEmail" name="contactEmail"/>
+      </label>
+    </div>
+  
+    <div class="row">
+      <label for="portalUrl">
+        Portal
+        <input type="url" id="portalUrl" name="portalUrl"/>
+      </label>
+  
+      <label for="portalUser">
+        Portal Username
+        <input type="text" id="portalUser" name="portalUser"/>
+      </label>
+  
+      <label for="portalPass">
+        Portal Password
+        <input type="text" id="portalPass" name="portalPass"/>
+      </label>
+    </div>
+  
+    <div class="row" id="buttons">
+      <button type="submit">Done</button>
+      <button type="button" id="cancel">Cancel</button>
+    </div>
+  
+  </form>  
+</div>
+
+
+
+  <!-- end job-details-form -->
 </body>
 </html>

@@ -1,0 +1,155 @@
+/* styles which apply globally */
+
+* {
+  font-family: "Nunito", sans-serif;
+  font-size: 14pt;
+  box-sizing: border-box;
+}
+html {
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 0px;
+  height: 95%;
+  margin: 10px;
+}
+header {
+  grid-column: 1/6;
+  grid-row: 1/2;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+#header_area {
+  display: flex;
+  flex-direction: row;
+  height: 70%;
+}
+hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 100%;
+  background-color: rgb(181, 181, 3);
+  height: 2px;
+}
+#navigation-bar {
+  grid-column: 1/2;
+  grid-row: 2/10;
+  background-color: #eaf8bf;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+main {
+  grid-column: 2/6;
+  grid-row: 2/10;
+  border-radius: 5px;
+  padding: 0em 0.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: scroll;
+}
+#hidden {
+  grid-column: 1/6;
+  grid-row: 1/10;
+}
+
+#outer-circle {
+  margin-top: 15px;
+  margin-left: auto;
+  background: white;
+  border: 2px solid #bf4e30;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+}
+
+#inner-circle-btn {
+  border: none;
+  color: white;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  padding-top: 8px;
+  padding-left: 8px;
+  font-size: 24px;
+  background: #bf4e30;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  margin-top: 3px;
+  margin-left: 3px;
+}
+
+#inner-circle-btn:hover {
+  background-color: #993f26;
+}
+
+#app_title {
+  display: flex;
+  gap: 10px;
+}
+.center {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #bf4e30;
+}
+#agenda {
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 60px;
+  height: 70px;
+}
+
+#New_Application {
+  background-color: white;
+  color: #1e6320;
+  border: 2px solid #1e6320;
+}
+
+#New_Application:hover {
+  background-color: #1e6320;
+  color: white;
+}
+#bar_list {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+#New_Application {
+  background-color: white;
+  border-radius: 5px;
+  margin-top: auto;
+  font-size: 16pt;
+  font-weight: bold;
+  color: #1e7a1d;
+  border: 1px solid #1e7a1d;
+}
+
+#search_bar {
+  border-radius: 20px;
+}
+#text {
+  font-size: 18pt;
+  font-weight: bold;
+  color: #1e7a1d;
+}
+#sort_hr {
+  border: 1px solid #1e7a1d;
+  margin: 0px;
+}
