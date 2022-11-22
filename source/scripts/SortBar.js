@@ -61,7 +61,7 @@ class SortBar extends HTMLElement {
             <div id="sort_bar">
                 <p id="sort_type">${name}</p>
                 <div id="img_wrapper">
-                    <img src="/source/assets/next.png" id="sort_img">
+                    <img src="./assets/next.png" id="sort_img">
                 </div>
                 <input type="hidden" value="0" id="flag">
             </div>
