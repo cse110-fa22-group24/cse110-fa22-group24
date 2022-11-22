@@ -1,0 +1,61 @@
+<button id="sort_click">
+    <div id="sortbar">
+        <p id="sort_type">SampleSort</p>
+        <div id="img_wrapper">
+            <img src="../assets/next.png" id="sort_img">
+        </div>
+        <input type="hidden" value="0" id="flag">
+    </div>
+</button>
+
+<style>
+#sort_click{
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+}
+#sortbar{
+    border: none;
+    border-radius: 10px;
+    background-color:  #dbf8ff;
+    display: flex;
+    flex-direction: row;
+}
+#sort_type{
+    text-align: center;
+    padding-left: 15px;
+}
+#img_wrapper{
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 15px;
+}
+#sort_img{
+    transform: rotate(90deg);
+    width: 24px;
+    height: 24px;
+}
+
+</style>
+<script>
+    const button = document.getElementById("sort_click");
+    button.addEventListener('click', ()=>{
+       const sortbar = document.getElementById("sortbar");
+       const flag = document.getElementById("flag");
+       if(flag.value == "0"){
+        sortbar.style.backgroundColor = "#69ddff"
+        const sort_img = document.getElementById("sort_img");
+        sort_img.style.transform = 'rotate(270deg)'; 
+        flag.value = "1";
+       }
+       else{
+        sortbar.style.backgroundColor = ""
+        const sort_img = document.getElementById("sort_img");
+        sort_img.style.transform = 'rotate(90deg)'; 
+        flag.value = "0"
+       }
+    })
+</script>

@@ -7,6 +7,9 @@ window.addEventListener('DOMContentLoaded', init);
 function init() {
   // Get the jobs from localStorage
   const jobs = getJobsFromStorage();
+  const names = ["Company","Job Title","Deadline","Status"];
+  create_sortBars(names);
+  
   // Add each job to the <main> element
   addJobsToDocument(jobs);
   // Add the event listeners to the form elements
@@ -171,4 +174,23 @@ function show_form(){
   const hidden = document.getElementById("hidden");
   hidden.style.display = "";
   hidden.style.zIndex = "";
+}
+
+function create_sortBars(name){
+  for(const item of name){
+    const curbar = document.createElement('sort-bar');
+    curbar.setAttribute("id", item);
+    curbar.name = item;
+    curbar.onClickSort = [sort(), sortReverse()];
+    document.getElementById("bar_list").appendChild(curbar);
+  }
+
+}
+
+function sort(){
+  console.log("sort");
+}
+
+function sortReverse(){
+  console.log('sortReverse');
 }

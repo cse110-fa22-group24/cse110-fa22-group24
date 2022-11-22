@@ -16,13 +16,14 @@
     href="./styles/form.css">
   <!-- scripts -->
   <script src="./scripts/JobDetails.js" type="module"></script>
+  <script src="./scripts/SortBar.js" type="module"></script>
   <script src="./scripts/main.js" type="module"></script>
   
 </head>
 <body>
 
 <!-- layout for the entire page-->
-<div id="full-page">
+
   <header>
     <div id="header_area">
       <div id="app_title">
@@ -45,7 +46,14 @@
 
   <!--naviagtion bar on the left-->
   <div id="navigation-bar">
-    something will be diplayed 
+    <input type="text" placeholder="  🔍 Search.." id="search_bar">
+    <div id="sort_header">
+      <span id="text">Sort</span>
+      <hr id="sort_hr">
+    </div>
+    <div id="bar_list">
+    <!--all the sorting bar will be placed here-->
+    </div> 
     <button id="New_Application">New application</button>
   </div>
 
@@ -54,15 +62,6 @@
     <!-- Add job-details here -->
   </main>
 
-</div>
-  
-
-
-
-
-  <div class="new application form">
-
-  </div>
 
 <div id="hidden">
   <form id="job-details-form">
@@ -146,6 +145,8 @@
   
   </form>  
 </div>
+
+
 
   <!-- end job-details-form -->
 </body>
