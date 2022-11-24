@@ -136,7 +136,6 @@ class JobDetails extends HTMLElement {
     
       #notes {
         margin: 0;
-        padding-left: 30px;
       }
     
       a {
@@ -230,11 +229,7 @@ class JobDetails extends HTMLElement {
         <div id="description">${data.description}</div>
         <div>
           <div class="heading">Notes</div> 
-          <ul id="notes">
-            <li>Teams of interest</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-          </ul>
+          <div id="notes">${data.notes}</div>
         </div>
         <div>
           <span class="heading">Contact:</span>
