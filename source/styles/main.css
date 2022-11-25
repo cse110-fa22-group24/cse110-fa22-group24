@@ -5,11 +5,6 @@
   font-size: 14pt;
   box-sizing: border-box;
 }
-html {
-  margin: 0px;
-  height: 100%;
-  width: 100%;
-}
 
 body {
   display: grid;
@@ -18,7 +13,8 @@ body {
   column-gap: 10px;
   row-gap: 0px;
   height: 95%;
-  margin: 10px;
+  margin: 0;
+  min-height: 100vh;
 }
 header {
   grid-column: 1/6;
@@ -68,31 +64,18 @@ main {
   grid-row: 1/10;
 }
 
-#outer-circle {
-  margin-top: 15px;
-  margin-left: auto;
-  background: white;
-  border: 2px solid #bf4e30;
-  border-radius: 50%;
-  height: 60px;
-  width: 60px;
-}
-
-#inner-circle-btn {
+/* profile button and icon */
+#profile-button {
   border: none;
-  color: white;
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-  padding-top: 8px;
-  padding-left: 8px;
-  font-size: 24px;
-  background: #bf4e30;
-  border-radius: 50%;
+  padding: 0;
+  margin-left: auto;
+}
+#profile-icon {
   height: 50px;
   width: 50px;
-  margin-top: 3px;
-  margin-left: 3px;
+}
+#profile-icon:hover {
+  filter: brightness(80%);
 }
 
 #inner-circle-btn:hover {
