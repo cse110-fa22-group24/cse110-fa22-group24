@@ -11,37 +11,31 @@
 }
 
 body {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  column-gap: 10px;
-  row-gap: 0px;
-  height: 95%;
   margin: 0;
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+main {
+  display: flex;
+  flex-grow: 1;
+  max-height: calc(100% - 4rem - 2px); /* HACK: subtract height of header */
+  padding: 1rem;
 }
 
 #job-details-list {
-  grid-column: 2/6;
-  grid-row: 2/10;
-  border-radius: 5px;
-  padding: 0em 0.5em;
+  flex-grow: 1;
+  overflow-y: scroll;
+  padding: 0 1rem 1rem;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  overflow: scroll;
-}
-
-#hidden {
-  grid-column: 1/6;
-  grid-row: 1/10;
+  gap: 0.5rem;
 }
 
 /* header */
 
 header {
-  grid-column: 1/6;
-  grid-row: 1/2;
   display: flex;
   flex-direction: column;
 }
@@ -97,11 +91,8 @@ hr {
 /* navigation bar */
 
 nav {
-  grid-column: 1/2;
-  grid-row: 2/10;
   background-color: #eaf8bf;
   border-radius: 5px;
-  margin-left: 10px;
   display: flex;
   flex-direction: column;
   padding: 1rem;
