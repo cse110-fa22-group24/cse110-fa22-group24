@@ -161,13 +161,11 @@ let jobDetailsToEdit = null;
 
 
 function hideForm(){
-  const form = document.querySelector('#job-details-form');
-  form.style.display = 'none';
+  document.querySelector('#job-details-form').setAttribute('style', 'display: none');
 }
 
 function showForm(){
-  const form = document.querySelector('#job-details-form');
-  form.style.display = '';
+  document.querySelector('#job-details-form').removeAttribute('style');
 }
 
 function create_sortBars(name){
