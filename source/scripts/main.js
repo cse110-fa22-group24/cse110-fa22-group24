@@ -15,9 +15,9 @@ function init() {
   // Add the event listeners to the form elements
   initFormHandler();
 
-  document.getElementById("New_Application").addEventListener('click', ()=>{
+  document.querySelector('#new-app-button').addEventListener('click', () => {
     show_form();
-  })
+  });
 }
 
 /**
@@ -182,7 +182,7 @@ function create_sortBars(name){
     curbar.setAttribute("id", item);
     curbar.name = item;
     curbar.onClickSort = [sort(), sortReverse()];
-    document.getElementById("bar_list").appendChild(curbar);
+    document.querySelector("#sort-bar-list").appendChild(curbar);
   }
 
 }
