@@ -21,7 +21,7 @@ body {
   min-height: 100vh;
 }
 
-main {
+#job-details-list {
   grid-column: 2/6;
   grid-row: 2/10;
   border-radius: 5px;
@@ -74,6 +74,7 @@ header {
 
     #profile-button {
       border: none;
+      background-color: white;
       padding: 0;
     }
 

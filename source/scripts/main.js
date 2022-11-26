@@ -10,7 +10,7 @@ function init() {
   const names = ["Company","Job Title","Deadline","Status"];
   create_sortBars(names);
   
-  // Add each job to the <main> element
+  // Add each job to the job-details-list element
   addJobsToDocument(jobs);
   // Add the event listeners to the form elements
   initFormHandler();
@@ -35,16 +35,12 @@ function getJobsFromStorage() {
  * Takes in an array of jobs and for each job creates a
  * new `<job-details>` element, adds the job data to that card
  * using `element.data = {...}`, and then appends that new job
- * to `<main>`.
+ * to `job-details-list`.
  * @param {Array<Object>} jobs An array of jobs
  */
 function addJobsToDocument(jobs) {
-  // Get a reference to the <main> element
-  const main = document.querySelector('main');
   // Loop through each of the jobs in the passed in array,
-  // create a <job-details> element for each one, and populate
-  // each <job-details> with that job data using element.data = ...
-  // Append each element to <main>
+  // and create a <job-details> element for each one
   for (const job of jobs) {
     addJobToDocument(job);
   }
@@ -124,16 +120,16 @@ function clearForm() {
  * @param {Object} job The job data to pass to the `<job-details>` element
  */
 function addJobToDocument(job) {
-  // Get a reference to the <main> element
-  const main = document.querySelector('main');
+  // Get a reference to the job-details-list element
+  const list = document.querySelector('#job-details-list');
   // Get the <job-details> element to edit, otherwise create a new <job-details> element
   const jobDetails = jobDetailsToEdit || document.createElement('job-details');
   // Add the job data to <job-details>
   jobDetails.data = job;
   // Add the onClickDelete function to <job-details>
   jobDetails.onClickDelete = () => {
-    // Remove the <job-details> element from <main>
-    main.removeChild(jobDetails);
+    // Remove the <job-details> element from job-details-list
+    list.removeChild(jobDetails);
   }
   // Get a reference to the <form> element
   const form = document.querySelector('form');
@@ -149,8 +145,8 @@ function addJobToDocument(job) {
   }
   // If there is no <job-details> element to edit
   if (!jobDetailsToEdit) {
-    // Append this new <job-details> to <main>
-    main.appendChild(jobDetails);
+    // Append this new <job-details> to job-details-list
+    list.appendChild(jobDetails);
   }
 }
 
