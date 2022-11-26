@@ -1,13 +1,15 @@
 /* styles for the #job-details-form element */
 
 #job-details-form {
-  /*position: fixed; /* Stay in place */
-  /*z-index: 1; /* Sit on top */
+  position: fixed; /* Stay in place */
+  /* center */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1; /* Sit on top */
   /* size */
-  margin-left: 30%;
-  margin-right: 30%;
-  margin-top: 5%;
-  min-width: 30em;
+  width: 50%;
+  min-width: min-content;
   /* border */
   border: 1px solid #2d2d34;
   border-radius: 5px;
@@ -23,6 +25,7 @@
 
 .row {
   display: flex;
+  align-items: flex-end;
   gap: 1em;
 }
 
