@@ -14,10 +14,11 @@ function init() {
   addJobsToDocument(jobs);
   // Add the event listeners to the form elements
   initFormHandler();
+  // Have the new app button show the form when clicked
+  document.querySelector('#new-app-button').addEventListener('click', showForm);
 
-  document.querySelector('#new-app-button').addEventListener('click', () => {
-    showForm();
-  });
+  // Have the form be hidden to start
+  hideForm();
 }
 
 /**
@@ -86,14 +87,16 @@ function initFormHandler() {
     jobs.push(jobObject);
     // Save the jobs array back to localStorage
     saveJobsToStorage(jobs);
+    // Hide the form
     hideForm();
   });
   // Add an event listener for when the cancel button is clicked
   const cancelButton = form.querySelector(`#cancel`);
   cancelButton.addEventListener('click', () => {
+    // Hide the form
+    hideForm();
     // Reset the <job-details> element to edit
     jobDetailsToEdit = null;
-    hideForm();
     // Clear the <form> fields
     clearForm();
   });
@@ -141,6 +144,7 @@ function addJobToDocument(job) {
     }
     // Set the <job-details> element to edit
     jobDetailsToEdit = jobDetails;
+    // Show the form
     showForm();
   }
   // If there is no <job-details> element to edit
@@ -159,11 +163,16 @@ function addJobToDocument(job) {
 let jobDetailsToEdit = null;
 
 
-
+/**
+ * Hide the `<form>` element
+ */
 function hideForm(){
   document.querySelector('#job-details-form').setAttribute('style', 'display: none');
 }
 
+/**
+ * Show the `<form>` element
+ */
 function showForm(){
   document.querySelector('#job-details-form').removeAttribute('style');
 }
