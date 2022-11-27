@@ -7,16 +7,14 @@ window.addEventListener('DOMContentLoaded', init);
 function init() {
   // Get the jobs from localStorage
   const jobs = getJobsFromStorage();
-  const names = ["Company","Job Title","Deadline","Status"];
-  create_sortBars(names);
-  
   // Add each job to the job-details-list element
   addJobsToDocument(jobs);
   // Add the event listeners to the form elements
   initFormHandler();
   // Have the new app button show the form when clicked
   document.querySelector('#new-app-button').addEventListener('click', showForm);
-
+  // Add <sort-bar> elements for each sortable field
+  addSortBars(['Company', 'Position', 'Location', 'Status', 'Deadline']);
   // Have the form be hidden to start
   hideForm();
 }
@@ -177,21 +175,62 @@ function showForm(){
   document.querySelector('#job-details-form').removeAttribute('style');
 }
 
-function create_sortBars(name){
-  for(const item of name){
-    const curbar = document.createElement('sort-bar');
-    curbar.setAttribute("id", item);
-    curbar.name = item;
-    curbar.onClickSort = [sort(), sortReverse()];
-    document.querySelector("#sort-bar-list").appendChild(curbar);
+/**
+ * Takes in an array of field names and for each name creates a
+ * new `<sort-bar>` element, adds the name to that element
+ * using `element.data = {...}`, and then appends that new element
+ * to `sort-bar-list`.
+ * @param {Array<Object>} fieldNames An array of field names
+ */
+function addSortBars(fieldNames) {
+  const sortBarList = document.querySelector("#sort-bar-list");
+  for (const fieldName of fieldNames) {
+    const sortBar = document.createElement('sort-bar');
+    sortBar.fieldName = fieldName;
+    sortBar.onClick = () => {
+      if (sortBar.fieldEnabled) {
+        setSortRule(fieldName, sortBar.orderAscending);
+      } else {
+        removeSortRule(fieldName);
+      }
+    };
+    sortBarList.appendChild(sortBar);
   }
-
 }
 
-function sort(){
-  console.log("sort");
+/**
+ * An object containing the names of fields to sort by,
+ * and whether to sort each in ascending or descending order
+ * 
+ * @global
+ * @type {Object}
+ */
+let sortRules = {};
+
+/**
+ * Set a sorting rule in `sortRules`.
+ * 
+ * @param {String} fieldName The name of a field to sort by
+ * @param {Boolean} ascOrDesc Whether to sort in ascending or descending order
+ */
+function setSortRule(fieldName, ascOrDesc) {
+  sortRules[fieldName] = ascOrDesc;
+  onSortRulesChanged();
 }
 
-function sortReverse(){
-  console.log('sortReverse');
+/**
+ * Remove a sorting rule from `sortRules`.
+ * 
+ * @param {String} fieldName The name of a field to no longer sort by
+ */
+ function removeSortRule(fieldName) {
+  delete sortRules[fieldName];
+  onSortRulesChanged();
+}
+
+/**
+ * Called when `sortRules` is changed.
+ */
+function onSortRulesChanged() {
+  console.log(sortRules);
 }
