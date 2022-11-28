@@ -129,8 +129,11 @@ function addJobToDocument(job) {
   jobDetails.data = job;
   // Add the onClickDelete function to <job-details>
   jobDetails.onClickDelete = () => {
-    // Remove the <job-details> element from job-details-list
-    list.removeChild(jobDetails);
+    // Get confirmation from user
+    if (window.confirm('Are you sure you want to delete this?')) {
+      // Remove the <job-details> element from job-details-list
+      list.removeChild(jobDetails);
+    }
   }
   // Get a reference to the <form> element
   const form = document.querySelector('form');
