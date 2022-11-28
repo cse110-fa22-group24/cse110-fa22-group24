@@ -22,7 +22,7 @@ export default class JobApplication {
    * @param {string} id - The unique identifier value.
    */
   constructor(id) {
-    this.id = id
+    this.id = id;
   }
 
 }
