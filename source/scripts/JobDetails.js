@@ -291,10 +291,7 @@ class JobDetails extends HTMLElement {
    *                                   when the delete button is pressed
    */
   set onClickDelete(onClickDelete) {
-    // Select the <details> added to the Shadow DOM in the constructor
-    const details = this.shadowRoot.querySelector('details');
-    const deleteButton = details.querySelector('#delete');
-    deleteButton.addEventListener('click', onClickDelete);
+    this.shadowRoot.querySelector('#delete').addEventListener('click', onClickDelete);
   }
 
   /**
@@ -304,10 +301,7 @@ class JobDetails extends HTMLElement {
    *                                 when the edit button is pressed
    */
   set onClickEdit(onClickEdit) {
-    // Select the <details> added to the Shadow DOM in the constructor
-    const details = this.shadowRoot.querySelector('details');
-    const editButton = details.querySelector('#edit');
-    editButton.addEventListener('click', onClickEdit);
+    this.shadowRoot.querySelector('#edit').addEventListener('click', onClickEdit);
   }
 }
 
