@@ -35,7 +35,7 @@ function getJobsFromStorage() {
 
 /**
  * Takes in an array of jobs and for each job creates a
- * new `<job-details>` element, adds the job data to that card
+ * new `job-details` element, adds the job data to that card
  * using `element.data = {...}`, and then appends that new job
  * to `job-details-list`.
  * @param {Array<Object>} jobs An array of jobs
@@ -58,7 +58,7 @@ function saveJobsToStorage(jobs) {
 }
 
 /**
- * Adds the necesarry event handlers to `<form>`.
+ * Adds the necesarry event handlers to `form`.
  */
 function initFormHandler() {
   // Get a reference to the <form> element
@@ -107,7 +107,7 @@ function initFormHandler() {
 }
 
 /**
- * Clear the `<form>` fields
+ * Clear the `form` fields
  */
 function clearForm() {
   // Get a reference to the <form> element
@@ -122,9 +122,9 @@ function clearForm() {
 }
 
 /**
- * Create or edit a `<job-details>` element.
+ * Create or edit a `job-details` element.
  * 
- * @param {Object} job The job data to pass to the `<job-details>` element
+ * @param {Object} job The job data to pass to the `job-details` element
  */
 function addJobToDocument(job) {
   // Get a reference to the job-details-list element
@@ -178,7 +178,7 @@ function addJobToDocument(job) {
 }
 
 /**
- * The `<job-details>` element to edit on form submission
+ * The `job-details` element to edit on form submission
  * 
  * @global
  * @type {JobDetails}
@@ -187,14 +187,14 @@ let jobDetailsToEdit = null;
 
 
 /**
- * Hide the `<form>` element
+ * Hide the `form` element
  */
 function hideForm(){
   document.querySelector('#job-details-form').setAttribute('style', 'display: none');
 }
 
 /**
- * Show the `<form>` element
+ * Show the `form` element
  */
 function showForm(){
   document.querySelector('#job-details-form').removeAttribute('style');
@@ -202,7 +202,7 @@ function showForm(){
 
 /**
  * Takes in an array of field names and for each name creates a
- * new `<sort-bar>` element, adds the name to that element
+ * new `sort-bar` element, adds the name to that element
  * using `element.data = {...}`, and then appends that new element
  * to `sort-bar-list`.
  * @param {Array<Object>} fieldNames An array of field names

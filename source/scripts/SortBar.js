@@ -105,7 +105,7 @@ class SortBar extends HTMLElement {
   /**
    * Called when the .fieldName property is set on this element.
    * 
-   * @param {String} fieldName - The name of the field that this `<sort-bar>` represents.
+   * @param {String} fieldName - The name of the field that this `sort-bar` represents.
    */
   set fieldName(fieldName) {
     // Select the <span> added to the Shadow DOM in the constructor
