@@ -1,6 +1,7 @@
 name: Unit Test Execution
 
-on: workflow_call
+on:
+  workflow_call:
 
 jobs:
   test:
