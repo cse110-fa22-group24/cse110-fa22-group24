@@ -1,0 +1,153 @@
+* {
+  font-family: "Nunito", sans-serif;
+  font-size: 14pt;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #bf4e30;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+main {
+  display: flex;
+  flex-grow: 1;
+  max-height: calc(100% - 4rem - 2px); /* HACK: subtract height of header */
+  padding: 1rem;
+}
+
+#job-details-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  padding: 0 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* header */
+
+header {
+  display: flex;
+  flex-direction: column;
+}
+
+  /* banner */
+
+  #banner {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+  }
+
+    /* branding logo and title */
+
+    #branding {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #logo {
+      height: 3rem;
+    }
+
+    #branding p {
+      margin: 0;
+    }
+
+    /* profile button and icon */
+
+    #profile-button {
+      border: none;
+      background-color: white;
+      padding: 0;
+    }
+
+    #profile-icon {
+      height: 2.5rem;
+    }
+
+    #profile-icon:hover {
+      filter: brightness(80%);
+    }
+
+hr {
+  border: none;
+  margin: 0;
+  height: 2px;
+  background-color: rgb(181, 181, 3);
+  width: 100%;
+}
+
+/* navigation bar */
+
+nav {
+  background-color: #eaf8bf;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 10px;
+}
+
+  /* search box*/
+
+  #search {
+    border: 1px solid #1e7a1d;
+    border-radius: 1rem;
+    height: 2rem;
+    padding: 0.5rem 1rem;
+  }
+
+  #search::placeholder {
+    color: #1e7a1d;
+    font-style: italic;
+    opacity: 1;
+  }
+
+  /* nav title text and hr */
+
+  .nav-title * {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #1e7a1d;
+  }
+
+  .nav-title hr {
+    border: 1px solid #1e7a1d;
+    margin: 0;
+  }
+
+#sort-bar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+  /* new application button */
+
+  #new-app-button {
+    margin-top: auto;
+    border-radius: 5px;
+    border: 1px solid #1e7a1d;
+    background-color: white;
+    /* font */
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #1e7a1d;
+  }
+
+  #new-app-button:hover {
+    background-color: #1e6320;
+    color: white;
+  }
