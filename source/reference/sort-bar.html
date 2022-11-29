@@ -1,12 +1,6 @@
 <div>
-  <label for="field">
-    <input type="checkbox" id="field" name="field"/>
-    <span>Sorting Field</span>
-  </label>
-  <label for="order">
-    <input type="checkbox" id="order" name="order"/>
-    <img src="../assets/next.png">
-  </label>
+  <span id="field">Sorting Field</span>
+  <span><img src="../assets/next.png"></span>
 </div>
 
 <link rel="stylesheet"
@@ -25,37 +19,27 @@
 
 div {
   display: flex;
-  align-items: center;
   border: none;
   border-radius: 10px;
   background-color:  #dbf8ff;
 }
 
-/* labels */
+/* elements */
 
-label {
+div > * {
+  display: flex;
   padding: 0.5rem 1rem;
   user-select: none; /* prevent text selection */
 }
 
-label[for=field] {
+#field {
   flex-grow: 1;
 }
 
-#order ~ img {
+img {
+  filter: invert();
   transform: rotate(270deg);
 }
-
-#order:checked ~ img {
-  transform: rotate(90deg);
-}
-
-/* checkboxes */
-
-input {
-  display: none; /* hide default checkbox */
-}
-
 </style>
 
 <script>

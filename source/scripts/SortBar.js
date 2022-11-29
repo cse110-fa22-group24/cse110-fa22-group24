@@ -28,72 +28,79 @@ class SortBar extends HTMLElement {
       
       div {
         display: flex;
-        align-items: center;
         border: none;
         border-radius: 10px;
         background-color:  #dbf8ff;
       }
       
-      /* labels */
+      /* elements */
       
-      label {
+      div > * {
+        display: flex;
         padding: 0.5rem 1rem;
         user-select: none; /* prevent text selection */
       }
       
-      label[for=field] {
+      #field {
         flex-grow: 1;
       }
       
-      #order ~ img {
+      img {
+        filter: invert();
         transform: rotate(270deg);
-      }
-      
-      #order:checked ~ img {
-        transform: rotate(90deg);
-      }
-      
-      /* checkboxes */
-      
-      input {
-        display: none; /* hide default checkbox */
       }
     `;
 
     // Set the contents of the <div> with
     // the <div> template given in sort-bar.html
     div.innerHTML = `
-      <label for="field">
-        <input type="checkbox" id="field" name="field"/>
-        <span></span>
-      </label>
-      <label for="order">
-        <input type="checkbox" id="order" name="order"/>
-        <img src="./assets/next.png">
-      </label>
+      <span id="field">Sorting Field</span>
+      <span><img src="./assets/next.png"></span>
     `;
 
     // Add an event listener when the field is clicked
-    const fieldText = div.querySelector('span');
-    const orderImg = div.querySelector('img');
-    div.querySelector('#field').addEventListener('click', e => {
-      // If field is toggled on
-      if (e.target.checked) {
-        div.setAttribute('style', 'background-color: #69ddff')
-        // Set text and arrow to white
-        fieldText.setAttribute('style', 'color: white');
-        orderImg.setAttribute('style', 'filter: invert()');
-      } else {
-        // Reset styles to default
-        div.removeAttribute('style');
-        fieldText.removeAttribute('style');
-        orderImg.removeAttribute('style');
+    const field = div.querySelector('#field');
+    const img = div.querySelector('img');
+    div.addEventListener('click', () => {
+      switch (this.state) {
+        case 'reversed':
+          // Update state
+          this.state = 'disabled';
+          // Reset styles to default
+          div.removeAttribute('style');
+          field.removeAttribute('style');
+          // Hide order arrow
+          img.setAttribute('style', 'visibility: hidden');
+          break;
+        case 'disabled':
+          // Update state
+          this.state = 'enabled';
+          // Set new background color
+          div.setAttribute('style', 'background-color: #69ddff');
+          // Set text to white
+          field.setAttribute('style', 'color: white');
+          // Show order arrow
+          img.removeAttribute('style');
+          break;
+        case 'enabled':
+          // Update state
+          this.state = 'reversed';
+          // Flip arrow
+          img.setAttribute('style', 'transform: rotate(90deg)');
+          break;
       }
     });
+    // Hide order arrow by default
+    img.setAttribute('style', 'visibility: hidden');
 
     // Append the <div> and <style> elements to the Shadow DOM
     this.shadowRoot.append(div, style);
   }
+
+  /**
+   * The current sorting state
+   */
+  state = 'disabled';
 
   /**
    * Called when the .fieldName property is set on this element.
@@ -123,16 +130,16 @@ class SortBar extends HTMLElement {
    * @returns True if the field is enabled, false otherwise
    */
   get fieldEnabled() {
-    return this.shadowRoot.querySelector('#field').checked;
+    return this.state != 'disabled';
   }
 
   /**
-   * Called when the .orderAscending property is accessed on this element
+   * Called when the .orderReversed property is accessed on this element
    * 
-   * @returns True if the order is ascending, false if descending
+   * @returns True if the order is reversed, false otherwise
    */
-   get orderAscending() {
-    return !this.shadowRoot.querySelector('#order').checked;
+   get orderReversed() {
+    return this.state == 'reversed';
   }
 }
 

@@ -214,7 +214,7 @@ function addSortBars(fieldNames) {
     sortBar.fieldName = fieldName;
     sortBar.onClick = () => {
       if (sortBar.fieldEnabled) {
-        setSortRule(fieldName, sortBar.orderAscending);
+        setSortRule(fieldName, sortBar.orderReversed);
       } else {
         removeSortRule(fieldName);
       }
