@@ -8,6 +8,7 @@
 - [x]  Pierre Beurtheret
 - [x]  Qingxin Li
 - [x]  Zhouyang Meng
+- [x] Sri Gangavarapu
 
 # Sprint Review Meeting Notes
 
