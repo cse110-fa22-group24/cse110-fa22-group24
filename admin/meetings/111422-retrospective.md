@@ -9,6 +9,7 @@
 - [x]  Pierre Beurtheret
 - [x]  Qingxin Li
 - [x]  Zhouyang Meng
+- [x]  Sri Gangavarapu
 
 ## Sprint Retro Meeting Notes
 
