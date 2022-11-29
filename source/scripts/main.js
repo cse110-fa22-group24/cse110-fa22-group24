@@ -5,12 +5,10 @@ window.addEventListener('DOMContentLoaded', init);
 
 // Starts the program, all function calls trace back here
 function init() {
+  /* TODO: get all jobs from database
+   * const jobs = database.getAllJobs();
+   */
   // Get the jobs from localStorage
-
-  // //get all jobs from database
-  // const jobs = database.getAllJobs();
-
-  //TODO: get job from database
   const jobs = getJobsFromStorage();
   // Add each job to the job-details-list element
   addJobsToDocument(jobs);
@@ -84,11 +82,9 @@ function initFormHandler() {
     jobDetailsToEdit = null;
     // Clear the <form> fields
     clearForm();
-    hideForm();
 
+    // TODO: code below can be shifted to addJobsToDocuments
 
-
-    //code below can be shifted to addJobsToDocuments
     // Get the jobs array from localStorage
     const jobs = getJobsFromStorage();
     // Add this new job to it
@@ -96,6 +92,7 @@ function initFormHandler() {
     // Save the jobs array back to localStorage
     saveJobsToStorage(jobs);
     // Hide the form
+    hideForm();
   });
   // Add an event listener for when the cancel button is clicked
   const cancelButton = form.querySelector(`#cancel`);
@@ -134,22 +131,22 @@ function addJobToDocument(job) {
   const list = document.querySelector('#job-details-list');
   // Get the <job-details> element to edit, otherwise create a new <job-details> element
   const jobDetails = jobDetailsToEdit || document.createElement('job-details');
-
-  // //generate new id
-  // const new_id = new id();
-
-  // //if in Edit mode, delete the old data in database
-  // if(jobDetailsToEdit != null){
-  //   database.delete(jobDetails.id);
-  // }
-
-  // //set the id to newly generated id
-  // jobDetails.id = new_id;
-  // job[id] = new_id;
-  
-  // //update database with data
-  // database.update(job);
-
+  /** TODO:
+   * // generate new id
+   * const new_id = new id();
+   *
+   * // if in Edit mode, delete the old data in database
+   * if(jobDetailsToEdit != null){
+   *   database.delete(jobDetails.id);
+   * }
+   *
+   * // set the id to newly generated id
+   * jobDetails.id = new_id;
+   * job[id] = new_id;
+   *
+   * // update database with data
+   * database.update(job);
+   */
   // Add the job data to <job-details>
   jobDetails.data = job;
   // Add the onClickDelete function to <job-details>
@@ -178,7 +175,6 @@ function addJobToDocument(job) {
     // Append this new <job-details> to job-details-list
     list.appendChild(jobDetails);
   }
-
 }
 
 /**
