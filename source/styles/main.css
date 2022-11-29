@@ -26,7 +26,8 @@ main {
 
 #job-details-list {
   flex-grow: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
   padding: 0 1rem 1rem;
   display: flex;
   flex-direction: column;
