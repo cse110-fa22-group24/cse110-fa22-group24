@@ -4,11 +4,17 @@ on: [push, pull_request]
 
 jobs:
   lint:
-    uses: ./lint.yml
+    - name: Check out repository
+      uses: actions/checkout@v3
+    - uses: ./lint.yml
   tests:
     needs: lint
-    uses: ./tests.yml
+    - name: Check out repository
+      uses: actions/checkout@v3
+    - uses: ./tests.yml
   deploy:
     if: github.ref == 'refs/heads/main'
     needs: tests
-    uses: ./deploy.yml
+    - name: Check out repository
+      uses: actions/checkout@v3
+    - uses: ./deploy.yml

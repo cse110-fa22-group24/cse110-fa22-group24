@@ -1,10 +1,7 @@
 # Simple workflow for deploying static content to GitHub Pages
 name: Deploy static content to GitHub Pages
 
-on: oncall
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+on: workflow_call
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
