@@ -4,8 +4,11 @@ on: [push, pull_request]
 
 jobs:
   lint:
-    name: Lint Action
-    uses: wearerequired/lint-action@v2.1.0
-  test:
-    needs: 
+    uses: ./lint.yml
+  tests:
+    needs: lint
     uses: ./tests.yml
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: tests
+    uses: ./deploy.yml

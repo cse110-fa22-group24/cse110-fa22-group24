@@ -1,19 +1,20 @@
+/* eslint-disable accessor-pairs */
 // JobDetails.js
 
 class JobDetails extends HTMLElement {
   // Called once when document.createElement('job-details') is called, or
   // the element is written into the DOM directly as <job-details>
-  constructor() {
-    super(); // Inherit everything from HTMLElement
+  constructor () {
+    super() // Inherit everything from HTMLElement
 
     // Attach the shadow DOM to this Web Component (leave the mode open)
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: 'open' })
 
     // Create an <details> element - This will hold our markup once our data is set
-    const details = document.createElement('details');
+    const details = document.createElement('details')
 
     // Create a style element - This will hold all of the styles for the Web Component
-    const style = document.createElement('style');
+    const style = document.createElement('style')
     // Insert all of the styles from job-details.html into the <style> element
     style.textContent = `
       /* font */
@@ -170,10 +171,10 @@ class JobDetails extends HTMLElement {
       .button:active {
         font-size: 30px;
       }
-    `;
+    `
 
     // Append the <details> and <style> elements to the Shadow DOM
-    this.shadowRoot.append(details, style);
+    this.shadowRoot.append(details, style)
   }
 
   /**
@@ -199,12 +200,12 @@ class JobDetails extends HTMLElement {
    *                          'tags': [...tag]
    *                        }
    */
-  set data(data) {
+  set data (data) {
     // If nothing was passed in, return
-    if (!data) return;
+    if (!data) return
 
     // Select the <details> added to the Shadow DOM in the constructor
-    const details = this.shadowRoot.querySelector('details');
+    const details = this.shadowRoot.querySelector('details')
     // Set the contents of the <details> with the <details> template
     // given in job-details.html and the data passed in
     details.innerHTML = `
@@ -225,106 +226,106 @@ class JobDetails extends HTMLElement {
       </summary>
       <div class="dropdown">
         <hr id="horizontal-rule">
-        ${data.description ?
-         `<div class="heading">Description</div>
+        ${data.description
+         ? `<div class="heading">Description</div>
           <div id="description">${data.description}</div>`
-        :``}
-        ${data.notes ?
-         `<div class="heading">Notes</div>
+        : ''}
+        ${data.notes
+         ? `<div class="heading">Notes</div>
           <div id="notes">${data.notes}</div>`
-        :``}
-        ${(data.contactName || data.contactEmail) ?
-         `<div>
-            ${data.contactName ?
-             `<span class="heading">Contact:</span>
+        : ''}
+        ${(data.contactName || data.contactEmail)
+         ? `<div>
+            ${data.contactName
+             ? `<span class="heading">Contact:</span>
               <a>${data.contactName}</a>`
-            :``}
-            ${(data.contactName && data.contactEmail) ?
-              `<span class="vertical-bar">|</span>`
-            :``}
-            ${data.contactEmail ?
-             `<span class="heading">Email:</span>
+            : ''}
+            ${(data.contactName && data.contactEmail)
+              ? '<span class="vertical-bar">|</span>'
+            : ''}
+            ${data.contactEmail
+             ? `<span class="heading">Email:</span>
               <a href="mailto:${data.contactEmail}">${data.contactEmail}</a>`
-            :``}
+            : ''}
           </div>`
-        :``}
-        ${(data.portalUrl || data.portalUser || data.portalPass) ? 
-         `<div>
-            ${data.portalUrl ?
-             `<span class="heading">Portal:</span>
+        : ''}
+        ${(data.portalUrl || data.portalUser || data.portalPass)
+         ? `<div>
+            ${data.portalUrl
+             ? `<span class="heading">Portal:</span>
               <a href="${data.portalUrl}">${data.portalUrl}</a>`
-            :``}
-            ${(data.portalUrl && data.portalUser) ?
-              `<span class="vertical-bar">|</span>`
-            :``}
-            ${data.portalUser ?
-             `<span class="heading">Username:</span>
+            : ''}
+            ${(data.portalUrl && data.portalUser)
+              ? '<span class="vertical-bar">|</span>'
+            : ''}
+            ${data.portalUser
+             ? `<span class="heading">Username:</span>
               <a>${data.portalUser}</a>`
-            :``}
-            ${(data.portalUser && data.portalPass) ?
-              `<span class="vertical-bar">|</span>`
-            :``}
-            ${data.portalPass ?
-             `<span class="heading">Password:</span>
+            : ''}
+            ${(data.portalUser && data.portalPass)
+              ? '<span class="vertical-bar">|</span>'
+            : ''}
+            ${data.portalPass
+             ? `<span class="heading">Password:</span>
               <a>${data.portalPass}</a>`
-            :``}
+            : ''}
           </div>`
-        :``}
+        : ''}
         <div id="buttons">
           <button class="button" type="button" id="delete">🗑️</button>
           <button class="button" type="button" id="edit">✏️</button>
         </div>
       </div>
-    `;
+    `
 
     // Convert deadline to Date object.
-    const date = new Date(data.deadline);
+    const date = new Date(data.deadline)
     // Add formatted date
-    const deadlineDateSpanElement = details.querySelector('#deadline-date');
-    deadlineDateSpanElement.innerText = `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()-2000}`;
+    const deadlineDateSpanElement = details.querySelector('#deadline-date')
+    deadlineDateSpanElement.innerText = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear() - 2000}`
     // Add formatted time
-    const deadlineTimeSpanElement = details.querySelector('#deadline-time');
-    deadlineTimeSpanElement.innerText = date.toLocaleTimeString('en-US', {timeStyle: "short"});
+    const deadlineTimeSpanElement = details.querySelector('#deadline-time')
+    deadlineTimeSpanElement.innerText = date.toLocaleTimeString('en-US', { timeStyle: 'short' })
 
     // Add list item elements to notes unordered list element from data notes array
-    const notesUnorderedListElement = details.querySelector('#notes');
+    // const notesUnorderedListElement = details.querySelector('#notes')
     /* TODO: Notes as bullet points?
     data.notes.forEach((itemString) => {
       const listItemElement = document.createElement('li');
       listItemElement.innerText = itemString;
       notesUnorderedListElement.appendChild(listItemElement);
-    });*/
+    }); */
 
     // Add tag custom elements to tags div element from data tags array
-    const tagsDivElement = details.querySelector('#tags');
+    // const tagsDivElement = details.querySelector('#tags')
     /* TODO: Add tag functionality
     data.tags.forEach((tagObject) => {
       const tagElement = document.createElement('tag');
       tagElement.title = tagObject.title;
       tagsDivElement.appendChild(tagElement);
-    });*/
+    }); */
   }
 
   /**
    * Called when the .onClickDelete property is set on this element
-   * 
+   *
    * @param {function} onClickDelete - The function to be called
    *                                   when the delete button is pressed
    */
-  set onClickDelete(onClickDelete) {
-    this.shadowRoot.querySelector('#delete').addEventListener('click', onClickDelete);
+  set onClickDelete (onClickDelete) {
+    this.shadowRoot.querySelector('#delete').addEventListener('click', onClickDelete)
   }
 
   /**
    * Called when the .onClickEdit property is set on this element
-   * 
+   *
    * @param {function} onClickEdit - The function to be called
    *                                 when the edit button is pressed
    */
-  set onClickEdit(onClickEdit) {
-    this.shadowRoot.querySelector('#edit').addEventListener('click', onClickEdit);
+  set onClickEdit (onClickEdit) {
+    this.shadowRoot.querySelector('#edit').addEventListener('click', onClickEdit)
   }
 }
 
 // Define the Class as a customElement so we can create 'job-details' elements
-customElements.define('job-details', JobDetails);
+customElements.define('job-details', JobDetails)
