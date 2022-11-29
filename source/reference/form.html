@@ -1,115 +1,87 @@
-<form id="new-job-details">
-  <!-- Summary -->
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Nunito">
+<link rel="stylesheet"
+  href="../styles/main.css">
+<link rel="stylesheet"
+  href="../styles/form.css">
 
-  
-  <div class="row">
-    <label for="company" ,class="item">
-      Company <br>
-      <input type="text" id="company" name="company" required />
-    </label>
-   
+<form id="job-details-form">
+  <div id="form-content">
 
-    <label for="position" , class="item">
-      Position <br>
-      <input type="text" id="position" name="position" required />
-    </label>
-  </div>
+    <!-- Summary -->
+    <div class="row">
+      <label for="company">
+        Company
+        <input type="text" id="company" name="company" required/>
+      </label>
 
-  <div class="row">
-    <label for="location">
-      Location <br>
-      <input type="text" id="location" name="location" required />
-    </label>
-
-    <label for="status">
-      Status <br>
-      <input type="text" id="status" name="status" required />
-    </label>
-
-    <label for="deadline">
-      Deadline <br>
-      <input type="datetime-local" id="deadline" name="deadline" required />
-    </label>
-  </div>
-
-  <!-- Details -->
-
-  <div class="row">
-    <label for="contactName">
-      Contact Name <br>
-      <input type="text" id="contactName" name="contactName" />
-    </label>
+      <label for="position">
+        Position
+        <input type="text" id="position" name="position" required/>
+      </label>
+    </div>
     
-    <label for="contactEmail">
-      Contact Email <br>
-      <input type="email" id="contactEmail" name="contactEmail" />
+    <div class="row">
+      <label for="location">
+        Location
+        <input type="text" id="location" name="location" required/>
+      </label>
+
+      <label for="status">
+        Status
+        <input type="text" id="status" name="status" required/>
+      </label>
+
+      <label for="deadline">
+        Deadline
+        <input type="datetime-local" id="deadline" name="deadline" required/>
+      </label>
+    </div>
+
+    <!-- Details -->
+    <label for="description">
+      Description
+      <textarea id="description" name="description" rows="5"></textarea>
     </label>
-    
+
+    <label for="notes">
+      Notes
+      <textarea id="notes" name="notes" rows="5"></textarea>
+    </label>
+
+    <div class="row">
+      <label for="contactName">
+        Contact Name
+        <input type="text" id="contactName" name="contactName"/>
+      </label>
+
+      <label for="contactEmail">
+        Contact Email
+        <input type="email" id="contactEmail" name="contactEmail"/>
+      </label>
+    </div>
+
+    <div class="row">
+      <label for="portalUrl">
+        Portal
+        <input type="url" id="portalUrl" name="portalUrl"/>
+      </label>
+
+      <label for="portalUser">
+        Portal Username
+        <input type="text" id="portalUser" name="portalUser"/>
+      </label>
+
+      <label for="portalPass">
+        Portal Password
+        <input type="text" id="portalPass" name="portalPass"/>
+      </label>
+    </div>
+
+    <div class="row" id="buttons">
+      <button type="submit">Done</button>
+      <button type="button" id="cancel">Cancel</button>
+    </div>
+
   </div>
-
-  <div class="row">
-    <label for="portalUrl">
-      Portal <br>
-      <input type="url" id="portalUrl" name="portalUrl" />
-    </label>
-
-    <label for="portalUser">
-      Portal Username <br>
-      <input type="text" id="portalUser" name="portalUser" />
-    </label>
-
-    <label for="portalPass">
-      Portal Password <br>
-      <input type="text" id="portalPass" name="portalPass" />
-    </label>
-  </div>
-
-  <label for="description">
-    Description <br>
-    <textarea id="description" name="description"></textarea>
-  </label>
-
-  <label for="notes">
-    Notes <br>
-    <textarea id="notes" name="notes"></textarea>
-  </label>
-
-  <button type="submit">Add Job Application</butto>
 </form>
-
-<style>
-
-form {
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 20px;
-  width: 30%;
-  min-width: 300px;
-}
-
-#new-job-details {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  padding: 10px;
-}
-
-.row {
-  display: flex;
-  gap: 10px;
-}
-
-#new-job-details * {
-  flex-grow: 1;
-}
-
-input {
-  width: 100%;
-}
-
-textarea {
-  width: 100%;
-  height: 
-}
-
-</style>

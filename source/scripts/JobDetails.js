@@ -16,19 +16,159 @@ class JobDetails extends HTMLElement {
     const style = document.createElement('style');
     // Insert all of the styles from job-details.html into the <style> element
     style.textContent = `
+      /* font */
       * {
-        font-family: sans-serif;
+        font-family: "Nunito", sans-serif;
+        font-size: 14pt;
+        color: #2d2d34;
       }
-
-      .summary {
+    
+      /* outer border */
+      details {
+        border: 1px solid;
+        border-radius: 8px;
+      }
+    
+      /* hide details arrow */
+      details summary::-webkit-details-marker {
+        display: none;
+      }
+    
+      /** summary **/
+    
+      details > summary {
+        list-style: none;
         display: flex;
-        gap: 20px;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
       }
-
+    
+      /* dropdown arrow */
+    
+      #arrow {
+        height: 24px;
+        width: 24px;
+      }
+    
+      details[open] #arrow {
+        transform: rotate(90deg);
+      }
+    
+      /* company tag */
+    
       #company {
-        border: 1px solid blue;
-        background-color: blue;
-        color: white;
+        padding: 0px 12px;
+        border-radius: 5px;
+        background-color: #69ddff;
+        font-size: 1.5rem;
+      }
+    
+      /* position title */
+    
+      #title {
+        font-size: 1.5rem;
+      }
+    
+      /* location */
+    
+      #location-tag {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        background-color: #dbf8ff;
+        padding: 5px 8px;
+        gap: 5px;
+      }
+    
+      #location {
+        font-style: italic;
+      }
+    
+      /* status */
+    
+      #status {
+        padding: 3px 6px;
+        border: 2px #eca400 solid;
+        border-radius: 5px;
+        color: #eca400;
+      }
+    
+      /* notification symbol */
+    
+      #notification-symbol {
+        font-size: 1.5rem;
+      }
+    
+      /* deadline date and time */
+    
+      #deadline {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      #deadline * {
+        color: #bf4e30;
+      }
+    
+      /* horizontal rule */
+    
+      #horizontal-rule {
+        margin: 0;
+      }
+    
+      /** dropdown **/
+    
+      .dropdown {
+        display: flex;
+        flex-direction: column;
+        padding: 0px 15px 10px;
+        gap: 10px;
+      }
+    
+      .heading {
+        font-size: 1.3rem;
+        font-style: italic;
+      }
+    
+      #notes {
+        margin: 0;
+      }
+    
+      a {
+        color: #106efb;
+        font-style: italic;
+      }
+    
+      .vertical-bar {
+        font-size: 1.3rem;
+      }
+    
+      /* buttons */
+    
+      #buttons {
+        display: flex;
+        justify-content: flex-end;
+        height: 50px;
+      }
+    
+      .button {
+        border: none;
+        background: none;
+        padding: 0;
+        font-size: 30px;
+        width: 50px;
+      }
+    
+      .button:hover {
+        font-size: 35px;
+      }
+    
+      .button:active {
+        font-size: 30px;
       }
     `;
 
@@ -68,47 +208,121 @@ class JobDetails extends HTMLElement {
     // Set the contents of the <details> with the <details> template
     // given in job-details.html and the data passed in
     details.innerHTML = `
-      <summary class="summary">
-        <div id="company">${data.company}</div>
-        <div id="position-title">${data.title}</div>
-        <div id="location">${data.location}</div>
-        <div id="status">${data.status}</div>
-        <div id="deadline-date">${data.deadlineDate}</div>
-        <div id="deadline-time">${data.deadlineTime}</div>
+      <summary>
+        <div id="arrow"><img src="./assets/next.png"></div>
+        <div id="company">${data.company}</div> 
+        <div id="title">${data.position}</div>
+        <div id="location-tag">
+          <span id="pin-symbol">📍</span>
+          <span id="location">${data.location}</span>
+        </div>
+        <div id="status">Status: ${data.status}</div>
+        <div id="notification-symbol">🔔</div>
+        <div id="deadline">
+          <span id="deadline-date">MM/DD/YY</span>
+          <span id="deadline-time">HH:MM XM</span>
+        </div>
       </summary>
-      <div>
-        <h1>Description</h1>
-        <p>${data.description}</p>
-      </div>
-      <div>
-        <h1>Notes</h1>
-        <ul id="notes">
-        </ul>
-      </div>
-      <h1>Contact</h1>
-      <a href="${data.contact}">${data.contact}</a>
-      <h1>Portal</h1>
-      <a href="${data.portal}">${data.portal}</a>
-      <h1>Tags</h1>
-      <div id="tags">
+      <div class="dropdown">
+        <hr id="horizontal-rule">
+        ${data.description ?
+         `<div class="heading">Description</div>
+          <div id="description">${data.description}</div>`
+        :``}
+        ${data.notes ?
+         `<div class="heading">Notes</div>
+          <div id="notes">${data.notes}</div>`
+        :``}
+        ${(data.contactName || data.contactEmail) ?
+         `<div>
+            ${data.contactName ?
+             `<span class="heading">Contact:</span>
+              <a>${data.contactName}</a>`
+            :``}
+            ${(data.contactName && data.contactEmail) ?
+              `<span class="vertical-bar">|</span>`
+            :``}
+            ${data.contactEmail ?
+             `<span class="heading">Email:</span>
+              <a href="mailto:${data.contactEmail}">${data.contactEmail}</a>`
+            :``}
+          </div>`
+        :``}
+        ${(data.portalUrl || data.portalUser || data.portalPass) ? 
+         `<div>
+            ${data.portalUrl ?
+             `<span class="heading">Portal:</span>
+              <a href="${data.portalUrl}">${data.portalUrl}</a>`
+            :``}
+            ${(data.portalUrl && data.portalUser) ?
+              `<span class="vertical-bar">|</span>`
+            :``}
+            ${data.portalUser ?
+             `<span class="heading">Username:</span>
+              <a>${data.portalUser}</a>`
+            :``}
+            ${(data.portalUser && data.portalPass) ?
+              `<span class="vertical-bar">|</span>`
+            :``}
+            ${data.portalPass ?
+             `<span class="heading">Password:</span>
+              <a>${data.portalPass}</a>`
+            :``}
+          </div>`
+        :``}
+        <div id="buttons">
+          <button class="button" type="button" id="delete">🗑️</button>
+          <button class="button" type="button" id="edit">✏️</button>
+        </div>
       </div>
     `;
-    
+
+    // Convert deadline to Date object.
+    const date = new Date(data.deadline);
+    // Add formatted date
+    const deadlineDateSpanElement = details.querySelector('#deadline-date');
+    deadlineDateSpanElement.innerText = `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()-2000}`;
+    // Add formatted time
+    const deadlineTimeSpanElement = details.querySelector('#deadline-time');
+    deadlineTimeSpanElement.innerText = date.toLocaleTimeString('en-US', {timeStyle: "short"});
+
     // Add list item elements to notes unordered list element from data notes array
     const notesUnorderedListElement = details.querySelector('#notes');
+    /* TODO: Notes as bullet points?
     data.notes.forEach((itemString) => {
       const listItemElement = document.createElement('li');
       listItemElement.innerText = itemString;
       notesUnorderedListElement.appendChild(listItemElement);
-    });
+    });*/
 
     // Add tag custom elements to tags div element from data tags array
     const tagsDivElement = details.querySelector('#tags');
+    /* TODO: Add tag functionality
     data.tags.forEach((tagObject) => {
       const tagElement = document.createElement('tag');
       tagElement.title = tagObject.title;
       tagsDivElement.appendChild(tagElement);
-    });
+    });*/
+  }
+
+  /**
+   * Called when the .onClickDelete property is set on this element
+   * 
+   * @param {function} onClickDelete - The function to be called
+   *                                   when the delete button is pressed
+   */
+  set onClickDelete(onClickDelete) {
+    this.shadowRoot.querySelector('#delete').addEventListener('click', onClickDelete);
+  }
+
+  /**
+   * Called when the .onClickEdit property is set on this element
+   * 
+   * @param {function} onClickEdit - The function to be called
+   *                                 when the edit button is pressed
+   */
+  set onClickEdit(onClickEdit) {
+    this.shadowRoot.querySelector('#edit').addEventListener('click', onClickEdit);
   }
 }
 
