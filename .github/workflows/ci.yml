@@ -3,10 +3,9 @@ name: CI Workflow Execution
 on: [push, pull_request]
 
 jobs:
-  name: Lint Action
+  lint:
+    name: Lint Action
     uses: wearerequired/lint-action@v2.1.0
-  codeQuality:
   test:
+    needs: 
     uses: ./tests.yml
-  documentation:
-  deployment:
