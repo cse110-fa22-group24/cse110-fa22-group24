@@ -225,30 +225,51 @@ class JobDetails extends HTMLElement {
       </summary>
       <div class="dropdown">
         <hr id="horizontal-rule">
-        <div class="heading">Description</div>
-        <div id="description">${data.description}</div>
-        <div>
-          <div class="heading">Notes</div> 
-          <div id="notes">${data.notes}</div>
-        </div>
-        <div>
-          <span class="heading">Contact:</span>
-          <a>${data.contactName}</a>
-          <span class="vertical-bar">|</span>
-          <span class="heading">Email:</span>
-          <a href="mailto:${data.contactEmail}">${data.contactEmail}</a>
-        </div>
-        <div>
-          <span class="heading">Portal:</span>
-          <a href="${data.portalUrl}">${data.portalUrl}</a>
-          <span class="vertical-bar">|</span>
-          <span class="heading">Username:</span>
-          <a>${data.portalUser}</a>
-          <span class="vertical-bar">|</span>
-          <span class="heading">Password:</span>
-          <a>${data.portalPass}</a>
-        </div>
-        <div class="heading">Tags</div>
+        ${data.description ?
+         `<div class="heading">Description</div>
+          <div id="description">${data.description}</div>`
+        :``}
+        ${data.notes ?
+         `<div class="heading">Notes</div>
+          <div id="notes">${data.notes}</div>`
+        :``}
+        ${(data.contactName || data.contactEmail) ?
+         `<div>
+            ${data.contactName ?
+             `<span class="heading">Contact:</span>
+              <a>${data.contactName}</a>`
+            :``}
+            ${(data.contactName && data.contactEmail) ?
+              `<span class="vertical-bar">|</span>`
+            :``}
+            ${data.contactEmail ?
+             `<span class="heading">Email:</span>
+              <a href="mailto:${data.contactEmail}">${data.contactEmail}</a>`
+            :``}
+          </div>`
+        :``}
+        ${(data.portalUrl || data.portalUser || data.portalPass) ? 
+         `<div>
+            ${data.portalUrl ?
+             `<span class="heading">Portal:</span>
+              <a href="${data.portalUrl}">${data.portalUrl}</a>`
+            :``}
+            ${(data.portalUrl && data.portalUser) ?
+              `<span class="vertical-bar">|</span>`
+            :``}
+            ${data.portalUser ?
+             `<span class="heading">Username:</span>
+              <a>${data.portalUser}</a>`
+            :``}
+            ${(data.portalUser && data.portalPass) ?
+              `<span class="vertical-bar">|</span>`
+            :``}
+            ${data.portalPass ?
+             `<span class="heading">Password:</span>
+              <a>${data.portalPass}</a>`
+            :``}
+          </div>`
+        :``}
         <div id="buttons">
           <button class="button" type="button" id="delete">🗑️</button>
           <button class="button" type="button" id="edit">✏️</button>
