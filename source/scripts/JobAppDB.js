@@ -37,12 +37,11 @@ export default class dbUtil {
 
                 // TODO: Generalize to all entities
                 
-                resolve();
             }
 
             request.onsuccess=(event)=>{
                 this.db=event.target.result;
-                console.log("setup!")
+                console.log("database finished setup!")
                 resolve();
             }
         })
@@ -90,7 +89,7 @@ export default class dbUtil {
     /**
      * Get all jobs in DB
      */
-     getAllJobs() {
+    getAllJobs() {
         return new Promise((resolve, reject) => {
             const transaction=this.db.transaction("JobApplication","readonly");
             const store=transaction.objectStore("JobApplication");

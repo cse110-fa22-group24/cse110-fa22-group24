@@ -69,6 +69,8 @@ class SortBar extends HTMLElement {
     }
 
     //action is an array of two functions
+
+    // TODO: should only be able to sort by one thing at once
     set onClickSort(action){
         const details = this.shadowRoot.querySelector('div');
         const button = details.querySelector('button');
@@ -91,3 +93,12 @@ class SortBar extends HTMLElement {
 }
 
 customElements.define('sort-bar', SortBar);
+
+
+/**
+ * sort(list of html elements, keyword, asc/desc (boolean)) {
+ *  if asdjasldk; {
+ *  sort by value of html element data based on keyword
+ * }
+ * }
+ */

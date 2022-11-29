@@ -153,3 +153,7 @@ main {
   border: 1px solid #1e7a1d;
   margin: 0px;
 }
+
+.scroll {
+  overflow: auto;
+}

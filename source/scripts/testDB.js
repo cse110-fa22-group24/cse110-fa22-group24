@@ -27,6 +27,7 @@ try {
 
 try {
   await database.addJob(mockData);
+  console.log("added:", mockData)
 } catch {
   console.log('error adding job');
 }
@@ -49,6 +50,7 @@ const mockData2={
 
 try {
   await database.addJob(mockData2);
+  console.log("added:", mockData2)
 } catch {
   console.log('error adding job');
 }
@@ -76,6 +78,7 @@ const mockData3={
 
 try {
   await database.updateJob(mockData3);
+  console.log("updating job 2 to:", mockData3)
 } catch {
   console.log('error updating job');
 }

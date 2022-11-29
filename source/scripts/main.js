@@ -1,12 +1,15 @@
 // main.js
-
+import dbUtil from "./JobAppDB.js";
 // Run the init() function when the page has loaded
 window.addEventListener('DOMContentLoaded', init);
 
+const database=new dbUtil();
+
 // Starts the program, all function calls trace back here
-function init() {
+async function init() {
+  await database.setupDB();
   // Get the jobs from localStorage
-  const jobs = getJobsFromStorage();
+  const jobs = await getJobsFromStorage();
   const names = ["Company","Job Title","Deadline","Status"];
   create_sortBars(names);
   
@@ -25,10 +28,10 @@ function init() {
  * all of the jobs found (parsed, not in string form). If
  * nothing is found in localStorage for `jobs`, an empty array
  * is returned.
- * @returns {Array<Object>} An array of jobs found in localStorage
+ * @returns {Promise} An promise of that will either contain all jobs or error
  */
 function getJobsFromStorage() {
-  return JSON.parse(localStorage.getItem('jobs')) || [];
+  return database.getAllJobs();
 }
 
 /**
@@ -55,8 +58,10 @@ function addJobsToDocument(jobs) {
  * saves that string to `jobs` in localStorage
  * @param {Array<Object>} jobs An array of jobs
  */
-function saveJobsToStorage(jobs) {
-  localStorage.setItem('jobs', JSON.stringify(jobs));
+async function saveJobsToStorage(jobs) {
+  for (let job of jobs) {
+    await database.addJob(job)
+  }
 }
 
 /**
@@ -67,7 +72,7 @@ function initFormHandler() {
   const form = document.querySelector('form');
   // Add an event listener for the 'submit' event,
   // which fires when the submit button is clicked
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
     // Create a new FormData object from the <form> element reference above
     const formData = new FormData(form);
@@ -78,6 +83,14 @@ function initFormHandler() {
     for (const [key, value] of formData) {
       jobObject[key] = value;
     }
+
+    if (!jobObject["id"] || jobObject["id"] === '') {
+      jobObject['id'] = Math.floor(Date.now() / 10000000000)
+    } else {
+      jobObject['id'] = Number(jobObject['id'])
+    }
+
+    console.log(jobObject)
     // Create or edit a <job-details> element with the data in jobObject
     addJobToDocument(jobObject);
     // Reset the <job-details> element to edit
@@ -85,11 +98,11 @@ function initFormHandler() {
     // Clear the <form> fields
     clearForm();
     // Get the jobs array from localStorage
-    const jobs = getJobsFromStorage();
+    const jobs = await getJobsFromStorage();
     // Add this new job to it
     jobs.push(jobObject);
     // Save the jobs array back to localStorage
-    saveJobsToStorage(jobs);
+    await saveJobsToStorage(jobs);
     hide_form();
   });
   // Add an event listener for when the cancel button is clicked
@@ -122,6 +135,7 @@ function clearForm() {
  * Create or edit a `<job-details>` element.
  * 
  * @param {Object} job The job data to pass to the `<job-details>` element
+ * @return {Promise}
  */
 function addJobToDocument(job) {
   // Get a reference to the <main> element
@@ -131,9 +145,10 @@ function addJobToDocument(job) {
   // Add the job data to <job-details>
   jobDetails.data = job;
   // Add the onClickDelete function to <job-details>
-  jobDetails.onClickDelete = () => {
+  jobDetails.onClickDelete = async (event) => {
     // Remove the <job-details> element from <main>
     main.removeChild(jobDetails);
+    await database.deleteJob(job['id'])
   }
   // Get a reference to the <form> element
   const form = document.querySelector('form');
@@ -188,9 +203,18 @@ function create_sortBars(name){
 }
 
 function sort(){
-  console.log("sort");
+  // console.log("sort");
 }
 
 function sortReverse(){
-  console.log('sortReverse');
+  // console.log('sortReverse');
 }
+
+/**
+ * for each job
+ *  get tags for job
+ */
+
+/**
+ * search + create
+ */
