@@ -16,7 +16,8 @@
 2. Create a local branch
 3. Run tests on changes
    1. Run `npm install` once to install dependencies
-   2. Run `npm test` to run the unit tests
+   2. Run `npx eslint .` to run lint on the entire directory
+   3. Run `npm test` to run the unit tests
 4. Commit changes to the local branch
 5. Push the local branch to origin
 6. Create a pull request to merge changes into `main`
