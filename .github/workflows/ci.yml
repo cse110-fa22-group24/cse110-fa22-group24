@@ -8,8 +8,10 @@ jobs:
     uses: ./lint.yml
   tests:
     needs: lint
+    uses: actions/checkout@v2
     uses: ./tests.yml
   deploy:
     if: github.ref == 'refs/heads/main'
     needs: tests
+    uses: actions/checkout@v2
     uses: ./deploy.yml
