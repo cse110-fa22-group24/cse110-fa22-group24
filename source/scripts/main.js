@@ -1,15 +1,17 @@
 // main.js
+
 import dbUtil from "./JobAppDB.js";
+
+const database = new dbUtil()
+
 // Run the init() function when the page has loaded
 window.addEventListener('DOMContentLoaded', init)
-
-const database=new dbUtil();
 
 // Starts the program, all function calls trace back here
 async function init () {
   // Get the jobs from database
   await database.setupDB()
-  const jobs = getJobsFromStorage()
+  const jobs = await database.getAllJobs()
   // Add each job to the job-details-list element
   addJobsToDocument(jobs)
   // Add the event listeners to the form elements
@@ -26,19 +28,8 @@ async function init () {
 }
 
 /**
- * Reads `jobs` from localStorage and returns an array of
- * all of the jobs found (parsed, not in string form). If
- * nothing is found in localStorage for `jobs`, an empty array
- * is returned.
- * @returns {Promise} An promise of that will either contain all jobs or error
- */
-function getJobsFromStorage () {
-  return database.getAllJobs()
-}
-
-/**
  * Takes in an array of jobs and for each job creates a
- * new `job-details` element, adds the job data to that card
+ * new `job-details` element, adds the job data to that element
  * using `element.data = {...}`, and then appends that new job
  * to `job-details-list`.
  * @param {Array<Object>} jobs An array of jobs
@@ -52,12 +43,12 @@ function addJobsToDocument (jobs) {
 }
 
 /**
- * Takes in an array of jobs, converts it to a string, and then
- * saves that string to `jobs` in localStorage
+ * Takes in an array of jobs and
+ * saves each job in the database
  * @param {Array<Object>} jobs An array of jobs
  */
 async function saveJobsToStorage(jobs) {
-  for (let job of jobs) {
+  for (const job of jobs) {
     await database.addJob(job)
   }
 }
@@ -98,8 +89,8 @@ function initFormHandler () {
 
     // TODO: code below can be shifted to addJobsToDocuments
 
-    // Get the jobs array from localStorage
-    const jobs = await getJobsFromStorage()
+    // Get the jobs array from database
+    const jobs = await database.getAllJobs()
     // Add this new job to it
     jobs.push(jobObject)
     // Save the jobs array back to localStorage
@@ -216,7 +207,8 @@ function addJobToDocument (job) {
   jobDetails.onClickEdit = () => {
     // Populate the fields in the <form> with the job data
     for (const property in job) {
-      form.querySelector(`#${property}`).value = job[property]
+      const field = form.querySelector(`#${property}`)
+      if (field) field.value = job[property]
     }
     // Set the <job-details> element to edit
     jobDetailsToEdit = jobDetails
@@ -277,7 +269,7 @@ function addSortBars (fieldNames) {
 
 async function sortTwo(tag, reverse){
   // console.log("sort");
-  const jobs = await getJobsFromStorage();
+  const jobs = await database.getAllJobs()
   if (tag === "Company") {
     return jobs.sort((a, b) => {
       let result = !reverse ? a.company > b.company : a.company < b.company
