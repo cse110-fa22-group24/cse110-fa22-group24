@@ -24,6 +24,7 @@ async function init() {
 
   console.log("company true", await sortTwo("Company", true))
   console.log("company false", await sortTwo("Company", false))
+
 }
 
 /**
@@ -88,7 +89,7 @@ function initFormHandler() {
     }
 
     if (!jobObject["id"] || jobObject["id"] === '') {
-      jobObject['id'] = Math.floor(Date.now() / 10000000)
+      jobObject['id'] = Math.floor(Date.now())
     } else {
       jobObject['id'] = Number(jobObject['id'])
     }
@@ -117,6 +118,46 @@ function initFormHandler() {
     // Clear the <form> fields
     clearForm();
   });
+
+  //Add an eventListener for search bar keypress
+  const searchBar=document.getElementById("search_bar");
+  searchBar.addEventListener("keypress", async (e)=>{
+    //if user press enter to search
+    if(e.key==="Enter"){
+      //Catch and preprocess user input
+      const keyword=searchBar.value.toLocaleLowerCase().replaceAll(' ', '');
+      const jobElements=document.querySelectorAll("job-details");
+      
+      //For each job application
+      for(const jobEl of jobElements){
+        const shadowRoot=jobEl.shadowRoot;
+        
+        //Get all fields that can be searched and also preprocess them
+        const company=shadowRoot.querySelector("#company").textContent.toLocaleLowerCase().replaceAll(' ', '');
+        const position=shadowRoot.querySelector("#title").textContent.toLocaleLowerCase().replaceAll(' ', '');
+        const status=shadowRoot.querySelector("#status").textContent.toLocaleLowerCase().replaceAll(' ', '').slice(7);
+        const location=shadowRoot.querySelector("#location").textContent.toLocaleLowerCase().replaceAll(' ', '');
+        
+        //if there's nothing in the search box, display all job apps by default
+        if(keyword === ''){
+          jobEl.style.display="flex";
+        }
+        else {
+            //if none of the fields match matches user input, hide the item
+            if (keyword != company && keyword != position && keyword != status && keyword != location){
+              jobEl.style.display="none";
+            }
+
+            //if one of the fields matches user input, show the item
+            if (keyword === company || keyword === position || keyword === status || keyword === location){
+              jobEl.style.display="flex";
+            }
+        }
+      }
+
+    }
+  })
+
 }
 
 /**
