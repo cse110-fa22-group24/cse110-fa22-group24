@@ -5,13 +5,13 @@ on: [push, pull_request]
 jobs:
   lint:
     uses: actions/checkout@v2
-    uses: ./lint.yml
+    uses: ./.github/workflows/lint.yml
   tests:
     needs: lint
     uses: actions/checkout@v2
-    uses: ./tests.yml
+    uses: ./.github/workflows/tests.yml
   deploy:
     if: github.ref == 'refs/heads/main'
     needs: tests
     uses: actions/checkout@v2
-    uses: ./deploy.yml
+    uses: ./.github/workflows/deploy.yml
