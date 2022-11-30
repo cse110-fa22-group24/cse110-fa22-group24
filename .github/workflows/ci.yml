@@ -6,7 +6,7 @@ jobs:
   lint:
     - name: Check out repository
       uses: actions/checkout@v3
-    uses: ./lint.yml
+    - uses: ./lint.yml
   tests:
     needs: lint
     - name: Check out repository
