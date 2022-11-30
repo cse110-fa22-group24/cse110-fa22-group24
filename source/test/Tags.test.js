@@ -1,14 +1,8 @@
-import User from '../scripts/User'
-import CoverLetter from '../scripts/CoverLetter'
 import CoverLetterTag from '../scripts/CoverLetterTag'
 import Experience from '../scripts/Experience'
 import ExperienceTag from '../scripts/ExperienceTag'
 import JobApplication from '../scripts/JobApplication'
 import JobAppTag from '../scripts/JobAppTag'
-
-const user1 = new User('user1')
-
-const cl = new CoverLetter('cl1', 'Generic Cover Letter', 'This is the content of my cover letter', 'user1')
 
 const exp = new Experience('exp1')
 exp.title = 'SDE'

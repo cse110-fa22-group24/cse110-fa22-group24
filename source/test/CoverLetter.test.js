@@ -1,7 +1,4 @@
 import CoverLetter from '../scripts/CoverLetter'
-import User from '../scripts/User'
-
-const user1 = new User('user1')
 
 /**
  * Test cover letter is constructed properly
