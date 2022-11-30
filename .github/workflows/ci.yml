@@ -1,0 +1,14 @@
+name: CI Workflow Execution
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    uses: ./.github/workflows/lint.yml
+  tests:
+    needs: lint
+    uses: ./.github/workflows/tests.yml
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: tests
+    uses: ./.github/workflows/deployment.yml

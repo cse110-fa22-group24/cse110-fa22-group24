@@ -9,6 +9,7 @@ Date: 2022-10-19 7:30pm - 8:52pm via Zoom
 - [x] Pierre Beurtheret
 - [x] Qingxin Li
 - [x] Zhouyang Meng
+- [x] Sri Gangavarapu
 ## Agenda
 1. Introduction to project pitch
 2. Provide project proposals

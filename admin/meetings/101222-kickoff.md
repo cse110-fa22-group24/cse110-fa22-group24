@@ -9,6 +9,7 @@ Date: 2022-10-12
 - [x] Pierre Beurtheret
 - [x] Qingxin Li
 - [x] Zhouyang Meng
+- [x] Sri Gangavarapu
 ## Agenda
 1. dicuss team name. logo, contract, brand, and value.
 2. go over important point after meeting with ta

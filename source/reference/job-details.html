@@ -1,0 +1,225 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito" />
+<details>
+  <summary>
+    <div id="arrow"><img src="../assets/next.png" /></div>
+    <div id="company">Amazon</div>
+    <div id="title">Software Development Engineer I</div>
+    <div id="location-tag">
+      <span id="pin-symbol">📍</span>
+      <span id="location">Bellevue</span>
+    </div>
+    <div id="status">Status: Interview 1</div>
+    <div id="notification-symbol">🔔</div>
+    <div id="deadline">
+      <span id="deadline-date">11/29/22</span>
+      <span id="deadline-time">10:00 AM</span>
+    </div>
+  </summary>
+  <div class="dropdown">
+    <hr id="horizontal-rule" />
+    <div class="heading">Description</div>
+    <div id="description">
+      Duis iaculis magna nunc, quis tincidunt metus facilisis in. Aliquam dictum
+      pellentesque sodales. Nam ultrices, massa sit amet vestibulum maximus,
+      ante nibh bibendum urna, at consequat dolor neque sit amet risus. Sed a
+      velit blandit, scelerisque ante nec, aliquet mi. Aenean ligula augue,
+      aliquam sed consequat eu, dictum in odio. Aliquam ut lectus tempus, auctor
+      ipsum eu, molestie nunc. Praesent porttitor placerat elit, at euismod erat
+      auctor eu. Vivamus odio eros, commodo sed congue elementum, iaculis vitae
+      sapien. Sed vel ex gravida, auctor nulla a, interdum magna. Nunc vel
+      pulvinar turpis, in suscipit dolor. Etiam facilisis dapibus mi, ut mattis
+      erat ultricies ac. Integer sollicitudin, odio et elementum consectetur,
+      tellus odio mollis ipsum, at feugiat urna nisl vel turpis. Etiam et velit
+      volutpat, feugiat lacus eget, varius velit. Integer placerat id lacus sed
+      consequat. Proin posuere euismod lectus ut bibendum.
+    </div>
+    <div>
+      <div class="heading">Notes</div>
+      <ul id="notes">
+        <li>Teams of interest</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </ul>
+    </div>
+    <div>
+      <span class="heading">Contact:</span>
+      <a>Mr. Google Recruiter</a>
+      <span class="vertical-bar">|</span>
+      <span class="heading">Email:</span>
+      <a href="mailto:recruiter@google.com">recruiter@google.com</a>
+    </div>
+    <div>
+      <span class="heading">Portal:</span>
+      <a href="https://jobs.google.com/">jobs.google.com</a>
+      <span class="vertical-bar">|</span>
+      <span class="heading">Username:</span>
+      <a>looking4job</a>
+      <span class="vertical-bar">|</span>
+      <span class="heading">Password:</span>
+      <a>mysecurepassword</a>
+    </div>
+    <div class="heading">Tags</div>
+    <div id="buttons">
+      <button class="button" type="button">🗑️</button>
+      <button class="button" type="button">✏️</button>
+    </div>
+  </div>
+</details>
+
+<style>
+  /* font */
+  * {
+    font-family: "Nunito", sans-serif;
+    font-size: 14pt;
+    color: #2d2d34;
+  }
+
+  /* outer border */
+  details {
+    border: 1px solid;
+    border-radius: 8px;
+  }
+
+  /* hide details arrow */
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /** summary **/
+
+  details > summary {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  /* dropdown arrow */
+
+  #arrow {
+    height: 24px;
+    width: 24px;
+  }
+
+  details[open] #arrow {
+    transform: rotate(90deg);
+  }
+
+  /* company tag */
+
+  #company {
+    padding: 0px 12px;
+    border-radius: 5px;
+    background-color: #69ddff;
+    font-size: 1.5rem;
+  }
+
+  /* position title */
+
+  #title {
+    font-size: 1.5rem;
+  }
+
+  /* location */
+
+  #location-tag {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #dbf8ff;
+    padding: 5px 8px;
+    gap: 5px;
+  }
+
+  #location {
+    font-style: italic;
+  }
+
+  /* status */
+
+  #status {
+    padding: 3px 6px;
+    border: 2px #eca400 solid;
+    border-radius: 5px;
+    color: #eca400;
+  }
+
+  /* notification symbol */
+
+  #notification-symbol {
+    font-size: 1.5rem;
+  }
+
+  /* deadline date and time */
+
+  #deadline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #deadline * {
+    color: #bf4e30;
+  }
+
+  /* horizontal rule */
+
+  #horizontal-rule {
+    margin: 0;
+  }
+
+  /** dropdown **/
+
+  .dropdown {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 15px 10px;
+    gap: 10px;
+  }
+
+  .heading {
+    font-size: 1.3rem;
+    font-style: italic;
+  }
+
+  #notes {
+    margin: 0;
+  }
+
+  a {
+    color: #106efb;
+    font-style: italic;
+  }
+
+  .vertical-bar {
+    font-size: 1.3rem;
+  }
+
+  /* buttons */
+
+  #buttons {
+    display: flex;
+    justify-content: flex-end;
+    height: 50px;
+  }
+
+  .button {
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: 30px;
+    width: 50px;
+  }
+
+  .button:hover {
+    font-size: 35px;
+  }
+
+  .button:active {
+    font-size: 30px;
+  }
+  
+</style>

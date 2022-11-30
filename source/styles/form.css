@@ -1,0 +1,95 @@
+/* styles for the #job-details-form element */
+
+#job-details-form {
+  position: fixed; /* stay in place */
+  z-index: 1; /* sit on top */
+  width: 100%;
+  height: calc(100% - 4rem - 2px); /* HACK: subtract height of header */
+  bottom: 0;
+  margin: 0;
+  /* color */
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#form-content {
+  position: fixed; /* stay in place */
+  /* center */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* size */
+  min-width: 30em;
+  /* border */
+  border: 1px solid #2d2d34;
+  border-radius: 5px;
+  padding: 1em 2em;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  background-color: white;
+  /* layout */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.25em;
+}
+
+.row {
+  display: flex;
+  align-items: flex-end;
+  gap: 1em;
+}
+
+label {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+label[for="deadline"] {
+  flex-grow: 0;
+}
+
+/* fields */
+
+label * {
+  width: 100%;
+  height: 2em;
+  border: 1px solid #106efb;
+  border-radius: 3px;
+  outline: none;
+  padding: 0.25em 0.5em;
+}
+
+textarea {
+  height: auto;
+  resize: none;
+}
+
+/* buttons */
+
+#buttons {
+  margin-top: 0.75em;
+}
+
+#buttons button {
+  flex-grow: 1;
+  padding: 0.5em;
+  /* border */
+  border: 1px solid #eaf8bf;
+  border-radius: 3px;
+  outline: none;
+  /* colors */
+  background-color: #eaf8bf;
+}
+
+#buttons button:hover {
+  border: 1px solid #106efb;
+}
+
+#buttons #cancel:hover {
+  border: 1px solid #bf4e30;
+}
+
+#buttons button:active {
+  background-color: #eca400;
+  color: white;
+}
