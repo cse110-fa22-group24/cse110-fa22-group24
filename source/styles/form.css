@@ -1,20 +1,31 @@
 /* styles for the #job-details-form element */
 
 #job-details-form {
-  /*position: fixed; /* Stay in place */
-  /*z-index: 1; /* Sit on top */
+  position: fixed; /* stay in place */
+  z-index: 1; /* sit on top */
+  width: 100%;
+  height: calc(100% - 4rem - 2px); /* HACK: subtract height of header */
+  bottom: 0;
+  margin: 0;
+  /* color */
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#form-content {
+  position: fixed; /* stay in place */
+  /* center */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   /* size */
-  min-width: 25em;
+  min-width: 30em;
   /* border */
   border: 1px solid #2d2d34;
   border-radius: 5px;
   padding: 1em 2em;
-  box-shadow: 0 0 20px black;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
   background-color: white;
   /* layout */
-  margin-left: 30%;
-  margin-right: 30%;
-  margin-top: 5%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -23,6 +34,7 @@
 
 .row {
   display: flex;
+  align-items: flex-end;
   gap: 1em;
 }
 

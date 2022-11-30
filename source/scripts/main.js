@@ -1,30 +1,28 @@
 // main.js
 import dbUtil from "./JobAppDB.js";
 // Run the init() function when the page has loaded
-window.addEventListener('DOMContentLoaded', init);
+window.addEventListener('DOMContentLoaded', init)
 
 const database=new dbUtil();
 
 // Starts the program, all function calls trace back here
-async function init() {
-  await database.setupDB();
-  // Get the jobs from localStorage
-  const jobs = await getJobsFromStorage();
-  const names = ["Company","Job Title","Deadline","Status"];
-  create_sortBars(names);
-  
-  // Add each job to the <main> element
-  addJobsToDocument(jobs);
+async function init () {
+  // Get the jobs from database
+  await database.setupDB()
+  const jobs = getJobsFromStorage()
+  // Add each job to the job-details-list element
+  addJobsToDocument(jobs)
   // Add the event listeners to the form elements
-  initFormHandler();
+  initFormHandler()
+  // Have the new app button show the form when clicked
+  document.querySelector('#new-app-button').addEventListener('click', showForm)
+  // Add <sort-bar> elements for each sortable field
+  addSortBars(['Company', 'Position', 'Location', 'Status', 'Deadline'])
+  // Have the form be hidden to start
+  hideForm()
 
-  document.getElementById("New_Application").addEventListener('click', ()=>{
-    show_form();
-  })
-
-  console.log("company true", await sortTwo("Company", true))
-  console.log("company false", await sortTwo("Company", false))
-
+  console.log('company true', await sortTwo('Company', true))
+  console.log('company false', await sortTwo('Company', false))
 }
 
 /**
@@ -34,26 +32,22 @@ async function init() {
  * is returned.
  * @returns {Promise} An promise of that will either contain all jobs or error
  */
-function getJobsFromStorage() {
-  return database.getAllJobs();
+function getJobsFromStorage () {
+  return database.getAllJobs()
 }
 
 /**
  * Takes in an array of jobs and for each job creates a
- * new `<job-details>` element, adds the job data to that card
+ * new `job-details` element, adds the job data to that card
  * using `element.data = {...}`, and then appends that new job
- * to `<main>`.
+ * to `job-details-list`.
  * @param {Array<Object>} jobs An array of jobs
  */
-function addJobsToDocument(jobs) {
-  // Get a reference to the <main> element
-  const main = document.querySelector('main');
+function addJobsToDocument (jobs) {
   // Loop through each of the jobs in the passed in array,
-  // create a <job-details> element for each one, and populate
-  // each <job-details> with that job data using element.data = ...
-  // Append each element to <main>
+  // and create a <job-details> element for each one
   for (const job of jobs) {
-    addJobToDocument(job);
+    addJobToDocument(job)
   }
 }
 
@@ -69,23 +63,23 @@ async function saveJobsToStorage(jobs) {
 }
 
 /**
- * Adds the necesarry event handlers to `<form>`.
+ * Adds the necesarry event handlers to `form`.
  */
-function initFormHandler() {
+function initFormHandler () {
   // Get a reference to the <form> element
-  const form = document.querySelector('form');
+  const form = document.querySelector('form')
   // Add an event listener for the 'submit' event,
   // which fires when the submit button is clicked
   form.addEventListener('submit', async (event) => {
-    event.preventDefault();
+    event.preventDefault()
     // Create a new FormData object from the <form> element reference above
-    const formData = new FormData(form);
+    const formData = new FormData(form)
     // Create an empty object
-    const jobObject = {};
+    const jobObject = {}
     // Extract the keys and corresponding values from the
     // FormData object and insert them into jobObject
     for (const [key, value] of formData) {
-      jobObject[key] = value;
+      jobObject[key] = value
     }
 
     if (!jobObject["id"] || jobObject["id"] === '') {
@@ -96,31 +90,35 @@ function initFormHandler() {
 
     console.log(jobObject)
     // Create or edit a <job-details> element with the data in jobObject
-    addJobToDocument(jobObject);
+    addJobToDocument(jobObject)
     // Reset the <job-details> element to edit
-    jobDetailsToEdit = null;
+    jobDetailsToEdit = null
     // Clear the <form> fields
-    clearForm();
-    // Get the jobs array from localStorage
-    const jobs = await getJobsFromStorage();
-    // Add this new job to it
-    jobs.push(jobObject);
-    // Save the jobs array back to localStorage
-    await saveJobsToStorage(jobs);
-    hide_form();
-  });
-  // Add an event listener for when the cancel button is clicked
-  const cancelButton = form.querySelector(`#cancel`);
-  cancelButton.addEventListener('click', () => {
-    // Reset the <job-details> element to edit
-    jobDetailsToEdit = null;
-    hide_form();
-    // Clear the <form> fields
-    clearForm();
-  });
+    clearForm()
 
+    // TODO: code below can be shifted to addJobsToDocuments
+
+    // Get the jobs array from localStorage
+    const jobs = await getJobsFromStorage()
+    // Add this new job to it
+    jobs.push(jobObject)
+    // Save the jobs array back to localStorage
+    await saveJobsToStorage(jobs)
+    // Hide the form
+    hideForm()
+  })
+  // Add an event listener for when the cancel button is clicked
+  const cancelButton = form.querySelector('#cancel')
+  cancelButton.addEventListener('click', () => {
+    // Hide the form
+    hideForm()
+    // Reset the <job-details> element to edit
+    jobDetailsToEdit = null
+    // Clear the <form> fields
+    clearForm()
+  })
   //Add an eventListener for search bar keypress
-  const searchBar=document.getElementById("search_bar");
+  const searchBar=document.getElementById("search");
   searchBar.addEventListener("keypress", async (e)=>{
     //if user press enter to search
     if(e.key==="Enter"){
@@ -157,101 +155,124 @@ function initFormHandler() {
 
     }
   })
-
 }
 
 /**
- * Clear the `<form>` fields
+ * Clear the `form` fields
  */
-function clearForm() {
+function clearForm () {
   // Get a reference to the <form> element
-  const form = document.querySelector('form');
+  const form = document.querySelector('form')
   // Create a new FormData object from the <form> element reference above
-  const formData = new FormData(form);
+  const formData = new FormData(form)
   // For each key in the FormData object
   for (const key of formData.keys()) {
     // Clear the corresponding field in the form
-    form.querySelector(`#${key}`).value = null;
+    form.querySelector(`#${key}`).value = null
   }
 }
 
 /**
- * Create or edit a `<job-details>` element.
- * 
- * @param {Object} job The job data to pass to the `<job-details>` element
- * @return {Promise}
+ * Create or edit a `job-details` element.
+ *
+ * @param {Object} job The job data to pass to the `job-details` element
  */
-function addJobToDocument(job) {
-  // Get a reference to the <main> element
-  const main = document.querySelector('main');
+function addJobToDocument (job) {
+  // Get a reference to the job-details-list element
+  const list = document.querySelector('#job-details-list')
   // Get the <job-details> element to edit, otherwise create a new <job-details> element
-  const jobDetails = jobDetailsToEdit || document.createElement('job-details');
+  const jobDetails = jobDetailsToEdit || document.createElement('job-details')
+  /** TODO:
+   * // generate new id
+   * const new_id = new id();
+   *
+   * // if in Edit mode, delete the old data in database
+   * if(jobDetailsToEdit != null){
+   *   database.delete(jobDetails.id);
+   * }
+   *
+   * // set the id to newly generated id
+   * jobDetails.id = new_id;
+   * job[id] = new_id;
+   *
+   * // update database with data
+   * database.update(job);
+   */
   // Add the job data to <job-details>
-  jobDetails.data = job;
+  jobDetails.data = job
   // Add the onClickDelete function to <job-details>
-  jobDetails.onClickDelete = async (event) => {
-    // Remove the <job-details> element from <main>
-    main.removeChild(jobDetails);
-    await database.deleteJob(job['id'])
+  jobDetails.onClickDelete = async () => {
+    // Get confirmation from user
+    if (window.confirm('Are you sure you want to delete this?')) {
+      // Remove the job-details element from job-details-list
+      list.removeChild(jobDetails)
+      // Remove the job from the database
+      await database.deleteJob(job['id'])
+    }
   }
   // Get a reference to the <form> element
-  const form = document.querySelector('form');
+  const form = document.querySelector('form')
   // Add the onClickEdit function to <job-details>
   jobDetails.onClickEdit = () => {
     // Populate the fields in the <form> with the job data
     for (const property in job) {
-      form.querySelector(`#${property}`).value = job[property];
+      form.querySelector(`#${property}`).value = job[property]
     }
     // Set the <job-details> element to edit
-    jobDetailsToEdit = jobDetails;
-    show_form();
+    jobDetailsToEdit = jobDetails
+    // Show the form
+    showForm()
   }
   // If there is no <job-details> element to edit
   if (!jobDetailsToEdit) {
-    // Append this new <job-details> to <main>
-    main.appendChild(jobDetails);
+    // Append this new <job-details> to job-details-list
+    list.appendChild(jobDetails)
   }
 }
 
 /**
- * The `<job-details>` element to edit on form submission
- * 
+ * The `job-details` element to edit on form submission
+ *
  * @global
  * @type {JobDetails}
  */
-let jobDetailsToEdit = null;
+let jobDetailsToEdit = null
 
-
-
-function hide_form(){
-  const hidden = document.getElementById("hidden");
-  hidden.style.display = "none";
-  hidden.style.zIndex = "-1";
+/**
+ * Hide the `form` element
+ */
+function hideForm () {
+  document.querySelector('#job-details-form').setAttribute('style', 'display: none')
 }
 
-function show_form(){
-  const hidden = document.getElementById("hidden");
-  hidden.style.display = "";
-  hidden.style.zIndex = "";
+/**
+ * Show the `form` element
+ */
+function showForm () {
+  document.querySelector('#job-details-form').removeAttribute('style')
 }
 
-function create_sortBars(name){
-  for(const item of name){
-    const curbar = document.createElement('sort-bar');
-    curbar.setAttribute("id", item);
-    curbar.name = item;
-    curbar.onClickSort = [sort(), sortReverse()];
-    document.getElementById("bar_list").appendChild(curbar);
+/**
+ * Takes in an array of field names and for each name creates a
+ * new `sort-bar` element, adds the name to that element
+ * using `element.data = {...}`, and then appends that new element
+ * to `sort-bar-list`.
+ * @param {Array<Object>} fieldNames An array of field names
+ */
+function addSortBars (fieldNames) {
+  const sortBarList = document.querySelector('#sort-bar-list')
+  for (const fieldName of fieldNames) {
+    const sortBar = document.createElement('sort-bar')
+    sortBar.fieldName = fieldName
+    sortBar.onClick = () => {
+      if (sortBar.fieldEnabled) {
+        setSortRule(fieldName, sortBar.orderReversed)
+      } else {
+        removeSortRule(fieldName)
+      }
+    }
+    sortBarList.appendChild(sortBar)
   }
-
-}
-
-function sort(){
-  // console.log("sort");
-}
-
-function sortReverse(){
-  // console.log('sortReverse');
 }
 
 async function sortTwo(tag, reverse){
@@ -279,6 +300,7 @@ async function sortTwo(tag, reverse){
     })
   }
 }
+
 /**
  * for each job
  *  get tags for job
@@ -287,3 +309,40 @@ async function sortTwo(tag, reverse){
 /**
  * search + create
  */
+
+/**
+ * An object containing the names of fields to sort by,
+ * and whether to sort each in ascending or descending order
+ *
+ * @global
+ * @type {Object}
+ */
+const sortRules = {}
+
+/**
+ * Set a sorting rule in `sortRules`.
+ *
+ * @param {String} fieldName The name of a field to sort by
+ * @param {Boolean} ascOrDesc Whether to sort in ascending or descending order
+ */
+function setSortRule (fieldName, ascOrDesc) {
+  sortRules[fieldName] = ascOrDesc
+  onSortRulesChanged()
+}
+
+/**
+ * Remove a sorting rule from `sortRules`.
+ *
+ * @param {String} fieldName The name of a field to no longer sort by
+ */
+function removeSortRule (fieldName) {
+  delete sortRules[fieldName]
+  onSortRulesChanged()
+}
+
+/**
+ * Called when `sortRules` is changed.
+ */
+function onSortRulesChanged () {
+  console.log(sortRules)
+}

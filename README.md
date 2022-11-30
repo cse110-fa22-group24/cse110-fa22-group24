@@ -14,14 +14,18 @@
 
 1. Pull the latest changes from `main`
 2. Create a local branch
-3. Commit changes to the local branch
-4. Push the local branch to origin
-5. Create a pull request to merge changes into `main`
-6. Review changes (requires 2 approvals)
-7. Merge changes
+3. Run tests on changes
+   1. Run `npm install` once to install dependencies
+   2. Run `npx eslint .` to run lint on the entire directory
+   3. Run `npm test` to run the unit tests
+4. Commit changes to the local branch
+5. Push the local branch to origin
+6. Create a pull request to merge changes into `main`
+7. Review changes (requires 2 approvals)
+8. Merge changes
 
 Merging changes into or pushing onto `main` will run the [Deploy static content to GitHub Pages](https://github.com/cse110-fa22-group24/cse110-fa22-group24/actions/workflows/deploy.yml) action.  
-This will host the static contents of the `./source` directory (HTML, CSS, and JavaScript) on GitHub Pages at [this URL](https://cse110-fa22-group24.github.io/cse110-fa22-group24/).
+This will host the static contents of the `./source` directory (HTML, CSS, and JavaScript) on GitHub Pages at [this URL](https://cse110-fa22-group24.github.io/cse110-fa22-group24/), and host the generated JSDoc documentation at [this URL](https://cse110-fa22-group24.github.io/cse110-fa22-group24/jsdoc/global).
 
-
-[Main Page](https://cse110-fa22-group24.github.io/cse110-fa22-group24/source/index.html)
+Merging changes into or pushing onto any branch will run the [Unit Test Execution](https://github.com/cse110-fa22-group24/cse110-fa22-group24/actions/workflows/tests.yml) action.
+This will run the unit tests on the updated branch.

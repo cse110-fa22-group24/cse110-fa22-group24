@@ -1,159 +1,153 @@
-/* styles which apply globally */
-
 * {
   font-family: "Nunito", sans-serif;
   font-size: 14pt;
   box-sizing: border-box;
 }
-html {
-  margin: 0px;
-  height: 100%;
-  width: 100%;
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #bf4e30;
 }
 
 body {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  column-gap: 10px;
-  row-gap: 0px;
-  height: 95%;
-  margin: 10px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
+
+main {
+  display: flex;
+  flex-grow: 1;
+  max-height: calc(100% - 4rem - 2px); /* HACK: subtract height of header */
+  padding: 1rem;
+}
+
+#job-details-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  padding: 0 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* header */
+
 header {
-  grid-column: 1/6;
-  grid-row: 1/2;
-  border-radius: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
   display: flex;
   flex-direction: column;
 }
-#header_area {
-  display: flex;
-  flex-direction: row;
-  height: 70%;
-}
+
+  /* banner */
+
+  #banner {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+  }
+
+    /* branding logo and title */
+
+    #branding {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #logo {
+      height: 3rem;
+    }
+
+    #branding p {
+      margin: 0;
+    }
+
+    /* profile button and icon */
+
+    #profile-button {
+      border: none;
+      background-color: white;
+      padding: 0;
+    }
+
+    #profile-icon {
+      height: 2.5rem;
+    }
+
+    #profile-icon:hover {
+      filter: brightness(80%);
+    }
+
 hr {
-  border: 0;
-  clear: both;
-  display: block;
-  width: 100%;
-  background-color: rgb(181, 181, 3);
+  border: none;
+  margin: 0;
   height: 2px;
+  background-color: rgb(181, 181, 3);
+  width: 100%;
 }
-#navigation-bar {
-  grid-column: 1/2;
-  grid-row: 2/10;
+
+/* navigation bar */
+
+nav {
   background-color: #eaf8bf;
   border-radius: 5px;
-  margin-left: 10px;
-  padding: 20px;
   display: flex;
   flex-direction: column;
+  padding: 1rem;
   gap: 10px;
 }
-main {
-  grid-column: 2/6;
-  grid-row: 2/10;
-  border-radius: 5px;
-  padding: 0em 0.5em;
+
+  /* search box*/
+
+  #search {
+    border: 1px solid #1e7a1d;
+    border-radius: 1rem;
+    height: 2rem;
+    padding: 0.5rem 1rem;
+  }
+
+  #search::placeholder {
+    color: #1e7a1d;
+    font-style: italic;
+    opacity: 1;
+  }
+
+  /* nav title text and hr */
+
+  .nav-title * {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #1e7a1d;
+  }
+
+  .nav-title hr {
+    border: 1px solid #1e7a1d;
+    margin: 0;
+  }
+
+#sort-bar-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  overflow: scroll;
-}
-#hidden {
-  grid-column: 1/6;
-  grid-row: 1/10;
+  gap: 0.5rem;
 }
 
-#outer-circle {
-  margin-top: 15px;
-  margin-left: auto;
-  background: white;
-  border: 2px solid #bf4e30;
-  border-radius: 50%;
-  height: 60px;
-  width: 60px;
-}
+  /* new application button */
 
-#inner-circle-btn {
-  border: none;
-  color: white;
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-  padding-top: 8px;
-  padding-left: 8px;
-  font-size: 24px;
-  background: #bf4e30;
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  margin-top: 3px;
-  margin-left: 3px;
-}
+  #new-app-button {
+    margin-top: auto;
+    border-radius: 5px;
+    border: 1px solid #1e7a1d;
+    background-color: white;
+    /* font */
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #1e7a1d;
+  }
 
-#inner-circle-btn:hover {
-  background-color: #993f26;
-}
-
-#app_title {
-  display: flex;
-  gap: 10px;
-}
-.center {
-  text-align: center;
-  font-size: 1.5rem;
-  color: #bf4e30;
-}
-#agenda {
-  margin-top: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  width: 60px;
-  height: 70px;
-}
-
-#New_Application {
-  background-color: white;
-  color: #1e6320;
-  border: 2px solid #1e6320;
-}
-
-#New_Application:hover {
-  background-color: #1e6320;
-  color: white;
-}
-#bar_list {
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-}
-#New_Application {
-  background-color: white;
-  border-radius: 5px;
-  margin-top: auto;
-  font-size: 16pt;
-  font-weight: bold;
-  color: #1e7a1d;
-  border: 1px solid #1e7a1d;
-}
-
-#search_bar {
-  border-radius: 20px;
-}
-#text {
-  font-size: 18pt;
-  font-weight: bold;
-  color: #1e7a1d;
-}
-#sort_hr {
-  border: 1px solid #1e7a1d;
-  margin: 0px;
-}
-
-.scroll {
-  overflow: auto;
-}
+  #new-app-button:hover {
+    background-color: #1e6320;
+    color: white;
+  }

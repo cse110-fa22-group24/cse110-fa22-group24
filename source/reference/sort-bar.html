@@ -1,0 +1,64 @@
+<div>
+  <span id="field">Sorting Field</span>
+  <span><img src="../assets/next.png"></span>
+</div>
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Nunito">
+
+<style>
+/* font */
+
+* {
+  font-family: "Nunito", sans-serif;
+  font-size: 14pt;
+  color: #1e7a1d;
+}
+
+/* background */
+
+div {
+  display: flex;
+  border: none;
+  border-radius: 10px;
+  background-color:  #dbf8ff;
+}
+
+/* elements */
+
+div > * {
+  display: flex;
+  padding: 0.5rem 1rem;
+  user-select: none; /* prevent text selection */
+}
+
+#field {
+  flex-grow: 1;
+}
+
+img {
+  filter: invert();
+  transform: rotate(270deg);
+}
+</style>
+
+<script>
+  const div = document.querySelector('div');
+  const fieldText = document.querySelector('span');
+  const fieldInput = document.querySelector('#field');
+  const orderImg = document.querySelector('img');
+  fieldInput.addEventListener('click', () => {
+    // If field is toggled on
+    if (fieldInput.checked) {
+      div.setAttribute('style', 'background-color: #69ddff')
+      // Set text and arrow to white
+      fieldText.setAttribute('style', 'color: white');
+      orderImg.setAttribute('style', 'filter: invert()');
+    } else {
+      // Reset styles to default
+      div.removeAttribute('style');
+      fieldText.removeAttribute('style');
+      orderImg.removeAttribute('style');
+    }
+  });
+</script>

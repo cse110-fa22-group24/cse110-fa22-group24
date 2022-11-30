@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test Page</title>
+  <title>Job Buddy</title>
   <link rel="icon" 
     type="image/png" 
     href="https://www.w3.org/html/logo/downloads/HTML5_Badge_32.png">
-  <!-- stAles -->
+  <!-- styles -->
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Nunito">
   <link rel="stylesheet"
@@ -22,132 +22,114 @@
 </head>
 <body>
 
-<!-- layout for the entire page-->
-
   <header>
-    <div id="header_area">
-      <div id="app_title">
-        <div id="s">
-          <img src="assets/agenda.svg" id="agenda"> 
-        </div>
-        
-        <p class="center">Job Buddy</p> 
-  
+    <div id="banner">
+      <div id="branding">
+        <img src="assets/agenda.svg" id="logo">
+        <p class="title">Job Buddy</p>
       </div>
-  
-      <div id="outer-circle">
-        <button id="inner-circle-btn">JW</button>
-      </div>
+      <button id="profile-button">
+        <img src="assets/profile.svg" id="profile-icon">
+      </button>
     </div>
     <hr>
   </header>
 
-  <!--naviagtion bar on the left-->
-  <div id="navigation-bar">
-    <input type="text" placeholder="  🔍 Search (press enter)" id="search_bar">
-    <div id="sort_header">
-      <span id="text">Sort</span>
-      <hr id="sort_hr">
-    </div>
-    <div id="bar_list">
-    <!--all the sorting bar will be placed here-->
-    </div> 
-    <button id="New_Application">New application</button>
-  </div>
+  <main>
 
-  <!-- job-details-form -->
-  <main class="scroll">
-    <!-- Add job-details here -->
+    <!--nav bar on the left-->
+    <nav>
+      <input type="text" placeholder="🔍 Search (press enter)" id="search">
+      <div class="nav-title">
+        <span>Sort</span>
+        <hr>
+      </div>
+      <div id="sort-bar-list">
+      <!-- Add sort-bar elements here -->
+      </div> 
+      <button id="new-app-button">New Application</button>
+    </nav>
+
+    <div id="job-details-list">
+      <!-- Add job-details elements here -->
+    </div>
+
   </main>
 
-
-<div id="hidden">
-  <form id="job-details-form">
-
-    <input type="number" id="id" name="id" hidden/>
-
+<!-- job-details-form -->
+<form id="job-details-form">
+  <div id="form-content">
     <!-- Summary -->
-  
     <div class="row">
       <label for="company">
-        Company
+        Company*
         <input type="text" id="company" name="company" required/>
       </label>
-  
       <label for="position">
-        Position
+        Position*
         <input type="text" id="position" name="position" required/>
       </label>
     </div>
-  
     <div class="row">
       <label for="location">
-        Location
+        Location*
         <input type="text" id="location" name="location" required/>
       </label>
-  
       <label for="status">
-        Status
-        <input type="text" id="status" name="status" required/>
+        Status*
+        <select id="status" name="status" required>
+          <option value="Applying">Applying</option>
+          <option value="Submitted">Submitted</option>
+          <option value="Coding Task">Coding Task</option>
+          <option value="Interview">Interview</option>
+          <option value="Offer Received">Offer Received</option>
+          <option value="Rejected">Rejected</option>
+        </select>
       </label>
-  
       <label for="deadline">
-        Deadline
+        Deadline*
         <input type="datetime-local" id="deadline" name="deadline" required/>
       </label>
     </div>
-  
     <!-- Details -->
-  
     <label for="description">
       Description
       <textarea id="description" name="description" rows="5"></textarea>
     </label>
-  
     <label for="notes">
       Notes
       <textarea id="notes" name="notes" rows="5"></textarea>
     </label>
-  
     <div class="row">
       <label for="contactName">
         Contact Name
         <input type="text" id="contactName" name="contactName"/>
       </label>
-      
       <label for="contactEmail">
         Contact Email
         <input type="email" id="contactEmail" name="contactEmail"/>
       </label>
     </div>
-  
     <div class="row">
       <label for="portalUrl">
         Portal
         <input type="url" id="portalUrl" name="portalUrl"/>
       </label>
-  
       <label for="portalUser">
         Portal Username
         <input type="text" id="portalUser" name="portalUser"/>
       </label>
-  
       <label for="portalPass">
         Portal Password
         <input type="text" id="portalPass" name="portalPass"/>
       </label>
     </div>
-  
     <div class="row" id="buttons">
       <button type="submit">Done</button>
       <button type="button" id="cancel">Cancel</button>
     </div>
-  
-  </form>  
-</div>
+  </div>
+</form>
 
-
-
-  <!-- end job-details-form -->
 </body>
 </html>
