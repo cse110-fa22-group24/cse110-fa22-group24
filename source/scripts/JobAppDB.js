@@ -1,3 +1,5 @@
+/* eslint-disable prefer-promise-reject-errors */
+
 /**
  * A class representing database for a job application
  */
@@ -47,8 +49,7 @@ export default class DBUtil {
    */
   addJob (job) {
     return new Promise((resolve, reject) => {
-      let transaction
-      transaction = this.db.transaction('JobApplication', 'readwrite')
+      const transaction = this.db.transaction('JobApplication', 'readwrite')
       const store = transaction.objectStore('JobApplication')
       const request = store.put(job)
       request.onsuccess = () => {
