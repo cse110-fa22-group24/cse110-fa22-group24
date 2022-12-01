@@ -23,7 +23,7 @@ test('add/get job correctly', async () => {
     }
     await db.setupDB();
     await db.addJob(mockData);
-    const result=await db.getJob(1);
+    const result = await db.getJob(1);
     expect(result).toEqual(mockData);
 })
 
@@ -43,7 +43,7 @@ test("update job correctly", async () => {
         portalPass: ''
     }
 
-    const mockDataUpdate ={
+    const mockDataUpdate = {
         id: 1,
         company: 'Amazon',
         title: 'SDE II',
@@ -60,13 +60,13 @@ test("update job correctly", async () => {
     
     await db.setupDB();
     await db.addJob(mockData);
-    const job=await db.getJob(1);
-    const title=job['title'];
+    const job = await db.getJob(1);
+    const title = job['title'];
     expect(title).toEqual('SDE I');
 
     await db.updateJob(mockDataUpdate);
-    const jobUpdate=await db.getJob(1);
-    const titleUpdate=jobUpdate['title'];
+    const jobUpdate = await db.getJob(1);
+    const titleUpdate = jobUpdate['title'];
     expect(titleUpdate).toEqual('SDE II');
 })
 
@@ -104,7 +104,7 @@ test("get all jobs correctly", async () => {
     await db.addJob(mockData);
     await db.addJob(mockDataTwo);
 
-    const jobs=await db.getAllJobs();
+    const jobs = await db.getAllJobs();
     expect(jobs.length).toEqual(2);
     expect(jobs[0]).toEqual(mockData);
     expect(jobs[1]).toEqual(mockDataTwo);
@@ -127,7 +127,7 @@ test('delete job correctly',async () => {
         portalPass: ''
     }
 
-    const mockDataTwo ={
+    const mockDataTwo = {
         id: 2,
         company: 'Google',
         title: 'SDE II',
@@ -146,7 +146,7 @@ test('delete job correctly',async () => {
     await db.addJob(mockData);
     await db.addJob(mockDataTwo);
     await db.deleteJob(1);
-    const jobs=await db.getAllJobs();
+    const jobs = await db.getAllJobs();
     expect(jobs.length).toEqual(1);
     expect(jobs[0]).toEqual(mockDataTwo);
 })
