@@ -203,7 +203,7 @@ class JobDetails extends HTMLElement {
   set data (data) {
     // If nothing was passed in, return
     if (!data) return
-
+    this.id = data.id
     // Select the <details> added to the Shadow DOM in the constructor
     const details = this.shadowRoot.querySelector('details')
     // Set the contents of the <details> with the <details> template

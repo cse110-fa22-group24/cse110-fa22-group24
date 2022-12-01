@@ -34,22 +34,11 @@ async function init () {
  * to `job-details-list`.
  * @param {Array<Object>} jobs An array of jobs
  */
-function addJobsToDocument (jobs) {
+async function addJobsToDocument (jobs) {
   // Loop through each of the jobs in the passed in array,
   // and create a <job-details> element for each one
   for (const job of jobs) {
-    addJobToDocument(job)
-  }
-}
-
-/**
- * Takes in an array of jobs and
- * saves each job in the database
- * @param {Array<Object>} jobs An array of jobs
- */
-async function saveJobsToStorage(jobs) {
-  for (const job of jobs) {
-    await database.addJob(job)
+    await addJobToDocument(job)
   }
 }
 
@@ -72,29 +61,12 @@ function initFormHandler () {
     for (const [key, value] of formData) {
       jobObject[key] = value
     }
-
-    if (!jobObject["id"] || jobObject["id"] === '') {
-      jobObject['id'] = Math.floor(Date.now())
-    } else {
-      jobObject['id'] = Number(jobObject['id'])
-    }
-
-    console.log(jobObject)
     // Create or edit a <job-details> element with the data in jobObject
-    addJobToDocument(jobObject)
+    await addJobToDocument(jobObject)
     // Reset the <job-details> element to edit
     jobDetailsToEdit = null
     // Clear the <form> fields
     clearForm()
-
-    // TODO: code below can be shifted to addJobsToDocuments
-
-    // Get the jobs array from database
-    const jobs = await database.getAllJobs()
-    // Add this new job to it
-    jobs.push(jobObject)
-    // Save the jobs array back to localStorage
-    await saveJobsToStorage(jobs)
     // Hide the form
     hideForm()
   })
@@ -168,27 +140,21 @@ function clearForm () {
  *
  * @param {Object} job The job data to pass to the `job-details` element
  */
-function addJobToDocument (job) {
+async function addJobToDocument (job) {
   // Get a reference to the job-details-list element
   const list = document.querySelector('#job-details-list')
   // Get the <job-details> element to edit, otherwise create a new <job-details> element
   const jobDetails = jobDetailsToEdit || document.createElement('job-details')
-  /** TODO:
-   * // generate new id
-   * const new_id = new id();
-   *
-   * // if in Edit mode, delete the old data in database
-   * if(jobDetailsToEdit != null){
-   *   database.delete(jobDetails.id);
-   * }
-   *
-   * // set the id to newly generated id
-   * jobDetails.id = new_id;
-   * job[id] = new_id;
-   *
-   * // update database with data
-   * database.update(job);
-   */
+  // If there is no <job-details> element to edit
+  if (!jobDetailsToEdit) {
+    // Generate a new id if the job is new
+    if (!job.id) job.id = Date.now()
+  } else {
+    // Get the existing id
+    job.id = Number(jobDetails.id)
+    // Delete the existing job from the database
+    database.deleteJob(job.id)
+  }
   // Add the job data to <job-details>
   jobDetails.data = job
   // Add the onClickDelete function to <job-details>
@@ -198,7 +164,7 @@ function addJobToDocument (job) {
       // Remove the job-details element from job-details-list
       list.removeChild(jobDetails)
       // Remove the job from the database
-      await database.deleteJob(job['id'])
+      await database.deleteJob(job.id)
     }
   }
   // Get a reference to the <form> element
@@ -220,6 +186,8 @@ function addJobToDocument (job) {
     // Append this new <job-details> to job-details-list
     list.appendChild(jobDetails)
   }
+  // Save this job to the database
+  await database.addJob(job)
 }
 
 /**
