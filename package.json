@@ -4,7 +4,10 @@
   },
   "jest": {
     "preset": "jest-puppeteer",
-    "verbose": true
+    "verbose": true,
+    "setupFiles": [
+      "fake-indexeddb/auto"
+  ]
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
@@ -15,6 +18,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.5.1",
     "eslint-plugin-promise": "^6.1.1",
+    "fake-indexeddb": "^4.0.1",
     "jest": "^29.3.1",
     "jest-puppeteer": "^6.1.1",
     "puppeteer": "^19.3.0"
