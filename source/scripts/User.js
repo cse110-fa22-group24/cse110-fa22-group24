@@ -28,7 +28,6 @@ export default class User {
   /**
    * Remove a skill.
    * @param {string} skill - The skill to remove.
-   * @returns
    */
   deleteSkill (skill) {
     this.skills.delete(skill)
