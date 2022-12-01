@@ -29,8 +29,24 @@ Our website will have to store user application data long term. There are multip
 ## Considered Options
 
 * localStorage
+    * Pros:
+      * Easy to use
+      * Low-cost solution
+    * Cons:
+      * Not convenient for a variety of data types
 * IndexDB
+    * Pros:
+      * Good documentation available
+      * Can store all kinds of data types
+      * Low barrier of entry
+    * Cons:
+      * Requires some reading to learn how to use
 * Other storage API's
+    * Pros:
+      * More versatility
+    * Cons:
+      * More complicated API's
+      * Additional learning required
 
 ## Decision Outcome
 
