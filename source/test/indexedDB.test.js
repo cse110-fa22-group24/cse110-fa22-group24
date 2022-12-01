@@ -27,7 +27,7 @@ test('add/get job correctly', async () => {
     expect(result).toEqual(mockData);
 })
 
-test("update job correctly", async () => {
+test('update job correctly', async () => {
     const mockData = {
         id: 1,
         company: 'Amazon',
@@ -70,7 +70,7 @@ test("update job correctly", async () => {
     expect(titleUpdate).toEqual('SDE II');
 })
 
-test("get all jobs correctly", async () => {
+test('get all jobs correctly', async () => {
     const mockData = {
         id: 1,
         company: 'Amazon',
