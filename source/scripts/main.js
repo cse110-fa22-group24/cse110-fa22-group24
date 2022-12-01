@@ -80,8 +80,38 @@ function initFormHandler () {
     // Clear the <form> fields
     clearForm()
   })
-  // Add an eventListener for search bar keypress
+  
+  // Add an eventListener for search bar keyup event
   const searchBar = document.getElementById('search')
+  
+  searchBar.addEventListener('keyup', async (e)=>{
+    //catch the input in search box
+    const keyword = searchBar.value.toLocaleLowerCase().replaceAll(' ', '');
+    const jobElements = document.querySelectorAll('job-details');
+   
+   //loop over all job applications on the page
+    for (const jobEl of jobElements) {
+      const shadowRoot = jobEl.shadowRoot
+
+      // Get all fields that can be searched and also preprocess them
+      const company = shadowRoot.querySelector('#company').textContent.toLocaleLowerCase().replaceAll(' ', '')
+      const position = shadowRoot.querySelector('#title').textContent.toLocaleLowerCase().replaceAll(' ', '')
+      const status = shadowRoot.querySelector('#status').textContent.toLocaleLowerCase().replaceAll(' ', '').slice(7)
+      const location = shadowRoot.querySelector('#location').textContent.toLocaleLowerCase().replaceAll(' ', '')
+
+      //if any one of the four fields contains the input, show the item
+      if(company.includes(keyword) || position.includes(keyword)
+         || status.includes(keyword) || location.includes(keyword)){
+        jobEl.style.display = 'flex';
+      }
+      else{//else hide the item
+        jobEl.style.display = 'none';
+      }
+
+    }
+  })
+
+  /** 
   searchBar.addEventListener('keypress', async (e) => {
     // if user press enter to search
     if (e.key === 'Enter') {
@@ -116,6 +146,7 @@ function initFormHandler () {
       }
     }
   })
+  */
 }
 
 /**
