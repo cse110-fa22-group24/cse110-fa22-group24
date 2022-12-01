@@ -1,13 +1,12 @@
-import DBUtil from "../scripts/JobAppDB";
-const db=new DBUtil();
+import DBUtil from '../scripts/JobAppDB';
+const db = new DBUtil()
 
-
-test('indexedDB set up correctly', async ()=>{
-    await db.setupDB();
-    expect(db).not.toEqual(null);
+test('indexedDB set up correctly', async () => {
+  await db.setupDB();
+  expect(db).not.toEqual(null)
 })
 
-test('add/get job correctly', async ()=>{
+test('add/get job correctly', async () => {
     const mockData = {
         id: 1,
         company: 'Amazon',
@@ -28,7 +27,7 @@ test('add/get job correctly', async ()=>{
     expect(result).toEqual(mockData);
 })
 
-test("update job correctly", async ()=>{
+test("update job correctly", async () => {
     const mockData = {
         id: 1,
         company: 'Amazon',
@@ -71,7 +70,7 @@ test("update job correctly", async ()=>{
     expect(titleUpdate).toEqual('SDE II');
 })
 
-test("get all jobs correctly", async ()=>{
+test("get all jobs correctly", async () => {
     const mockData = {
         id: 1,
         company: 'Amazon',
@@ -87,7 +86,7 @@ test("get all jobs correctly", async ()=>{
         portalPass: ''
     }
 
-    const mockDataTwo ={
+    const mockDataTwo = {
         id: 2,
         company: 'Google',
         title: 'SDE II',
@@ -112,7 +111,7 @@ test("get all jobs correctly", async ()=>{
 
 })
 
-test('delete job correctly',async ()=>{
+test('delete job correctly',async () => {
     const mockData = {
         id: 1,
         company: 'Amazon',
