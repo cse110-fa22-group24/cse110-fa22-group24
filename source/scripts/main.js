@@ -1,6 +1,6 @@
 // main.js
 
-import dbUtil from "./JobAppDB.js";
+import dbUtil from './JobAppDB.js'
 
 const database = new dbUtil()
 
@@ -80,42 +80,40 @@ function initFormHandler () {
     // Clear the <form> fields
     clearForm()
   })
-  //Add an eventListener for search bar keypress
-  const searchBar=document.getElementById("search");
-  searchBar.addEventListener("keypress", async (e)=>{
-    //if user press enter to search
-    if(e.key==="Enter"){
-      //Catch and preprocess user input
-      const keyword=searchBar.value.toLocaleLowerCase().replaceAll(' ', '');
-      const jobElements=document.querySelectorAll("job-details");
-      
-      //For each job application
-      for(const jobEl of jobElements){
-        const shadowRoot=jobEl.shadowRoot;
-        
-        //Get all fields that can be searched and also preprocess them
-        const company=shadowRoot.querySelector("#company").textContent.toLocaleLowerCase().replaceAll(' ', '');
-        const position=shadowRoot.querySelector("#title").textContent.toLocaleLowerCase().replaceAll(' ', '');
-        const status=shadowRoot.querySelector("#status").textContent.toLocaleLowerCase().replaceAll(' ', '').slice(7);
-        const location=shadowRoot.querySelector("#location").textContent.toLocaleLowerCase().replaceAll(' ', '');
-        
-        //if there's nothing in the search box, display all job apps by default
-        if(keyword === ''){
-          jobEl.style.display="flex";
-        }
-        else {
-            //if none of the fields matches user input, hide the item
-            if (keyword != company && keyword != position && keyword != status && keyword != location){
-              jobEl.style.display="none";
-            }
+  // Add an eventListener for search bar keypress
+  const searchBar = document.getElementById('search')
+  searchBar.addEventListener('keypress', async (e) => {
+    // if user press enter to search
+    if (e.key === 'Enter') {
+      // Catch and preprocess user input
+      const keyword = searchBar.value.toLocaleLowerCase().replaceAll(' ', '')
+      const jobElements = document.querySelectorAll('job-details')
 
-            //if one of the fields matches user input, show the item
-            if (keyword === company || keyword === position || keyword === status || keyword === location){
-              jobEl.style.display="flex";
-            }
+      // For each job application
+      for (const jobEl of jobElements) {
+        const shadowRoot = jobEl.shadowRoot
+
+        // Get all fields that can be searched and also preprocess them
+        const company = shadowRoot.querySelector('#company').textContent.toLocaleLowerCase().replaceAll(' ', '')
+        const position = shadowRoot.querySelector('#title').textContent.toLocaleLowerCase().replaceAll(' ', '')
+        const status = shadowRoot.querySelector('#status').textContent.toLocaleLowerCase().replaceAll(' ', '').slice(7)
+        const location = shadowRoot.querySelector('#location').textContent.toLocaleLowerCase().replaceAll(' ', '')
+
+        // if there's nothing in the search box, display all job apps by default
+        if (keyword === '') {
+          jobEl.style.display = 'flex'
+        } else {
+          // if none of the fields matches user input, hide the item
+          if (keyword != company && keyword != position && keyword != status && keyword != location) {
+            jobEl.style.display = 'none'
+          }
+
+          // if one of the fields matches user input, show the item
+          if (keyword === company || keyword === position || keyword === status || keyword === location) {
+            jobEl.style.display = 'flex'
+          }
         }
       }
-
     }
   })
 }
@@ -235,27 +233,27 @@ function addSortBars (fieldNames) {
   }
 }
 
-async function sortTwo(tag, reverse){
+async function sortTwo (tag, reverse) {
   // console.log("sort");
   const jobs = await database.getAllJobs()
-  if (tag === "Company") {
+  if (tag === 'Company') {
     return jobs.sort((a, b) => {
-      let result = !reverse ? a.company > b.company : a.company < b.company
+      const result = !reverse ? a.company > b.company : a.company < b.company
       return result === true ? 1 : -1
     })
-  } else if (tag === "Job Title") {
+  } else if (tag === 'Job Title') {
     return jobs.sort((a, b) => {
-      let result = !reverse ? a.position > b.position : a.position < b.position
+      const result = !reverse ? a.position > b.position : a.position < b.position
       return result === true ? 1 : -1
     })
-  } else if (tag === "Deadline") {
+  } else if (tag === 'Deadline') {
     return jobs.sort((a, b) => {
-      let result = !reverse ? a.deadline > b.deadline : a.deadline < b.deadline
+      const result = !reverse ? a.deadline > b.deadline : a.deadline < b.deadline
       return result === true ? 1 : -1
     })
-  } else if (tag === "Status") {
+  } else if (tag === 'Status') {
     return jobs.sort((a, b) => {
-      let result = !reverse ? a.status > b.status : a.status < b.status
+      const result = !reverse ? a.status > b.status : a.status < b.status
       return result === true ? 1 : -1
     })
   }
