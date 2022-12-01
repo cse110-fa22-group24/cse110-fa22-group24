@@ -1,13 +1,8 @@
 /**
  * A class representing database for a job application
  */
-export default class dbUtil {
+export default class DBUtil {
   db = null
-
-  /**
-   * Constructor that get a reference to a database
-   */
-  constructor () {}
 
   setupDB () {
     return new Promise((resolve, reject) => {

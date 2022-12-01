@@ -1,8 +1,8 @@
 // main.js
 
-import dbUtil from './JobAppDB.js'
+import DBUtil from './JobAppDB.js'
 
-const database = new dbUtil()
+const database = new DBUtil()
 
 // Run the init() function when the page has loaded
 window.addEventListener('DOMContentLoaded', init)
@@ -104,7 +104,7 @@ function initFormHandler () {
           jobEl.style.display = 'flex'
         } else {
           // if none of the fields matches user input, hide the item
-          if (keyword != company && keyword != position && keyword != status && keyword != location) {
+          if (keyword !== company && keyword !== position && keyword !== status && keyword !== location) {
             jobEl.style.display = 'none'
           }
 

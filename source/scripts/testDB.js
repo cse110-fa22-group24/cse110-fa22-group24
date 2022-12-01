@@ -1,8 +1,8 @@
-/* Used for testing dbUtil class */
+/* Used for testing DBUtil class */
 
-import dbUtil from './JobAppDB.js'
+import DBUtil from './JobAppDB.js'
 
-const database = new dbUtil()
+const database = new DBUtil()
 
 const mockData = {
   id: 1,
