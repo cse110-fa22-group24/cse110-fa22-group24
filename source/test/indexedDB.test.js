@@ -1,62 +1,61 @@
-import DBUtil from '../scripts/JobAppDB';
+import DBUtil from '../scripts/JobAppDB'
 const db = new DBUtil()
 
 test('indexedDB set up correctly', async () => {
-  await db.setupDB();
+  await db.setupDB()
   expect(db).not.toEqual(null)
 })
 
 test('add/get job correctly', async () => {
-    const mockData = {
-        id: 1,
-        company: 'Amazon',
-        title: 'SDE I',
-        description: '',
-        portalURL: '',
-        location: '',
-        status: '',
-        notes: '',
-        contact: '',
-        deadline: '',
-        portalUser: '',
-        portalPass: ''
-    }
-    await db.setupDB();
-    await db.addJob(mockData);
-    const result = await db.getJob(1);
-    expect(result).toEqual(mockData);
+  const mockData = {
+    id: 1,
+    company: 'Amazon',
+    title: 'SDE I',
+    description: '',
+    portalURL: '',
+    location: '',
+    status: '',
+    notes: '',
+    contact: '',
+    deadline: '',
+    portalUser: '',
+    portalPass: ''
+  }
+  await db.setupDB()
+  await db.addJob(mockData)
+  const result = await db.getJob(1)
+  expect(result).toEqual(mockData)
 })
 
 test('update job correctly', async () => {
-    const mockData = {
-        id: 1,
-        company: 'Amazon',
-        title: 'SDE I',
-        description: '',
-        portalURL: '',
-        location: '',
-        status: '',
-        notes: '',
-        contact: '',
-        deadline: '',
-        portalUser: '',
-        portalPass: ''
-    }
-
-    const mockDataUpdate = {
-        id: 1,
-        company: 'Amazon',
-        title: 'SDE II',
-        description: '',
-        portalURL: '',
-        location: '',
-        status: '',
-        notes: '',
-        contact: '',
-        deadline: '',
-        portalUser: '',
-        portalPass: ''
-    }
+  const mockData = {
+    id: 1,
+    company: 'Amazon',
+    title: 'SDE I',
+    description: '',
+    portalURL: '',
+    location: '',
+    status: '',
+    notes: '',
+    contact: '',
+    deadline: '',
+    portalUser: '',
+    portalPass: ''
+  }
+  const mockDataUpdate = {
+    id: 1,
+    company: 'Amazon',
+    title: 'SDE II',
+    description: '',
+    portalURL: '',
+    location: '',
+    status: '',
+    notes: '',
+    contact: '',
+    deadline: '',
+    portalUser: '',
+    portalPass: ''
+  }
     
     await db.setupDB();
     await db.addJob(mockData);
