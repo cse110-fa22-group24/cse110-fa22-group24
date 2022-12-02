@@ -13,7 +13,7 @@ async function init () {
   await database.setupDB()
   const jobs = await database.getAllJobs()
   // Add each job to the job-details-list element
-  addJobsToDocument(jobs)
+  await addJobsToDocument(jobs)
   // Add the event listeners to the form elements
   initFormHandler()
   // Have the new app button show the form when clicked
