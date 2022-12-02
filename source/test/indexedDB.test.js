@@ -59,12 +59,12 @@ test('update job correctly', async () => {
   await db.setupDB()
   await db.addJob(mockData)
   const job = await db.getJob(1)
-  const title = job['title']
+  const title = job.title
   expect(title).toEqual('SDE I')
 
   await db.updateJob(mockDataUpdate)
   const jobUpdate = await db.getJob(1)
-  const titleUpdate = jobUpdate['title']
+  const titleUpdate = jobUpdate.title
   expect(titleUpdate).toEqual('SDE II')
 })
 
@@ -105,12 +105,11 @@ test('get all jobs correctly', async () => {
   expect(jobs.length).toEqual(2)
   expect(jobs[0]).toEqual(mockData)
   expect(jobs[1]).toEqual(mockDataTwo)
-
 })
 
-test('delete job correctly',async () => {
+test('delete job correctly', async () => {
   const mockData = {
-    id: 1,
+    id: 1, 
     company: 'Amazon',
     title: 'SDE I',
     description: '',
@@ -145,4 +144,3 @@ test('delete job correctly',async () => {
   expect(jobs.length).toEqual(1)
   expect(jobs[0]).toEqual(mockDataTwo)
 })
-
