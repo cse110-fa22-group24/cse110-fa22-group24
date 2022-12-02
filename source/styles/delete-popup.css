@@ -1,0 +1,60 @@
+/* styles for the #delete-popup element */
+
+#delete-popup-container {
+  position: fixed; /* stay in place */
+  z-index: 1; /* sit on top */
+  width: 100%;
+  height: calc(100% - 4rem - 2px); /* HACK: subtract height of header */
+  bottom: 0;
+  margin: 0;
+  /* color */
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#delete-popup {
+  position: fixed;
+  border: 1px solid black;
+  width: 30%;
+  background: white;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 0 30px 30px;
+  min-width: 20em;
+}
+
+#delete-popup p {
+  font-size: 40px;
+}
+
+#delete-popup button {
+  width: 30%;
+  padding: 10px 0;
+  color: #fff;
+  border: 0;
+  outline: none;
+  font-size: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+}
+
+#delete-btn {
+  background: red;
+}
+
+#delete-btn:hover {
+  opacity: 0.7;
+}
+
+#cancel-btn {
+  background: green;
+}
+
+#cancel-btn:hover {
+  opacity: 0.7;
+}
