@@ -22,9 +22,6 @@ async function init () {
   addSortBars(['Company', 'Position', 'Location', 'Status', 'Deadline'])
   // Have the form be hidden to start
   hideForm()
-
-  console.log('company true', await sortTwo('Company', true))
-  console.log('company false', await sortTwo('Company', false))
 }
 
 /**
@@ -220,41 +217,6 @@ function addSortBars (fieldNames) {
     sortBarList.appendChild(sortBar)
   }
 }
-
-async function sortTwo (tag, reverse) {
-  // console.log("sort");
-  const jobs = await database.getAllJobs()
-  if (tag === 'Company') {
-    return jobs.sort((a, b) => {
-      const result = !reverse ? a.company > b.company : a.company < b.company
-      return result === true ? 1 : -1
-    })
-  } else if (tag === 'Job Title') {
-    return jobs.sort((a, b) => {
-      const result = !reverse ? a.position > b.position : a.position < b.position
-      return result === true ? 1 : -1
-    })
-  } else if (tag === 'Deadline') {
-    return jobs.sort((a, b) => {
-      const result = !reverse ? a.deadline > b.deadline : a.deadline < b.deadline
-      return result === true ? 1 : -1
-    })
-  } else if (tag === 'Status') {
-    return jobs.sort((a, b) => {
-      const result = !reverse ? a.status > b.status : a.status < b.status
-      return result === true ? 1 : -1
-    })
-  }
-}
-
-/**
- * for each job
- *  get tags for job
- */
-
-/**
- * search + create
- */
 
 /**
  * An object containing the names of fields to sort by,
