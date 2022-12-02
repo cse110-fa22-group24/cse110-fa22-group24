@@ -109,7 +109,7 @@ test('get all jobs correctly', async () => {
 
 test('delete job correctly', async () => {
   const mockData = {
-    id: 1, 
+    id: 1,
     company: 'Amazon',
     title: 'SDE I',
     description: '',
