@@ -19,7 +19,7 @@ async function init () {
   // Have the new app button show the form when clicked
   document.querySelector('#new-app-button').addEventListener('click', showForm)
   // Add <sort-bar> elements for each sortable field
-  addSortBars(['Company', 'Position', 'Location', 'Status', 'Deadline'])
+  addSortBars(['Company', 'Job Title', 'Location', 'Status', 'Deadline'])
 }
 
 /**
@@ -205,12 +205,19 @@ function addSortBars (fieldNames) {
   for (const fieldName of fieldNames) {
     const sortBar = document.createElement('sort-bar')
     sortBar.fieldName = fieldName
-    sortBar.onClick = () => {
+    sortBar.onClick = async () => {
       if (sortBar.fieldEnabled) {
         setSortRule(fieldName, sortBar.orderReversed)
+
+        const jobs = await sort(fieldName,sortBar.orderReversed)
+        console.log(jobs)
+        const list = document.querySelector('#job-details-list')
+        removeAllChild(list)
+        addJobsToDocument(jobs)
       } else {
         removeSortRule(fieldName)
       }
+      
     }
     sortBarList.appendChild(sortBar)
   }
@@ -251,4 +258,51 @@ function removeSortRule (fieldName) {
  */
 function onSortRulesChanged () {
   console.log(sortRules)
+}
+
+/**
+ * provides sorted list of job objects
+ *
+ * @param {String} tag The name of a field to sort by
+ * @param {Boolean} reverse Whether to sort in ascending or descending order
+ */
+async function sort(tag, reverse){
+  const jobs = await database.getAllJobs();
+  if (tag === "Company") {
+    return jobs.sort((a, b) => {
+      let result = !reverse ? a.company > b.company : a.company < b.company
+      return result === true ? 1 : -1
+    })
+  } else if (tag === "Job Title") {
+    return jobs.sort((a, b) => {
+      let result = !reverse ? a.position > b.position : a.position < b.position
+      return result === true ? 1 : -1
+    })
+  } else if (tag === "Deadline") {
+    return jobs.sort((a, b) => {
+      let result = !reverse ? a.deadline > b.deadline : a.deadline < b.deadline
+      return result === true ? 1 : -1
+    })
+  } else if (tag === "Status") {
+    return jobs.sort((a, b) => {
+      const date1 = new Date(a)
+      const date2 = new Date(b)
+      let result = !reverse ? date1 > date2 : date1 < date2
+      return result === true ? 1 : -1
+    })
+  }
+  else if (tag === "Location") {
+    return jobs.sort((a, b) => {
+      let result = !reverse ? a.location > b.location : a.location < b.location
+      return result === true ? 1 : -1
+    })
+  }
+}
+
+
+
+function removeAllChild(parent){
+  while(parent.firstChild){
+    parent.removeChild(parent.firstChild)
+  }
 }
