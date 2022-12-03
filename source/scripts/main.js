@@ -21,7 +21,7 @@ async function init () {
   // Add <sort-bar> elements for each sortable field
   addSortBars(['Company', 'Position', 'Location', 'Status', 'Deadline'])
   // Have the profile button show confetti when clicked
-  const jsConfetti = new JSConfetti()
+  const jsConfetti = new JSConfetti() /* eslint-disable-line */
   document.querySelector('#profile-button').addEventListener('click', () => {
     jsConfetti.addConfetti()
   })
