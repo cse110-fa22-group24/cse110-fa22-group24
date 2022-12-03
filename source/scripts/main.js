@@ -17,7 +17,7 @@ function init() {
   // Have the new app button show the form when clicked
   document.querySelector("#new-app-button").addEventListener("click", showForm);
   // Add <sort-bar> elements for each sortable field
-  addSortBars(["Company", "Position", "Location", "Status", "Deadline"]);
+  addSortBars(['Company', 'Position', 'Location', 'Status', 'Deadline']);
   // Have the form be hidden to start
   hideForm();
   // Have the delete popup be hidden to start
