@@ -20,6 +20,7 @@ function init() {
   addSortBars(["Company", "Position", "Location", "Status", "Deadline"]);
   // Have the form be hidden to start
   hideForm();
+  // Have the delete popup be hidden to start
   hideDeletePopup();
 }
 
@@ -155,7 +156,9 @@ function addJobToDocument(job) {
     // Get confirmation from user
     showDeletePopup();
     document.getElementById("delete-btn").addEventListener("click", deleteApp);
-    document.getElementById("cancel-btn").addEventListener("click", cancelDeleteApp);
+    document
+      .getElementById("cancel-btn")
+      .addEventListener("click", cancelDeleteApp);
     // if (window.confirm('Are you sure you want to delete this?')) {
     //   // Remove the <job-details> element from job-details-list
     //   list.removeChild(jobDetails)

@@ -17,7 +17,6 @@
   width: 30%;
   background: white;
   border-radius: 5px;
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -35,7 +34,6 @@
   padding: 10px 0;
   color: #fff;
   border: 0;
-  outline: none;
   font-size: 20px;
   border-radius: 4px;
   cursor: pointer;
