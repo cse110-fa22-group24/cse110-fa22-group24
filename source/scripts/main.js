@@ -1,10 +1,10 @@
 // main.js
 
 // Run the init() function when the page has loaded
-window.addEventListener("DOMContentLoaded", init);
+window.addEventListener('DOMContentLoaded', init);
 
 // Starts the program, all function calls trace back here
-function init() {
+function init () {
   /* TODO: get all jobs from database
    * const jobs = database.getAllJobs();
    */
@@ -15,7 +15,7 @@ function init() {
   // Add the event listeners to the form elements
   initFormHandler();
   // Have the new app button show the form when clicked
-  document.querySelector("#new-app-button").addEventListener("click", showForm);
+  document.querySelector('#new-app-button').addEventListener('click', showForm);
   // Add <sort-bar> elements for each sortable field
   addSortBars(['Company', 'Position', 'Location', 'Status', 'Deadline']);
   // Have the form be hidden to start
@@ -31,8 +31,8 @@ function init() {
  * is returned.
  * @returns {Array<Object>} An array of jobs found in localStorage
  */
-function getJobsFromStorage() {
-  return JSON.parse(localStorage.getItem("jobs")) || [];
+function getJobsFromStorage () {
+  return JSON.parse(localStorage.getItem('jobs')) || [];
 }
 
 /**
@@ -42,7 +42,7 @@ function getJobsFromStorage() {
  * to `job-details-list`.
  * @param {Array<Object>} jobs An array of jobs
  */
-function addJobsToDocument(jobs) {
+function addJobsToDocument (jobs) {
   // Loop through each of the jobs in the passed in array,
   // and create a <job-details> element for each one
   for (const job of jobs) {
@@ -55,19 +55,19 @@ function addJobsToDocument(jobs) {
  * saves that string to `jobs` in localStorage
  * @param {Array<Object>} jobs An array of jobs
  */
-function saveJobsToStorage(jobs) {
-  localStorage.setItem("jobs", JSON.stringify(jobs));
+function saveJobsToStorage (jobs) {
+  localStorage.setItem('jobs', JSON.stringify(jobs));
 }
 
 /**
  * Adds the necesarry event handlers to `form`.
  */
-function initFormHandler() {
+function initFormHandler () {
   // Get a reference to the <form> element
-  const form = document.querySelector("form");
+  const form = document.querySelector('form');
   // Add an event listener for the 'submit' event,
   // which fires when the submit button is clicked
-  form.addEventListener("submit", (event) => {
+  form.addEventListener('submit', (event) => {
     event.preventDefault();
     // Create a new FormData object from the <form> element reference above
     const formData = new FormData(form);
@@ -97,8 +97,8 @@ function initFormHandler() {
     hideForm();
   });
   // Add an event listener for when the cancel button is clicked
-  const cancelButton = form.querySelector("#cancel");
-  cancelButton.addEventListener("click", () => {
+  const cancelButton = form.querySelector('#cancel');
+  cancelButton.addEventListener('click', () => {
     // Hide the form
     hideForm();
     // Reset the <job-details> element to edit
@@ -111,9 +111,9 @@ function initFormHandler() {
 /**
  * Clear the `form` fields
  */
-function clearForm() {
+function clearForm () {
   // Get a reference to the <form> element
-  const form = document.querySelector("form");
+  const form = document.querySelector('form');
   // Create a new FormData object from the <form> element reference above
   const formData = new FormData(form);
   // For each key in the FormData object
@@ -128,9 +128,9 @@ function clearForm() {
  *
  * @param {Object} job The job data to pass to the `job-details` element
  */
-function addJobToDocument(job) {
+function addJobToDocument (job) {
   // Get a reference to the job-details-list element
-  const list = document.querySelector("#job-details-list");
+  const list = document.querySelector('#job-details-list');
   // Get the <job-details> element to edit, otherwise create a new <job-details> element
   const jobDetails = jobDetailsToEdit || document.createElement("job-details");
   /** TODO:
