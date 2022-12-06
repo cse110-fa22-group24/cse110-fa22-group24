@@ -1,147 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Job Buddy</title>
-    <link
-      rel="icon"
-      type="image/png"
-      href="https://www.w3.org/html/logo/downloads/HTML5_Badge_32.png"
-    />
-    <!-- styles -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Nunito"
-    />
-    <link rel="stylesheet" href="./styles/main.css" />
-    <link rel="stylesheet" href="./styles/form.css" />
-    <link rel="stylesheet" href="./styles/delete-popup.css" />
-    <!-- scripts -->
-    <script src="./scripts/JobDetails.js" type="module"></script>
-    <script src="./scripts/SortBar.js" type="module"></script>
-    <script src="./scripts/main.js" type="module"></script>
-  </head>
-  <body>
-    <header>
-      <div id="banner">
-        <div id="branding">
-          <img src="assets/agenda.png" id="logo" />
-          <p class="title">Job Buddy</p>
-        </div>
-        <button id="profile-button">
-          <img src="assets/profile.svg" id="profile-icon" />
-        </button>
-      </div>
-      <hr />
-    </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Buddy</title>
+  <link rel="icon" 
+    type="image/png" 
+    href="https://www.w3.org/html/logo/downloads/HTML5_Badge_32.png">
+  <!-- styles -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Nunito">
+  <link rel="stylesheet"
+    href="./styles/main.css">
+  <link rel="stylesheet"
+    href="./styles/form.css">
+  <link rel="stylesheet"
+    href="./styles/delete-popup.css">
+  <!-- scripts -->
+  <script src="./scripts/JobDetails.js" type="module"></script>
+  <script src="./scripts/SortBar.js" type="module"></script>
+  <script src="./scripts/main.js" type="module"></script>
+  
+</head>
+<body>
 
-    <main>
-      <!--nav bar on the left-->
-      <nav>
-        <input type="text" placeholder="🔍 Search ..." id="search" />
-        <div class="nav-title">
-          <span>Sort</span>
-          <hr />
-        </div>
-        <div id="sort-bar-list">
-          <!-- Add sort-bar elements here -->
-        </div>
-        <button id="new-app-button">New Application</button>
-      </nav>
-
-      <div id="job-details-list">
-        <!-- Add job-details elements here -->
+  <header>
+    <div id="banner">
+      <div id="branding">
+        <img src="assets/agenda.png" id="logo">
+        <p class="title">Job Buddy</p>
       </div>
-    </main>
-
-    <!-- job-details-form -->
-    <form id="job-details-form">
-      <div id="form-content">
-        <!-- Summary -->
-        <div class="row">
-          <label for="company">
-            Company*
-            <input type="text" id="company" name="company" required />
-          </label>
-          <label for="position">
-            Position*
-            <input type="text" id="position" name="position" required />
-          </label>
-        </div>
-        <div class="row">
-          <label for="location">
-            Location*
-            <input type="text" id="location" name="location" required />
-          </label>
-          <label for="status">
-            Status*
-            <select id="status" name="status" required>
-              <option value="Applying">Applying</option>
-              <option value="Submitted">Submitted</option>
-              <option value="Coding Task">Coding Task</option>
-              <option value="Interview">Interview</option>
-              <option value="Offer Received">Offer Received</option>
-              <option value="Rejected">Rejected</option>
-            </select>
-          </label>
-          <label for="deadline">
-            Deadline*
-            <input
-              type="datetime-local"
-              id="deadline"
-              name="deadline"
-              required
-            />
-          </label>
-        </div>
-        <!-- Details -->
-        <label for="description">
-          Description
-          <textarea id="description" name="description" rows="5"></textarea>
-        </label>
-        <label for="notes">
-          Notes
-          <textarea id="notes" name="notes" rows="5"></textarea>
-        </label>
-        <div class="row">
-          <label for="contactName">
-            Contact Name
-            <input type="text" id="contactName" name="contactName" />
-          </label>
-          <label for="contactEmail">
-            Contact Email
-            <input type="email" id="contactEmail" name="contactEmail" />
-          </label>
-        </div>
-        <div class="row">
-          <label for="portalUrl">
-            Portal
-            <input type="url" id="portalUrl" name="portalUrl" />
-          </label>
-          <label for="portalUser">
-            Portal Username
-            <input type="text" id="portalUser" name="portalUser" />
-          </label>
-          <label for="portalPass">
-            Portal Password
-            <input type="text" id="portalPass" name="portalPass" />
-          </label>
-        </div>
-        <div class="row" id="buttons">
-          <button type="submit">Done</button>
-          <button type="button" id="cancel">Cancel</button>
-        </div>
-      </div>
-    </form>
-
-    <!-- delete popup -->
-    <div id="delete-popup-container">
-      <div id="delete-popup">
-        <p>Are you sure you want to delete this?</p>
-        <button type="button" id="delete-btn">Delete</button>
-        <button type="button" id="cancel-btn">Cancel</button>
-      </div>
+      <button id="profile-button">
+        <img src="assets/profile.svg" id="profile-icon">
+      </button>
     </div>
-  </body>
+    <hr>
+  </header>
+
+  <main>
+
+    <!--nav bar on the left-->
+    <nav>
+      <input type="text" placeholder="🔍 Search ..." id="search">
+      <div class="nav-title">
+        <span>Sort</span>
+        <hr>
+      </div>
+      <div id="sort-bar-list">
+      <!-- Add sort-bar elements here -->
+      </div> 
+      <button id="new-app-button">New Application</button>
+    </nav>
+
+    <div id="job-details-list">
+      <!-- Add job-details elements here -->
+    </div>
+
+  </main>
+
+<!-- job-details-form -->
+<form id="job-details-form">
+  <div id="form-content">
+    <!-- Summary -->
+    <div class="row">
+      <label for="company">
+        Company*
+        <input type="text" id="company" name="company" required/>
+      </label>
+      <label for="position">
+        Position*
+        <input type="text" id="position" name="position" required/>
+      </label>
+    </div>
+    <div class="row">
+      <label for="location">
+        Location*
+        <input type="text" id="location" name="location" required/>
+      </label>
+      <label for="status">
+        Status*
+        <select id="status" name="status" required>
+          <option value="Applying">Applying</option>
+          <option value="Submitted">Submitted</option>
+          <option value="Coding Task">Coding Task</option>
+          <option value="Interview">Interview</option>
+          <option value="Offer Received">Offer Received</option>
+          <option value="Rejected">Rejected</option>
+        </select>
+      </label>
+      <label for="deadline">
+        Deadline*
+        <input type="datetime-local" id="deadline" name="deadline" required/>
+      </label>
+    </div>
+    <!-- Details -->
+    <label for="description">
+      Description
+      <textarea id="description" name="description" rows="5"></textarea>
+    </label>
+    <label for="notes">
+      Notes
+      <textarea id="notes" name="notes" rows="5"></textarea>
+    </label>
+    <div class="row">
+      <label for="contactName">
+        Contact Name
+        <input type="text" id="contactName" name="contactName"/>
+      </label>
+      <label for="contactEmail">
+        Contact Email
+        <input type="email" id="contactEmail" name="contactEmail"/>
+      </label>
+    </div>
+    <div class="row">
+      <label for="portalUrl">
+        Portal
+        <input type="url" id="portalUrl" name="portalUrl"/>
+      </label>
+      <label for="portalUser">
+        Portal Username
+        <input type="text" id="portalUser" name="portalUser"/>
+      </label>
+      <label for="portalPass">
+        Portal Password
+        <input type="text" id="portalPass" name="portalPass"/>
+      </label>
+    </div>
+    <div class="row" id="buttons">
+      <button type="submit">Done</button>
+      <button type="button" id="cancel">Cancel</button>
+    </div>
+  </div>
+</form>
+
+<!-- delete popup -->
+<div id="delete-popup-container">
+  <div id="delete-popup">
+    <p>Are you sure you want to delete this?</p>
+    <button type="button" id="delete-btn">Delete</button>
+    <button type="button" id="cancel-btn">Cancel</button>
+  </div>
+</div>
+
+</body>
 </html>
