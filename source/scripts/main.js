@@ -155,26 +155,13 @@ function addJobToDocument (job) {
   jobDetails.onClickDelete = () => {
     // Get confirmation from user
     showDeletePopup()
-    document.getElementById('delete-btn').addEventListener('click', deleteApp)
-    document
-      .getElementById('cancel-btn')
-      .addEventListener('click', cancelDeleteApp)
-    // if (window.confirm('Are you sure you want to delete this?')) {
-    //   // Remove the <job-details> element from job-details-list
-    //   list.removeChild(jobDetails)
-    // }
+    document.querySelector('#delete-btn').addEventListener('click', () => {
+      // Remove the <job-details> element from job-details-list
+      list.removeChild(jobDetails)
+      hideDeletePopup()
+    })
+    document.querySelector('#cancel-btn').addEventListener('click', hideDeletePopup)
   }
-
-  function deleteApp () {
-    // Remove the <job-details> element from job-details-list
-    list.removeChild(jobDetails)
-    hideDeletePopup()
-  }
-
-  function cancelDeleteApp () {
-    hideDeletePopup()
-  }
-
   // Get a reference to the <form> element
   const form = document.querySelector('form')
   // Add the onClickEdit function to <job-details>
@@ -207,9 +194,7 @@ let jobDetailsToEdit = null
  * Hide the `form` element
  */
 function hideForm () {
-  document
-    .querySelector('#job-details-form')
-    .setAttribute('style', 'display: none')
+  document.querySelector('#job-details-form').setAttribute('style', 'display: none')
 }
 
 /**
@@ -223,9 +208,7 @@ function showForm () {
  * Hide the `delete-popup` element
  */
 function hideDeletePopup () {
-  document
-    .querySelector('#delete-popup-container')
-    .setAttribute('style', 'display: none')
+  document.querySelector('#delete-popup-container').setAttribute('style', 'display: none')
 }
 
 /**
