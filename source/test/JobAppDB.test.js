@@ -1,12 +1,12 @@
 import DBUtil from '../scripts/JobAppDB'
 const db = new DBUtil()
 
-test('indexedDB set up correctly', async () => {
+test('JobAppDB set up correctly', async () => {
   await db.setupDB()
   expect(db).not.toEqual(null)
 })
 
-test('add/get job correctly', async () => {
+test('Add/get job correctly', async () => {
   const mockData = {
     id: 1,
     company: 'Amazon',
@@ -27,7 +27,7 @@ test('add/get job correctly', async () => {
   expect(result).toEqual(mockData)
 })
 
-test('update job correctly', async () => {
+test('Update job correctly', async () => {
   const mockData = {
     id: 1,
     company: 'Amazon',
@@ -68,7 +68,7 @@ test('update job correctly', async () => {
   expect(titleUpdate).toEqual('SDE II')
 })
 
-test('get all jobs correctly', async () => {
+test('Get all jobs correctly', async () => {
   const mockData = {
     id: 1,
     company: 'Amazon',
@@ -107,7 +107,7 @@ test('get all jobs correctly', async () => {
   expect(jobs[1]).toEqual(mockDataTwo)
 })
 
-test('delete job correctly', async () => {
+test('Delete job correctly', async () => {
   const mockData = {
     id: 1,
     company: 'Amazon',
