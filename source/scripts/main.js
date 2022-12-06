@@ -20,8 +20,8 @@ async function init () {
   document.querySelector('#new-app-button').addEventListener('click', showForm)
   // Add <sort-bar> elements for each sortable field
   addSortBars(['Company', 'Position', 'Location', 'Status', 'Deadline'])
-  // Have the cancel-delete button hide the delete-popup when clicked
-  document.querySelector('#cancel-btn').addEventListener('click', hideDeletePopup)
+  // Have the delete-cancel button hide the delete-popup when clicked
+  document.querySelector('#delete-cancel').addEventListener('click', hideDeletePopup)
 }
 
 /**
@@ -144,7 +144,7 @@ async function addJobToDocument (job) {
   jobDetails.onClickDelete = () => {
     // Get confirmation from user
     showDeletePopup()
-    document.querySelector('#delete-btn').onclick = async () => {
+    document.querySelector('#delete-submit').onclick = async () => {
       // Remove the job-details element from job-details-list
       list.removeChild(jobDetails)
       // Remove the job from the database
