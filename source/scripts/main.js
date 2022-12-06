@@ -20,8 +20,8 @@ async function init () {
   document.querySelector('#new-app-button').addEventListener('click', showForm)
   // Add <sort-bar> elements for each sortable field
   addSortBars(['Company', 'Position', 'Location', 'Status', 'Deadline'])
-  // Have the delete popup be hidden to start
-  hideDeletePopup()
+  // Have the cancel-delete button hide the delete-popup when clicked
+  document.querySelector('#cancel-btn').addEventListener('click', hideDeletePopup)
 }
 
 /**
@@ -151,7 +151,6 @@ async function addJobToDocument (job) {
       await database.deleteJob(job.id)
       hideDeletePopup()
     }
-    document.querySelector('#cancel-btn').addEventListener('click', hideDeletePopup)
   }
   // Get a reference to the <form> element
   const form = document.querySelector('form')
