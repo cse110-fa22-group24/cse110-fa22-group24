@@ -86,7 +86,7 @@ function initFormHandler () {
   })
   // Add an eventListener for when a key is released in the search bar
   const searchBar = document.getElementById('search')
-  searchBar.addEventListener('keyup', () => {
+  filterSearch = () => {
     // Get the current search query
     const query = searchBar.value.toLocaleLowerCase().replaceAll(' ', '')
     // For every job-details element on the page
@@ -107,7 +107,8 @@ function initFormHandler () {
         jobDetails.setAttribute('style', 'display: none')
       }
     }
-  })
+  }
+  searchBar.addEventListener('keyup', filterSearch)
 }
 
 /**
@@ -277,5 +278,15 @@ async function sort () {
   // Remove all jobs from document
   document.querySelector('#job-details-list').innerHTML = '<!-- Add job-details elements here -->'
   // Add jobs back to document in sorted order
-  addJobsToDocument(jobs)
+  await addJobsToDocument(jobs)
+  // Filter by search query
+  filterSearch()
 }
+
+/**
+ * The function which filters the jobs by search query
+ *
+ * @global
+ * @type {Function}
+ */
+let filterSearch = () => {}
