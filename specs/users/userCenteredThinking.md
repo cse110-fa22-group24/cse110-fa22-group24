@@ -18,4 +18,3 @@
   - Can use the resume feature to easily keep track of all experiences for putting together a one page resume for each application.
  
 From these user stories, we can see that our application is mainly targeting individuals who are dealing with jobs in multiple fields or simply just a plethora of jobs. We understand as job applicants ourselves that organization can get lost during the job application process with the sheer amount and diversity of the applications completed. We aim to target these users and use the organizational features of our application to help with this issue. The application will allow for the user to be able to categorize their job applications accordingly based on the field of the user's choice and simply have all applications in one place as opposed to scattered around in emails.
-
