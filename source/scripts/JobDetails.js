@@ -210,7 +210,7 @@ class JobDetails extends HTMLElement {
     // given in job-details.html and the data passed in
     details.innerHTML = `
       <summary>
-        <div id="arrow"><img src="./assets/next.png"></div>
+        <div id="arrow"><img src="./assets/next.png" alt=">"></div>
         <div id="company">${data.company}</div> 
         <div id="title">${data.position}</div>
         <div id="location-tag">
