@@ -19,7 +19,7 @@ async function init () {
   // Have the new app button show the form when clicked
   document.querySelector('#new-app-button').addEventListener('click', showForm)
   // Add <sort-bar> elements for each sortable field
-  addSortBars(['Company', 'Job Title', 'Location', 'Status', 'Deadline'])
+  addSortBars(['Company', 'Position', 'Location', 'Status', 'Deadline'])
 }
 
 /**
@@ -62,6 +62,8 @@ function initFormHandler () {
     jobDetailsToEdit = null
     // Clear the <form> fields
     clearForm()
+    // Sort jobs
+    await sort()
     // Hide the form
     hideForm()
   })
@@ -202,103 +204,55 @@ function showForm () {
  */
 function addSortBars (fieldNames) {
   const sortBarList = document.querySelector('#sort-bar-list')
+  // For each field name
   for (const fieldName of fieldNames) {
+    // Create a new sort bar
     const sortBar = document.createElement('sort-bar')
+    // Set text of sort bar
     sortBar.fieldName = fieldName
+    // Set behavior on click
     sortBar.onClick = async () => {
-      if (sortBar.fieldEnabled) {
-        setSortRule(fieldName, sortBar.orderReversed)
-
-        const jobs = await sort(fieldName, sortBar.orderReversed)
-        console.log(jobs)
-        const list = document.querySelector('#job-details-list')
-        removeAllChild(list)
-        addJobsToDocument(jobs)
-      } else {
-        removeSortRule(fieldName)
+      // Disable other sort bars
+      for (const otherSortBar of sortBarList.children) {
+        if (otherSortBar !== sortBar) otherSortBar.disable()
       }
+      // Sort jobs
+      [sortField, sortOrder] = [fieldName.toLowerCase(), sortBar.orderReversed]
+      await sort()
     }
+    // Add new sort-bar element to sort-bar-list
     sortBarList.appendChild(sortBar)
+    // Sort by deadline by default
+    if (fieldName === 'Deadline') sortBar.click()
   }
 }
 
 /**
- * An object containing the names of fields to sort by,
- * and whether to sort each in ascending or descending order
+ * The field name to be sorting by
  *
  * @global
- * @type {Object}
+ * @type {String}
  */
-const sortRules = {}
+let sortField = ''
 
 /**
- * Set a sorting rule in `sortRules`.
+ * The order to be sorting by
  *
- * @param {String} fieldName The name of a field to sort by
- * @param {Boolean} ascOrDesc Whether to sort in ascending or descending order
+ * @global
+ * @type {String}
  */
-function setSortRule (fieldName, ascOrDesc) {
-  sortRules[fieldName] = ascOrDesc
-  onSortRulesChanged()
-}
+let sortOrder = false
 
 /**
- * Remove a sorting rule from `sortRules`.
- *
- * @param {String} fieldName The name of a field to no longer sort by
+ * Sort the job-details elements by the current sortField and sortOrder
  */
-function removeSortRule (fieldName) {
-  delete sortRules[fieldName]
-  onSortRulesChanged()
-}
-
-/**
- * Called when `sortRules` is changed.
- */
-function onSortRulesChanged () {
-  console.log(sortRules)
-}
-
-/**
- * provides sorted list of job objects
- *
- * @param {String} tag The name of a field to sort by
- * @param {Boolean} reverse Whether to sort in ascending or descending order
- */
-async function sort (tag, reverse) {
-  const jobs = await database.getAllJobs()
-  if (tag === 'Company') {
-    return jobs.sort((a, b) => {
-      const result = !reverse ? a.company > b.company : a.company < b.company
-      return result === true ? 1 : -1
-    })
-  } else if (tag === 'Job Title') {
-    return jobs.sort((a, b) => {
-      const result = !reverse ? a.position > b.position : a.position < b.position
-      return result === true ? 1 : -1
-    })
-  } else if (tag === 'Deadline') {
-    return jobs.sort((a, b) => {
-      const result = !reverse ? a.deadline > b.deadline : a.deadline < b.deadline
-      return result === true ? 1 : -1
-    })
-  } else if (tag === 'Status') {
-    return jobs.sort((a, b) => {
-      const date1 = new Date(a)
-      const date2 = new Date(b)
-      const result = !reverse ? date1 > date2 : date1 < date2
-      return result === true ? 1 : -1
-    })
-  } else if (tag === 'Location') {
-    return jobs.sort((a, b) => {
-      const result = !reverse ? a.location > b.location : a.location < b.location
-      return result === true ? 1 : -1
-    })
-  }
-}
-
-function removeAllChild (parent) {
-  while (parent.firstChild) {
-    parent.removeChild(parent.firstChild)
-  }
+async function sort () {
+  const jobs = (await database.getAllJobs()).sort((a, b) => {
+    [a, b] = [a[sortField], b[sortField]]
+    return (sortOrder ? a < b : a > b) ? 1 : -1
+  })
+  // Remove all jobs from document
+  document.querySelector('#job-details-list').innerHTML = '<!-- Add job-details elements here -->'
+  // Add jobs back to document in sorted order
+  addJobsToDocument(jobs)
 }
