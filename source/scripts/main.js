@@ -20,6 +20,13 @@ async function init () {
   document.querySelector('#new-app-button').addEventListener('click', showForm)
   // Add <sort-bar> elements for each sortable field
   addSortBars(['Company', 'Position', 'Location', 'Status', 'Deadline'])
+  // Have the delete-cancel button hide the delete-popup when clicked
+  document.querySelector('#delete-cancel').addEventListener('click', hideDeletePopup)
+  // Have the profile button show confetti when clicked
+  const jsConfetti = new JSConfetti() /* eslint-disable-line */
+  document.querySelector('#profile-button').addEventListener('click', () => {
+    jsConfetti.addConfetti()
+  })
 }
 
 /**
@@ -141,13 +148,15 @@ async function addJobToDocument (job) {
   // Add the job data to <job-details>
   jobDetails.data = job
   // Add the onClickDelete function to <job-details>
-  jobDetails.onClickDelete = async () => {
+  jobDetails.onClickDelete = () => {
     // Get confirmation from user
-    if (window.confirm('Are you sure you want to delete this?')) {
+    showDeletePopup()
+    document.querySelector('#delete-submit').onclick = async () => {
       // Remove the job-details element from job-details-list
       list.removeChild(jobDetails)
       // Remove the job from the database
       await database.deleteJob(job.id)
+      hideDeletePopup()
     }
   }
   // Get a reference to the <form> element
@@ -193,6 +202,20 @@ function hideForm () {
  */
 function showForm () {
   document.querySelector('#job-details-form').removeAttribute('style')
+}
+
+/**
+ * Hide the `delete-popup` element
+ */
+function hideDeletePopup () {
+  document.querySelector('#delete-popup-container').setAttribute('style', 'display: none')
+}
+
+/**
+ * Show the `delete-popup` element
+ */
+function showDeletePopup () {
+  document.querySelector('#delete-popup-container').removeAttribute('style')
 }
 
 /**
