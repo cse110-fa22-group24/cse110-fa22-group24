@@ -13,168 +13,13 @@ class JobDetails extends HTMLElement {
     // Create an <details> element - This will hold our markup once our data is set
     const details = document.createElement('details')
 
-    // Create a style element - This will hold all of the styles for the Web Component
-    const style = document.createElement('style')
-    // Insert all of the styles from job-details.html into the <style> element
-    style.textContent = `
-      /* font */
-      * {
-        font-family: "Nunito", sans-serif;
-        font-size: 14pt;
-        color: #2d2d34;
-      }
-    
-      /* outer border */
-      details {
-        border: 1px solid;
-        border-radius: 8px;
-      }
-    
-      /* hide details arrow */
-      details summary::-webkit-details-marker {
-        display: none;
-      }
-    
-      /** summary **/
-    
-      details > summary {
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 10px;
-        gap: 10px;
-      }
-    
-      /* dropdown arrow */
-    
-      #arrow {
-        height: 24px;
-        width: 24px;
-      }
-    
-      details[open] #arrow {
-        transform: rotate(90deg);
-      }
-    
-      /* company tag */
-    
-      #company {
-        padding: 0px 12px;
-        border-radius: 5px;
-        background-color: #69ddff;
-        font-size: 1.5rem;
-      }
-    
-      /* position title */
-    
-      #title {
-        font-size: 1.5rem;
-      }
-    
-      /* location */
-    
-      #location-tag {
-        margin-left: auto;
-        display: flex;
-        align-items: center;
-        border-radius: 5px;
-        background-color: #dbf8ff;
-        padding: 5px 8px;
-        gap: 5px;
-      }
-    
-      #location {
-        font-style: italic;
-      }
-    
-      /* status */
-    
-      #status {
-        padding: 3px 6px;
-        border: 2px #eca400 solid;
-        border-radius: 5px;
-        color: #eca400;
-      }
-    
-      /* notification symbol */
-    
-      #notification-symbol {
-        font-size: 1.5rem;
-      }
-    
-      /* deadline date and time */
-    
-      #deadline {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-    
-      #deadline * {
-        color: #bf4e30;
-      }
-    
-      /* horizontal rule */
-    
-      #horizontal-rule {
-        margin: 0;
-      }
-    
-      /** dropdown **/
-    
-      .dropdown {
-        display: flex;
-        flex-direction: column;
-        padding: 0px 15px 10px;
-        gap: 10px;
-      }
-    
-      .heading {
-        font-size: 1.3rem;
-        font-style: italic;
-      }
-    
-      #notes {
-        margin: 0;
-      }
-    
-      a {
-        color: #106efb;
-        font-style: italic;
-      }
-    
-      .vertical-bar {
-        font-size: 1.3rem;
-      }
-    
-      /* buttons */
-    
-      #buttons {
-        display: flex;
-        justify-content: flex-end;
-        height: 50px;
-      }
-    
-      .button {
-        border: none;
-        background: none;
-        padding: 0;
-        font-size: 30px;
-        width: 50px;
-      }
-    
-      .button:hover {
-        font-size: 35px;
-      }
-    
-      .button:active {
-        font-size: 30px;
-      }
-    `
+    // Create a link element - This will hold a reference to the stylesheet for the Web Component
+    const link = document.createElement('link')
+    link.setAttribute('rel', 'stylesheet')
+    link.setAttribute('href', './styles/job-details.css')
 
-    // Append the <details> and <style> elements to the Shadow DOM
-    this.shadowRoot.append(details, style)
+    // Append the <details> and <link> elements to the Shadow DOM
+    this.shadowRoot.append(details, link)
   }
 
   /**
@@ -210,7 +55,7 @@ class JobDetails extends HTMLElement {
     // given in job-details.html and the data passed in
     details.innerHTML = `
       <summary>
-        <div id="arrow"><img src="./assets/next.png"></div>
+        <div id="arrow"><img src="./assets/next.png" alt=">"></div>
         <div id="company">${data.company}</div> 
         <div id="title">${data.position}</div>
         <div id="location-tag">
@@ -286,24 +131,6 @@ class JobDetails extends HTMLElement {
     // Add formatted time
     const deadlineTimeSpanElement = details.querySelector('#deadline-time')
     deadlineTimeSpanElement.innerText = date.toLocaleTimeString('en-US', { timeStyle: 'short' })
-
-    // Add list item elements to notes unordered list element from data notes array
-    // const notesUnorderedListElement = details.querySelector('#notes')
-    /* TODO: Notes as bullet points?
-    data.notes.forEach((itemString) => {
-      const listItemElement = document.createElement('li');
-      listItemElement.innerText = itemString;
-      notesUnorderedListElement.appendChild(listItemElement);
-    }); */
-
-    // Add tag custom elements to tags div element from data tags array
-    // const tagsDivElement = details.querySelector('#tags')
-    /* TODO: Add tag functionality
-    data.tags.forEach((tagObject) => {
-      const tagElement = document.createElement('tag');
-      tagElement.title = tagObject.title;
-      tagsDivElement.appendChild(tagElement);
-    }); */
   }
 
   /**
