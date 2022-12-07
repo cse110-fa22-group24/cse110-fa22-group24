@@ -29,36 +29,34 @@ class SortBar extends HTMLElement {
     const field = div.querySelector('#field')
     const img = div.querySelector('img')
     div.addEventListener('click', () => {
-      switch (this.state) {
-        case 'reversed':
-          // Update state
-          this.state = 'disabled'
-          // Reset styles to default
-          div.removeAttribute('style')
-          field.removeAttribute('style')
-          // Hide order arrow
-          img.setAttribute('style', 'visibility: hidden')
-          break
-        case 'disabled':
-          // Update state
-          this.state = 'enabled'
-          // Set new background color
-          div.setAttribute('style', 'background-color: #69ddff')
-          // Set text to white
-          field.setAttribute('style', 'color: white')
-          // Show order arrow
-          img.removeAttribute('style')
-          break
-        case 'enabled':
-          // Update state
-          this.state = 'reversed'
-          // Flip arrow
-          img.setAttribute('style', 'transform: rotate(90deg)')
-          break
+      if (this.state === 'enabled') {
+        // Update state
+        this.state = 'reversed'
+        // Flip arrow
+        img.setAttribute('style', 'transform: rotate(90deg)')
+      } else {
+        // Update state
+        this.state = 'enabled'
+        // Set new background color
+        div.setAttribute('style', 'background-color: #69ddff')
+        // Set text to white
+        field.setAttribute('style', 'color: white')
+        // Show order arrow
+        img.removeAttribute('style')
       }
     })
     // Hide order arrow by default
     img.setAttribute('style', 'visibility: hidden')
+    // Add a function to set the state to disabled
+    this.disable = () => {
+      // Update state
+      this.state = 'disabled'
+      // Reset styles to default
+      div.removeAttribute('style')
+      field.removeAttribute('style')
+      // Hide order arrow
+      img.setAttribute('style', 'visibility: hidden')
+    }
 
     // Append the <div> and <style> elements to the Shadow DOM
     this.shadowRoot.append(div, link)
@@ -89,6 +87,13 @@ class SortBar extends HTMLElement {
    */
   set onClick (onClick) {
     this.shadowRoot.querySelector('div').addEventListener('click', onClick)
+  }
+
+  /**
+   * Simulate the user clicking on this element
+   */
+  click () {
+    this.shadowRoot.querySelector('div').click()
   }
 
   /**

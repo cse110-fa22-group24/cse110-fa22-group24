@@ -69,6 +69,8 @@ function initFormHandler () {
     jobDetailsToEdit = null
     // Clear the <form> fields
     clearForm()
+    // Sort jobs
+    await sort()
     // Hide the form
     hideForm()
   })
@@ -84,7 +86,7 @@ function initFormHandler () {
   })
   // Add an eventListener for when a key is released in the search bar
   const searchBar = document.getElementById('search')
-  searchBar.addEventListener('keyup', () => {
+  filterSearch = () => {
     // Get the current search query
     const query = searchBar.value.toLocaleLowerCase().replaceAll(' ', '')
     // For every job-details element on the page
@@ -105,7 +107,8 @@ function initFormHandler () {
         jobDetails.setAttribute('style', 'display: none')
       }
     }
-  })
+  }
+  searchBar.addEventListener('keyup', filterSearch)
 }
 
 /**
@@ -225,53 +228,65 @@ function showDeletePopup () {
  */
 function addSortBars (fieldNames) {
   const sortBarList = document.querySelector('#sort-bar-list')
+  // For each field name
   for (const fieldName of fieldNames) {
+    // Create a new sort bar
     const sortBar = document.createElement('sort-bar')
+    // Set text of sort bar
     sortBar.fieldName = fieldName
-    sortBar.onClick = () => {
-      if (sortBar.fieldEnabled) {
-        setSortRule(fieldName, sortBar.orderReversed)
-      } else {
-        removeSortRule(fieldName)
+    // Set behavior on click
+    sortBar.onClick = async () => {
+      // Disable other sort bars
+      for (const otherSortBar of sortBarList.children) {
+        if (otherSortBar !== sortBar) otherSortBar.disable()
       }
+      // Sort jobs
+      [sortField, sortOrder] = [fieldName.toLowerCase(), sortBar.orderReversed]
+      await sort()
     }
+    // Add new sort-bar element to sort-bar-list
     sortBarList.appendChild(sortBar)
+    // Sort by deadline by default
+    if (fieldName === 'Deadline') sortBar.click()
   }
 }
 
 /**
- * An object containing the names of fields to sort by,
- * and whether to sort each in ascending or descending order
+ * The field name to be sorting by
  *
  * @global
- * @type {Object}
+ * @type {String}
  */
-const sortRules = {}
+let sortField = ''
 
 /**
- * Set a sorting rule in `sortRules`.
+ * The order to be sorting by
  *
- * @param {String} fieldName The name of a field to sort by
- * @param {Boolean} ascOrDesc Whether to sort in ascending or descending order
+ * @global
+ * @type {String}
  */
-function setSortRule (fieldName, ascOrDesc) {
-  sortRules[fieldName] = ascOrDesc
-  onSortRulesChanged()
+let sortOrder = false
+
+/**
+ * Sort the job-details elements by the current sortField and sortOrder
+ */
+async function sort () {
+  const jobs = (await database.getAllJobs()).sort((a, b) => {
+    [a, b] = [a[sortField], b[sortField]]
+    return (sortOrder ? a < b : a > b) ? 1 : -1
+  })
+  // Remove all jobs from document
+  document.querySelector('#job-details-list').innerHTML = '<!-- Add job-details elements here -->'
+  // Add jobs back to document in sorted order
+  await addJobsToDocument(jobs)
+  // Filter by search query
+  filterSearch()
 }
 
 /**
- * Remove a sorting rule from `sortRules`.
+ * The function which filters the jobs by search query
  *
- * @param {String} fieldName The name of a field to no longer sort by
+ * @global
+ * @type {Function}
  */
-function removeSortRule (fieldName) {
-  delete sortRules[fieldName]
-  onSortRulesChanged()
-}
-
-/**
- * Called when `sortRules` is changed.
- */
-function onSortRulesChanged () {
-  console.log(sortRules)
-}
+let filterSearch = () => {}
