@@ -73,9 +73,9 @@ details[open] #arrow {
 
 #status {
   padding: 3px 6px;
-  border: 2px #eca400 solid;
+  border: 2px green solid;
   border-radius: 5px;
-  color: #eca400;
+  color: green;
 }
 
 /* notification symbol */
