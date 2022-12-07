@@ -1,0 +1,33 @@
+/* font */
+
+* {
+  font-family: "Nunito", sans-serif;
+  font-size: 14pt;
+  color: #1e7a1d;
+}
+
+/* background */
+
+div {
+  display: flex;
+  border: none;
+  border-radius: 10px;
+  background-color:  #dbf8ff;
+}
+
+/* elements */
+
+div > * {
+  display: flex;
+  padding: 0.5rem 1rem;
+  user-select: none; /* prevent text selection */
+}
+
+#field {
+  flex-grow: 1;
+}
+
+img {
+  filter: invert();
+  transform: rotate(270deg);
+}
