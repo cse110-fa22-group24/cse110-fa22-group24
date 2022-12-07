@@ -22,6 +22,11 @@ async function init () {
   addSortBars(['Company', 'Position', 'Location', 'Status', 'Deadline'])
   // Have the delete-cancel button hide the delete-popup when clicked
   document.querySelector('#delete-cancel').addEventListener('click', hideDeletePopup)
+  // Have the profile button show confetti when clicked
+  const jsConfetti = new JSConfetti() /* eslint-disable-line */
+  document.querySelector('#profile-button').addEventListener('click', () => {
+    jsConfetti.addConfetti()
+  })
 }
 
 /**
