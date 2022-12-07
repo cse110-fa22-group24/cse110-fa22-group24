@@ -28,6 +28,8 @@ div > * {
 }
 
 img {
+  width: 24px;
+  height: 24px;
   filter: invert();
   transform: rotate(270deg);
 }
