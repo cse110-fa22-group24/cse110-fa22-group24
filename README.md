@@ -10,6 +10,8 @@
 
 [Figma](https://www.figma.com/file/MJNu9BIF2qha5lbEGSJRCw/CSE-110?node-id=4%3A39)
 
+[Final Video](https://youtu.be/Z734BJ6D2-E)
+
 ## Pipeline
 
 1. Pull the latest changes from `main`
