@@ -13,44 +13,10 @@ class SortBar extends HTMLElement {
     // Create a <div> element - This will hold our markup once our data is set
     const div = document.createElement('div')
 
-    // Create a style element - This will hold all of the styles for the Web Component
-    const style = document.createElement('style')
-    // Insert all of the styles from sort-bar.html into the <style> element
-    style.textContent = `
-      /* font */
-
-      * {
-        font-family: "Nunito", sans-serif;
-        font-size: 14pt;
-        color: #1e7a1d;
-      }
-      
-      /* background */
-      
-      div {
-        display: flex;
-        border: none;
-        border-radius: 10px;
-        background-color:  #dbf8ff;
-      }
-      
-      /* elements */
-      
-      div > * {
-        display: flex;
-        padding: 0.5rem 1rem;
-        user-select: none; /* prevent text selection */
-      }
-      
-      #field {
-        flex-grow: 1;
-      }
-      
-      img {
-        filter: invert();
-        transform: rotate(270deg);
-      }
-    `
+    // Create a link element - This will hold a reference to the stylesheet for the Web Component
+    const link = document.createElement('link')
+    link.setAttribute('rel', 'stylesheet')
+    link.setAttribute('href', './styles/sort-bar.css')
 
     // Set the contents of the <div> with
     // the <div> template given in sort-bar.html
@@ -63,39 +29,37 @@ class SortBar extends HTMLElement {
     const field = div.querySelector('#field')
     const img = div.querySelector('img')
     div.addEventListener('click', () => {
-      switch (this.state) {
-        case 'reversed':
-          // Update state
-          this.state = 'disabled'
-          // Reset styles to default
-          div.removeAttribute('style')
-          field.removeAttribute('style')
-          // Hide order arrow
-          img.setAttribute('style', 'visibility: hidden')
-          break
-        case 'disabled':
-          // Update state
-          this.state = 'enabled'
-          // Set new background color
-          div.setAttribute('style', 'background-color: #69ddff')
-          // Set text to white
-          field.setAttribute('style', 'color: white')
-          // Show order arrow
-          img.removeAttribute('style')
-          break
-        case 'enabled':
-          // Update state
-          this.state = 'reversed'
-          // Flip arrow
-          img.setAttribute('style', 'transform: rotate(90deg)')
-          break
+      if (this.state === 'enabled') {
+        // Update state
+        this.state = 'reversed'
+        // Flip arrow
+        img.setAttribute('style', 'transform: rotate(90deg)')
+      } else {
+        // Update state
+        this.state = 'enabled'
+        // Set new background color
+        div.setAttribute('style', 'background-color: #69ddff')
+        // Set text to white
+        field.setAttribute('style', 'color: white')
+        // Show order arrow
+        img.removeAttribute('style')
       }
     })
     // Hide order arrow by default
     img.setAttribute('style', 'visibility: hidden')
+    // Add a function to set the state to disabled
+    this.disable = () => {
+      // Update state
+      this.state = 'disabled'
+      // Reset styles to default
+      div.removeAttribute('style')
+      field.removeAttribute('style')
+      // Hide order arrow
+      img.setAttribute('style', 'visibility: hidden')
+    }
 
     // Append the <div> and <style> elements to the Shadow DOM
-    this.shadowRoot.append(div, style)
+    this.shadowRoot.append(div, link)
   }
 
   /**
@@ -123,6 +87,13 @@ class SortBar extends HTMLElement {
    */
   set onClick (onClick) {
     this.shadowRoot.querySelector('div').addEventListener('click', onClick)
+  }
+
+  /**
+   * Simulate the user clicking on this element
+   */
+  click () {
+    this.shadowRoot.querySelector('div').click()
   }
 
   /**
