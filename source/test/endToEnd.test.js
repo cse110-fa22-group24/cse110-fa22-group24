@@ -33,7 +33,7 @@ describe('Basic user flow for Job Buddy website', () => {
       return jobElements.length
     })
     expect(numApplications).toBe(1)
-  })
+  }, 10000)
 
   it('Test refresh after create', async () => {
     console.log('Checking that job application is still present after refresh...')
