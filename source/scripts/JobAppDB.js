@@ -31,8 +31,6 @@ export default class DBUtil {
         store.createIndex('deadline', ['deadline'], { unique: false })
         store.createIndex('portalUser', ['portalUser'], { unique: false })
         store.createIndex('portalPass', ['portalPass'], { unique: false })
-
-        // TODO: Generalize to all entities
       }
 
       request.onsuccess = (event) => {
