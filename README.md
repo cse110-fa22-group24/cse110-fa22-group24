@@ -26,8 +26,6 @@
 7. Review changes (requires 2 approvals)
 8. Merge changes
 
-Merging changes into or pushing onto `main` will run the [Deploy static content to GitHub Pages](https://github.com/cse110-fa22-group24/cse110-fa22-group24/actions/workflows/deploy.yml) action.  
-This will host the static contents of the `./source` directory (HTML, CSS, and JavaScript) on GitHub Pages at [this URL](https://cse110-fa22-group24.github.io/cse110-fa22-group24/), and host the generated JSDoc documentation at [this URL](https://cse110-fa22-group24.github.io/cse110-fa22-group24/jsdoc/global).
-
-Merging changes into or pushing onto any branch will run the [Unit Test Execution](https://github.com/cse110-fa22-group24/cse110-fa22-group24/actions/workflows/tests.yml) action.
-This will run the unit tests on the updated branch.
+Merging changes into or pushing onto any branch will run the [CI Workflow Execution](https://github.com/cse110-fa22-group24/cse110-fa22-group24/actions/workflows/deploy.yml) action.  
+This will run the [Unit Test Execution](https://github.com/cse110-fa22-group24/cse110-fa22-group24/actions/workflows/tests.yml) and [Lint Execution](https://github.com/cse110-fa22-group24/cse110-fa22-group24/actions/workflows/lint.yml) actions to run tests and the linter.  
+If the branch is `main`, this will also run the [Deploy static content to GitHub Pages](https://github.com/cse110-fa22-group24/cse110-fa22-group24/actions/workflows/deployment.yml) action to host the static contents of the `./source` directory (HTML, CSS, and JavaScript) on GitHub Pages at [this URL](https://cse110-fa22-group24.github.io/cse110-fa22-group24/), and host the generated JSDoc documentation at [this URL](https://cse110-fa22-group24.github.io/cse110-fa22-group24/jsdoc/global).
